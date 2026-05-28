@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, ArrowUpRight, Sparkles, Code2, Brain, Bot, Users, Workflow,
   Smartphone, Cloud, Megaphone, Play, Globe, Briefcase, Users2, Clock,
-  CheckCircle2, Cpu, Database, GitBranch, Layers, Boxes, ShieldCheck,
+  CheckCircle2, Cpu, GitBranch, Layers, Boxes, ShieldCheck,
   Zap, Activity, Calendar, GraduationCap, Stethoscope, Hotel, ShoppingBag,
   Factory, Leaf, FileSpreadsheet, Building2, Gem,
 } from "lucide-react";
