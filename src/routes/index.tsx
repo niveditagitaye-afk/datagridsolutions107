@@ -1,29 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Home } from "@/components/datagrid/Home";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Datagrid — AI-First Software Development for Global Businesses" },
+      { name: "description", content: "Datagrid Solutions builds scalable, AI-first digital products for enterprises worldwide. 750+ projects, 15+ countries, 20+ years of engineering excellence." },
+      { property: "og:title", content: "Datagrid — AI-First Software Development for Global Businesses" },
+      { property: "og:description", content: "Transform your business ideas into scalable digital products with Datagrid — an AI-first software development partner for enterprises." },
     ],
   }),
-  component: Index,
+  component: Home,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
