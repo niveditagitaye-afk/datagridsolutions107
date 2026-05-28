@@ -166,87 +166,157 @@ function SectionHeading({
   );
 }
 
-/* ───────────────────────── SERVICES (bento) ───────────────────────── */
+/* ───────────────────────── SERVICES (3-panel interactive) ───────────────────────── */
 type Service = {
   i: typeof Code2;
   t: string;
   d: string;
+  tags: string[];
   c: string;
-  span: string;
-  tag?: string;
 };
 
 const services: Service[] = [
-  { i: Code2, t: "Custom Software Development", d: "Tailor-made solutions designed around your unique business processes, goals and growth plans.", c: "from-redorange to-orange-bright", span: "lg:col-span-2 lg:row-span-2", tag: "Flagship" },
-  { i: Brain, t: "Generative AI / LLM", d: "Intelligent apps, copilots and automation systems powered by modern LLMs.", c: "from-orange-bright to-orange", span: "lg:col-span-2", tag: "Most requested" },
-  { i: Workflow, t: "ERP & Workflow Automation", d: "Streamline operations across departments with scalable, AI-enabled ERP.", c: "from-orange to-redorange", span: "lg:col-span-2" },
-  { i: Cpu, t: "AI & ML Consultancy", d: "Strategize and implement practical AI roadmaps.", c: "from-orange to-orange-yellow", span: "" },
-  { i: Smartphone, t: "Mobile App Development", d: "Native & cross-platform mobile, built for scale.", c: "from-orange-bright to-orange-yellow", span: "" },
-  { i: Cloud, t: "Cloud Solutions", d: "Secure, high-performance cloud infrastructure.", c: "from-redorange to-orange", span: "" },
-  { i: Users, t: "Resource Augmentation", d: "Dedicated devs, designers, QA & DevOps.", c: "from-orange-yellow to-orange-light", span: "" },
-  { i: Megaphone, t: "Digital Marketing", d: "Performance-led growth & lead generation.", c: "from-orange-yellow to-redorange", span: "" },
+  { i: Code2, t: "Custom Software Development", d: "Tailor-made software solutions designed around your unique business processes, goals, and long-term growth plans.", tags: ["Web Platforms", "SaaS", "Enterprise"], c: "from-redorange to-orange-bright" },
+  { i: Brain, t: "Generative AI / LLM", d: "Build intelligent AI-powered applications, copilots, and workflow automation systems using modern LLM technologies.", tags: ["LLMs", "Copilots", "RAG"], c: "from-orange-bright to-orange" },
+  { i: Cpu, t: "AI & ML Consultancy", d: "Identify, strategize, and implement practical AI and machine learning solutions for real business impact.", tags: ["Strategy", "MLOps", "Roadmaps"], c: "from-orange to-orange-yellow" },
+  { i: Users, t: "Resource Augmentation", d: "Quickly scale your engineering capabilities with dedicated developers, designers, QA engineers, and DevOps specialists.", tags: ["Dev Teams", "QA", "DevOps"], c: "from-orange-yellow to-orange-light" },
+  { i: Workflow, t: "ERP & Workflow Automation", d: "Streamline operations, improve visibility, and automate processes through scalable ERP and workflow systems.", tags: ["ERP", "Automation", "Ops"], c: "from-orange to-redorange" },
+  { i: Smartphone, t: "Mobile App Development", d: "Build fast, scalable, and user-friendly mobile applications for Android, iOS, and cross-platform environments.", tags: ["iOS", "Android", "Cross-platform"], c: "from-orange-bright to-orange-yellow" },
+  { i: Cloud, t: "Cloud Solutions", d: "Secure, scalable, and high-performance cloud infrastructure solutions for modern digital businesses.", tags: ["AWS", "Azure", "GCP"], c: "from-redorange to-orange" },
+  { i: Megaphone, t: "Digital Marketing", d: "Drive brand visibility, customer engagement, and lead generation through performance-focused digital marketing solutions.", tags: ["SEO", "Performance", "Content"], c: "from-orange-yellow to-redorange" },
 ];
 
 function Services() {
+  const [active, setActive] = useState(0);
+  const s = services[active];
+  const ActiveIcon = s.i;
+  const next = () => setActive((a) => (a + 1) % services.length);
+  const prev = () => setActive((a) => (a - 1 + services.length) % services.length);
+
   return (
     <section id="services" className="relative py-24 lg:py-32">
-      <div className="absolute inset-0 bg-dots opacity-50" aria-hidden />
+      <div className="absolute inset-0 bg-dots opacity-40" aria-hidden />
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading
-          eyebrow="Our Services"
-          title="Build Faster. Scale Smarter. Deliver Excellence."
-          description="Eight core capabilities, one integrated engineering partner — picked individually or stitched together for full-stack outcomes."
-          cta={{ label: "Discuss Your Project", href: "#cta" }}
-        />
+        <div className="overflow-hidden rounded-[2rem] border border-border bg-card shadow-card">
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            {/* LEFT — intro */}
+            <div className="relative border-b border-border p-8 lg:col-span-4 lg:border-b-0 lg:border-r lg:p-12">
+              <div className="absolute right-6 top-6 opacity-60">
+                <PixelGrid cols={6} rows={3} className="w-24" />
+              </div>
+              <div className="text-xs font-bold uppercase tracking-[0.25em] text-orange-bright">
+                What We Do
+              </div>
+              <h2 className="mt-8 font-display text-5xl font-extrabold tracking-tight text-navy lg:text-6xl">
+                Services
+              </h2>
+              <div className="mt-6 h-1 w-16 rounded-full bg-gradient-warm" />
+              <p className="mt-8 max-w-sm text-base leading-relaxed text-muted-foreground">
+                We build scalable digital products and technology solutions tailored to business needs. From custom software and AI to cloud, ERP, and mobile apps, Datagrid helps companies innovate faster and grow smarter.
+              </p>
+              <div className="mt-10 hidden lg:block">
+                <PixelGrid cols={10} rows={2} className="w-40 opacity-70" />
+              </div>
+            </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[180px]">
-          {services.map((s, i) => {
-            const isFlagship = i === 0;
-            return (
+            {/* MIDDLE — numbered list */}
+            <div className="relative border-b border-border p-8 lg:col-span-4 lg:border-b-0 lg:border-r lg:p-10">
+              <ul className="space-y-1">
+                {services.map((srv, i) => {
+                  const isActive = i === active;
+                  return (
+                    <li key={srv.t}>
+                      <button
+                        type="button"
+                        onMouseEnter={() => setActive(i)}
+                        onClick={() => setActive(i)}
+                        className={`group flex w-full items-start gap-4 rounded-xl px-3 py-3 text-left transition-all duration-300 ${
+                          isActive ? "bg-navy/[0.03]" : "hover:bg-navy/[0.02]"
+                        }`}
+                      >
+                        <span className={`mt-1 font-mono text-xs tracking-widest transition-colors ${isActive ? "text-orange-bright" : "text-muted-foreground/70"}`}>
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="flex-1">
+                          <span className={`block font-display text-base font-bold leading-snug transition-colors ${isActive ? "text-navy" : "text-navy/60 group-hover:text-navy"}`}>
+                            {srv.t}
+                          </span>
+                        </span>
+                        <span
+                          className={`mt-2 h-px flex-shrink-0 self-center bg-gradient-warm transition-all duration-500 ${
+                            isActive ? "w-8 opacity-100" : "w-0 opacity-0"
+                          }`}
+                          aria-hidden
+                        />
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* RIGHT — active detail */}
+            <div className="relative overflow-hidden bg-navy p-8 text-white lg:col-span-4 lg:p-10">
+              <div className="absolute inset-0 bg-grid-light opacity-40" aria-hidden />
               <div
-                key={s.t}
-                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow ${s.span}`}
-              >
-                {/* gradient blob */}
-                <div
-                  className={`pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-10 transition-all duration-500 group-hover:opacity-30 group-hover:scale-110 bg-gradient-to-br ${s.c}`}
-                  aria-hidden
-                />
-                {/* faint grid */}
-                <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" aria-hidden />
-                {/* pixel accent */}
-                <div className="pointer-events-none absolute bottom-4 right-4 grid grid-cols-4 gap-0.5 opacity-30 transition-opacity group-hover:opacity-70">
-                  {Array.from({ length: 12 }).map((_, k) => (
+                className={`pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full opacity-30 blur-3xl bg-gradient-to-br ${s.c} transition-all duration-700`}
+                aria-hidden
+              />
+              <div className="pointer-events-none absolute bottom-6 right-6 opacity-50">
+                <PixelGrid cols={5} rows={5} className="w-20" />
+              </div>
+
+              <div key={active} className="relative flex h-full min-h-[420px] flex-col animate-fade-up">
+                <div className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${s.c} shadow-glow`}>
+                  <ActiveIcon className="h-8 w-8 text-white" />
+                </div>
+
+                <h3 className="mt-8 font-display text-2xl font-extrabold leading-tight text-white lg:text-3xl">
+                  {s.t}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-white/75 lg:text-base">
+                  {s.d}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {s.tags.map((tag) => (
                     <span
-                      key={k}
-                      className={`h-1 w-1 rounded-[1px] ${k % 3 === 0 ? "bg-orange-bright" : k % 2 === 0 ? "bg-orange-yellow" : "bg-navy/30"}`}
-                    />
+                      key={tag}
+                      className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/90 backdrop-blur"
+                    >
+                      {tag}
+                    </span>
                   ))}
                 </div>
 
-                <div className="relative">
-                  <div className="flex items-start justify-between">
-                    <div className={`inline-flex items-center justify-center rounded-2xl bg-gradient-to-br ${s.c} text-white shadow-md transition-transform duration-500 group-hover:rotate-3 group-hover:scale-110 ${isFlagship ? "h-16 w-16" : "h-12 w-12"}`}>
-                      <s.i className={isFlagship ? "h-8 w-8" : "h-6 w-6"} />
-                    </div>
-                    {s.tag && (
-                      <span className="rounded-full border border-orange-bright/40 bg-orange-bright/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-orange-bright">
-                        {s.tag}
-                      </span>
-                    )}
+                <div className="mt-auto flex items-end justify-between pt-10">
+                  <div className="font-mono text-xs uppercase tracking-widest text-white/50">
+                    <span className="text-orange-yellow">{String(active + 1).padStart(2, "0")}</span>
+                    <span className="mx-1.5">/</span>
+                    <span>{String(services.length).padStart(2, "0")}</span>
                   </div>
-                  <h3 className={`mt-5 font-display font-extrabold leading-tight text-navy ${isFlagship ? "text-3xl" : i < 3 ? "text-xl" : "text-base"}`}>
-                    {s.t}
-                  </h3>
-                  <p className={`mt-2 text-muted-foreground ${isFlagship ? "text-base max-w-md" : "text-sm"}`}>{s.d}</p>
-                </div>
-
-                <div className="relative mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-orange-bright opacity-70 transition-opacity group-hover:opacity-100">
-                  Explore <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={prev}
+                      aria-label="Previous service"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-orange-bright hover:bg-orange-bright"
+                    >
+                      <ArrowRight className="h-4 w-4 rotate-180" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={next}
+                      aria-label="Next service"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-orange-bright hover:bg-orange-bright"
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
