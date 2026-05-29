@@ -12,6 +12,17 @@ import { Header } from "@/components/datagrid/Header";
 import { Footer } from "@/components/datagrid/Footer";
 import { PixelGrid } from "@/components/datagrid/PixelGrid";
 import heroImg from "@/assets/hero-grid.jpg";
+import optifyLogo from "@/assets/products/optify.png";
+import sellingoLogo from "@/assets/products/sellingo.jpg";
+import glammifyLogo from "@/assets/products/glammify.png";
+import unifyamsLogo from "@/assets/products/unifyams.png";
+import caseScmt from "@/assets/cases/scmt.jpg";
+import caseHiya from "@/assets/cases/hiya.jpg";
+import caseIndie from "@/assets/cases/indie.jpg";
+import caseMysphere from "@/assets/cases/mysphere.jpg";
+import testi1 from "@/assets/testimonials/t1.jpg";
+import testi2 from "@/assets/testimonials/t2.jpg";
+import testi3 from "@/assets/testimonials/t3.jpg";
 
 /* ───────────────────────── HERO ───────────────────────── */
 function Hero() {
@@ -85,42 +96,99 @@ function Hero() {
           </div>
         </div>
 
+
         <div className="relative lg:col-span-5">
-          <div className="relative grid h-full grid-cols-3 grid-rows-4 gap-3">
-            {[
-              { i: Code2, l: "Software", c: "bg-redorange" },
-              { i: Brain, l: "AI / LLM", c: "bg-orange-bright" },
-              { i: Cloud, l: "Cloud", c: "bg-orange" },
-              { i: Smartphone, l: "Mobile", c: "bg-orange-yellow" },
-              { i: Workflow, l: "ERP", c: "bg-orange-light" },
-              { i: Bot, l: "Automation", c: "bg-redorange" },
-            ].map((m, idx) => (
+          <div className="relative mx-auto aspect-square w-full max-w-[460px]">
+            {/* central core */}
+            <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
               <div
-                key={idx}
-                className={`glass-dark group flex flex-col justify-between rounded-2xl p-4 backdrop-blur transition-all hover:-translate-y-1 hover:border-orange-bright ${
-                  idx === 0 ? "col-span-2 row-span-2" : ""
-                } ${idx === 5 ? "col-span-2" : ""}`}
-                style={{ animationDelay: `${idx * 0.1}s`, animation: "fade-up 0.8s ease-out both" }}
-              >
-                <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${m.c} text-white`}>
-                  <m.i className="h-5 w-5" />
+                className="absolute inset-0 -m-10 rounded-full opacity-50 blur-2xl"
+                style={{ background: "var(--gradient-pixel)" }}
+                aria-hidden
+              />
+              <div className="relative flex h-28 w-28 flex-col items-center justify-center rounded-3xl border border-white/25 bg-navy-deep/90 shadow-glow backdrop-blur">
+                <PixelGrid cols={4} rows={4} className="w-10 opacity-90" />
+                <div className="mt-1.5 font-display text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-yellow">
+                  Datagrid
                 </div>
-                <div>
-                  <div className="font-display text-sm font-bold text-white">{m.l}</div>
-                  <div className="text-[10px] font-mono uppercase text-white/40">module.connect()</div>
+                <div className="font-mono text-[8px] uppercase tracking-widest text-white/50">
+                  core.os
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
 
-          <div className="absolute -bottom-6 -right-6 w-32 animate-float opacity-90">
-            <PixelGrid cols={6} rows={4} />
+            {/* orbital ring */}
+            <div className="pointer-events-none absolute inset-[14%] rounded-full border border-dashed border-white/15" aria-hidden />
+            <div className="pointer-events-none absolute inset-[2%] rounded-full border border-white/10" aria-hidden />
+
+            {/* connector lines */}
+            <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden>
+              {[30, 90, 150, 210, 270, 330].map((deg) => {
+                const r = 38;
+                const rad = (deg * Math.PI) / 180;
+                const x = 50 + r * Math.cos(rad);
+                const y = 50 + r * Math.sin(rad);
+                return (
+                  <line
+                    key={deg}
+                    x1="50" y1="50" x2={x} y2={y}
+                    stroke="url(#hg)"
+                    strokeWidth="0.3"
+                    strokeDasharray="0.8 1.2"
+                  />
+                );
+              })}
+              <defs>
+                <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#ed5816" stopOpacity="0.7" />
+                  <stop offset="100%" stopColor="#f7a626" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            {/* 6 modules in balanced hex arrangement */}
+            {[
+              { i: Code2, l: "Software", deg: 270 },
+              { i: Brain, l: "AI / LLM", deg: 330 },
+              { i: Cloud, l: "Cloud", deg: 30 },
+              { i: Workflow, l: "ERP", deg: 90 },
+              { i: Bot, l: "Automation", deg: 150 },
+              { i: Smartphone, l: "Mobile", deg: 210 },
+            ].map((m, idx) => {
+              const rad = (m.deg * Math.PI) / 180;
+              const left = 50 + 42 * Math.cos(rad);
+              const top = 50 + 42 * Math.sin(rad);
+              const Icon = m.i;
+              return (
+                <div
+                  key={m.l}
+                  className="group absolute z-10 -translate-x-1/2 -translate-y-1/2 animate-float"
+                  style={{
+                    left: `${left}%`,
+                    top: `${top}%`,
+                    animationDelay: `${idx * 0.4}s`,
+                    animationDuration: "6s",
+                  }}
+                >
+                  <div className="glass-dark flex w-32 items-center gap-2.5 rounded-2xl border border-white/15 px-3 py-2.5 backdrop-blur-md transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-orange-bright group-hover:shadow-glow">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-warm text-white">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="truncate font-display text-[12px] font-bold leading-tight text-white">{m.l}</div>
+                      <div className="truncate font-mono text-[9px] uppercase text-white/45">module.connect()</div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 /* ───────────────────────── SECTION HEADING ───────────────────────── */
 function SectionHeading({
@@ -474,125 +542,163 @@ function TrustMatrix() {
 }
 
 /* ───────────────────────── INDUSTRIES ───────────────────────── */
-const industries = [
-  { l: "Associations & Events", i: Calendar, featured: true },
-  { l: "Jewelry", i: Gem, featured: true },
-  { l: "Manufacturing & Supply", i: Factory, featured: true },
-  { l: "Hospitality", i: Hotel },
-  { l: "Education", i: GraduationCap },
-  { l: "Retail & Ecommerce", i: ShoppingBag },
-  { l: "Agritech", i: Leaf },
-  { l: "Insurance", i: ShieldCheck },
-  { l: "Real Estate", i: Building2 },
-  { l: "Accounting", i: FileSpreadsheet },
-  { l: "Healthcare", i: Stethoscope },
-  { l: "Corporates", i: Briefcase },
+const industries: { l: string; i: typeof Calendar; tagline: string; size?: "lg" | "md" | "sm"; featured?: boolean }[] = [
+  { l: "Associations & Events", i: Calendar, tagline: "AMS + community OS", size: "lg", featured: true },
+  { l: "Jewelry", i: Gem, tagline: "Retail ERP & catalog", size: "md", featured: true },
+  { l: "Manufacturing & Supply", i: Factory, tagline: "Production + SCM", size: "md", featured: true },
+  { l: "Hospitality", i: Hotel, tagline: "Guest experience tech", size: "sm" },
+  { l: "Education", i: GraduationCap, tagline: "LMS & campus ops", size: "sm" },
+  { l: "Retail & Ecommerce", i: ShoppingBag, tagline: "Omnichannel commerce", size: "md" },
+  { l: "Agritech", i: Leaf, tagline: "Farm-to-supply intel", size: "sm" },
+  { l: "Insurance", i: ShieldCheck, tagline: "Claims & policy AI", size: "sm" },
+  { l: "Real Estate", i: Building2, tagline: "CRM + property OS", size: "md" },
+  { l: "Accounting", i: FileSpreadsheet, tagline: "Books, audit, billing", size: "sm" },
+  { l: "Healthcare", i: Stethoscope, tagline: "EMR & care workflows", size: "sm" },
+  { l: "Corporates", i: Briefcase, tagline: "Internal platforms", size: "sm" },
 ];
 
 function Industries() {
+  const [active, setActive] = useState(0);
   return (
-    <section id="industries" className="relative overflow-hidden bg-secondary py-24 lg:py-32">
-      {/* world-map style dotted background */}
+    <section id="industries" className="relative overflow-hidden bg-navy py-24 text-white lg:py-32">
+      {/* world-map dotted background */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        className="pointer-events-none absolute inset-0 opacity-[0.22]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, oklch(0.40 0.07 240) 1.2px, transparent 1.2px)",
-          backgroundSize: "22px 22px",
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 80%)",
+            "radial-gradient(circle, rgba(247,166,38,0.45) 1.1px, transparent 1.1px)",
+          backgroundSize: "26px 26px",
+          maskImage: "radial-gradient(ellipse 75% 60% at 50% 50%, black 30%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 75% 60% at 50% 50%, black 30%, transparent 80%)",
         }}
         aria-hidden
       />
       <div
-        className="absolute -top-20 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+        className="absolute -top-32 left-1/4 h-80 w-[36rem] rounded-full opacity-25 blur-3xl"
+        style={{ background: "var(--gradient-pixel)" }}
+        aria-hidden
+      />
+      <div
+        className="absolute -bottom-20 right-0 h-72 w-[30rem] rounded-full opacity-20 blur-3xl"
         style={{ background: "var(--gradient-pixel)" }}
         aria-hidden
       />
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading
+          light
           eyebrow="Industries We Serve"
-          title="Domain depth across twelve verticals."
+          title="Twelve verticals. One engineering language."
           description="From jewelry ERP to agritech to event tech — we bring battle-tested patterns to every engagement."
         />
 
-        {/* Mobile horizontal scroll, desktop matrix grid */}
-        <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-4 md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
+        {/* Bento matrix — varied sizes */}
+        <div className="grid auto-rows-[120px] grid-cols-2 gap-3 md:grid-cols-4 md:gap-4 lg:grid-cols-6 lg:auto-rows-[140px]">
           {industries.map((ind, i) => {
-            const featured = ind.featured;
+            const isActive = i === active;
+            const span =
+              ind.size === "lg"
+                ? "col-span-2 row-span-2 lg:col-span-2 lg:row-span-2"
+                : ind.size === "md"
+                ? "col-span-2 row-span-1 lg:col-span-2 lg:row-span-1"
+                : "col-span-1 row-span-1";
+            const Icon = ind.i;
             return (
               <a
                 key={ind.l}
                 href="#"
-                className={`group relative w-[220px] shrink-0 snap-start overflow-hidden rounded-2xl border p-5 transition-all hover:-translate-y-1 md:w-auto ${
-                  featured
-                    ? "border-transparent bg-navy text-white shadow-navy hover:shadow-glow"
-                    : "border-border bg-card hover:border-orange-bright"
+                onMouseEnter={() => setActive(i)}
+                className={`group relative overflow-hidden rounded-2xl border p-4 transition-all duration-500 ${span} ${
+                  isActive || ind.featured
+                    ? "border-orange-bright/40 bg-white/[0.04] shadow-glow"
+                    : "border-white/10 bg-white/[0.02] hover:border-orange-bright/30 hover:bg-white/[0.04]"
                 }`}
+                style={{ animationDelay: `${i * 0.04}s`, animation: "fade-up 0.6s ease-out both" }}
               >
-                {/* warm accent corner */}
+                {/* warm corner glow */}
                 <div
-                  className={`pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full blur-2xl transition-opacity duration-500 ${
-                    featured ? "opacity-40" : "opacity-0 group-hover:opacity-30"
+                  className={`pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl transition-opacity duration-500 ${
+                    isActive || ind.featured ? "opacity-40" : "opacity-0 group-hover:opacity-30"
                   }`}
                   style={{ background: "var(--gradient-pixel)" }}
                   aria-hidden
                 />
-                <div className="relative flex h-full flex-col gap-4">
-                  <div className="flex items-center justify-between">
-                    <div className={`flex h-11 w-11 items-center justify-center rounded-xl transition-colors ${
-                      featured
-                        ? "bg-white/10 text-orange-yellow"
-                        : "bg-navy text-orange-yellow group-hover:bg-orange-bright group-hover:text-white"
-                    }`}>
-                      <ind.i className="h-5 w-5" />
+                {/* mini pixel accent for large tiles */}
+                {ind.size === "lg" && (
+                  <div className="pointer-events-none absolute bottom-3 right-3 opacity-50">
+                    <PixelGrid cols={6} rows={3} className="w-16" />
+                  </div>
+                )}
+
+                <div className="relative flex h-full flex-col">
+                  <div className="flex items-start justify-between">
+                    <div
+                      className={`flex items-center justify-center rounded-xl transition-all ${
+                        ind.size === "lg" ? "h-12 w-12" : "h-10 w-10"
+                      } ${
+                        isActive || ind.featured
+                          ? "bg-gradient-warm text-white shadow-md"
+                          : "bg-white/10 text-orange-yellow group-hover:bg-gradient-warm group-hover:text-white"
+                      }`}
+                    >
+                      <Icon className={ind.size === "lg" ? "h-6 w-6" : "h-5 w-5"} />
                     </div>
-                    {featured && (
-                      <span className="rounded-full border border-orange-bright/50 bg-orange-bright/15 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-orange-yellow">
-                        Flagship
-                      </span>
-                    )}
-                  </div>
-
-                  <div className={`font-display text-base font-extrabold leading-tight ${
-                    featured ? "text-white" : "text-navy"
-                  }`}>
-                    {ind.l}
-                  </div>
-
-                  <div className="mt-auto flex items-center justify-between">
-                    <span className={`font-mono text-[10px] tracking-widest ${
-                      featured ? "text-white/40" : "text-muted-foreground/60"
-                    }`}>
-                      VERT.{String(i + 1).padStart(2, "0")}
+                    <span className="font-mono text-[9px] tracking-widest text-white/35">
+                      .{String(i + 1).padStart(2, "0")}
                     </span>
-                    <ArrowUpRight className={`h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
-                      featured ? "text-orange-yellow" : "text-muted-foreground group-hover:text-orange-bright"
-                    }`} />
+                  </div>
+
+                  <div className="mt-auto">
+                    <div
+                      className={`font-display font-extrabold leading-tight text-white ${
+                        ind.size === "lg" ? "text-xl lg:text-2xl" : "text-sm lg:text-base"
+                      }`}
+                    >
+                      {ind.l}
+                    </div>
+                    {(ind.size === "lg" || ind.size === "md") && (
+                      <div className="mt-1 text-[11px] text-white/55">{ind.tagline}</div>
+                    )}
+                    <div className="mt-2 flex items-center gap-1.5">
+                      <span className="h-px w-6 bg-gradient-warm transition-all duration-500 group-hover:w-10" />
+                      <ArrowUpRight className="h-3 w-3 text-orange-yellow opacity-0 transition-opacity group-hover:opacity-100" />
+                    </div>
                   </div>
                 </div>
               </a>
             );
           })}
         </div>
+
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 text-xs text-white/50">
+          <span className="font-mono uppercase tracking-widest">12 verticals · 750+ projects · 15+ countries</span>
+          <a href="#cta" className="inline-flex items-center gap-1.5 font-semibold text-orange-yellow hover:text-orange-bright">
+            Don't see your industry? Talk to us <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
       </div>
     </section>
   );
 }
 
+
 /* ───────────────────────── PRODUCTS (ecosystem) ───────────────────────── */
 const products = [
-  { n: "UnifyAMS.ai", tag: "Associations & Events", d: "AI-powered association management — memberships, events, communities, all unified.", c: "from-redorange to-orange-bright" },
-  { n: "Glammify.ai", tag: "Jewelry Tech", d: "Modern jewelry retail & catalog OS with AI-led merchandising and virtual try-on.", c: "from-orange-bright to-orange" },
-  { n: "Optifyerp.ai", tag: "Manufacturing ERP", d: "Next-gen ERP for manufacturers — production, inventory, finance with AI insights.", c: "from-orange to-orange-yellow" },
-  { n: "Sellingo.ai", tag: "Sales Enablement", d: "AI sales workspace — pipelines, outreach, conversation intelligence in one place.", c: "from-orange-yellow to-redorange" },
+  { n: "Optify", logo: optifyLogo, tag: "ERP Simplified", d: "Next-gen ERP platform — production, inventory, finance and operations unified with AI insights.", accent: "from-[#5b3aa9] to-[#1f49a8]" },
+  { n: "Sellingo", logo: sellingoLogo, tag: "Selling Simplified", d: "AI sales workspace — pipelines, outreach and conversation intelligence in one connected place.", accent: "from-[#1f496b] to-[#ed5816]" },
+  { n: "Glammify", logo: glammifyLogo, tag: "Where Glamour Meets AI", d: "Modern jewelry & beauty retail OS with AI-led merchandising, catalogs and virtual try-on.", accent: "from-[#ed5816] to-[#f7a626]" },
+  { n: "Unify AMS", logo: unifyamsLogo, tag: "Association Management", d: "AI-powered association management — memberships, events, communities, all unified.", accent: "from-[#d73b1a] to-[#f17e00]" },
 ];
 
 function Products() {
   return (
-    <section id="products" className="relative overflow-hidden py-24 lg:py-32">
+    <section id="products" className="relative overflow-hidden bg-secondary py-24 lg:py-32">
       <div className="absolute inset-0 bg-grid opacity-30" aria-hidden />
+      <div
+        className="absolute -top-24 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+        style={{ background: "var(--gradient-pixel)" }}
+        aria-hidden
+      />
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading
           eyebrow="Datagrid Product Ecosystem"
@@ -601,67 +707,77 @@ function Products() {
         />
 
         <div className="relative">
-          {/* central ecosystem hub (desktop) */}
-          <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-40 w-40 -translate-x-1/2 -translate-y-1/2 lg:block" aria-hidden>
+          {/* central hub (desktop) */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-28 w-28 -translate-x-1/2 -translate-y-1/2 lg:block" aria-hidden>
             <div
-              className="absolute inset-0 rounded-full opacity-30 blur-2xl"
+              className="absolute inset-0 -m-4 rounded-full opacity-50 blur-2xl"
               style={{ background: "var(--gradient-pixel)" }}
             />
-            <div className="absolute inset-6 rounded-full border border-orange-bright/30" />
-            <div className="absolute inset-10 flex items-center justify-center rounded-full border border-orange-bright/50 bg-navy text-orange-yellow font-display text-xs font-extrabold uppercase tracking-widest">
-              Datagrid
+            <div className="relative flex h-full w-full flex-col items-center justify-center rounded-3xl border border-orange-bright/40 bg-navy shadow-glow">
+              <PixelGrid cols={4} rows={4} className="w-9 opacity-90" />
+              <div className="mt-1 font-display text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-yellow">
+                Datagrid
+              </div>
+              <div className="font-mono text-[8px] uppercase tracking-widest text-white/45">hub</div>
             </div>
           </div>
 
-          {/* connecting cross lines on desktop */}
-          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-orange-bright/30 to-transparent lg:block" aria-hidden />
-          <div className="pointer-events-none absolute left-0 top-1/2 hidden h-px w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-orange-bright/30 to-transparent lg:block" aria-hidden />
+          {/* subtle connecting cross (desktop) */}
+          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-orange-bright/25 to-transparent lg:block" aria-hidden />
+          <div className="pointer-events-none absolute left-0 top-1/2 hidden h-px w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-orange-bright/25 to-transparent lg:block" aria-hidden />
 
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2 lg:gap-8">
             {products.map((p, i) => (
               <a
                 key={p.n}
                 href="#"
-                className="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-card transition-all duration-500 hover:-translate-y-1.5 hover:shadow-glow"
-                style={{
-                  animationDelay: `${i * 0.08}s`,
-                  animation: "fade-up 0.7s ease-out both",
-                }}
+                className="group relative overflow-hidden rounded-3xl border border-border bg-white p-7 shadow-card backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-orange-bright/40 hover:shadow-glow"
+                style={{ animationDelay: `${i * 0.08}s`, animation: "fade-up 0.7s ease-out both" }}
               >
+                {/* corner gradient wash */}
                 <div
-                  className={`pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-10 transition-all duration-500 group-hover:opacity-30 group-hover:scale-125 bg-gradient-to-br ${p.c}`}
+                  className={`pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-gradient-to-br opacity-[0.07] transition-all duration-500 group-hover:opacity-20 group-hover:scale-110 ${p.accent}`}
                 />
-                {/* connector dot pointing to center */}
-                <div className={`pointer-events-none absolute hidden h-2 w-2 rounded-full bg-orange-bright shadow-[0_0_12px_2px_rgba(237,88,22,0.6)] lg:block ${
-                  i === 0 ? "bottom-0 right-0 translate-x-1 translate-y-1"
-                  : i === 1 ? "bottom-0 left-0 -translate-x-1 translate-y-1"
-                  : i === 2 ? "top-0 right-0 translate-x-1 -translate-y-1"
-                  : "top-0 left-0 -translate-x-1 -translate-y-1"
-                }`} aria-hidden />
+                {/* connector node toward center hub */}
+                <div
+                  className={`pointer-events-none absolute hidden h-2.5 w-2.5 rounded-full bg-orange-bright shadow-[0_0_14px_3px_rgba(237,88,22,0.55)] lg:block ${
+                    i === 0
+                      ? "bottom-0 right-0 translate-x-1.5 translate-y-1.5"
+                      : i === 1
+                      ? "bottom-0 left-0 -translate-x-1.5 translate-y-1.5"
+                      : i === 2
+                      ? "top-0 right-0 translate-x-1.5 -translate-y-1.5"
+                      : "top-0 left-0 -translate-x-1.5 -translate-y-1.5"
+                  }`}
+                  aria-hidden
+                />
 
-                <div className="relative flex items-start justify-between">
-                  <div>
-                    <div className={`inline-flex items-center gap-2 rounded-md bg-gradient-to-br ${p.c} px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white`}>
-                      <span className="h-1.5 w-1.5 rounded-sm bg-white" />
-                      AI Native
-                    </div>
-                    <h3 className="mt-4 font-display text-3xl font-extrabold text-navy">{p.n}</h3>
-                    <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{p.tag}</div>
+                <div className="relative flex items-start justify-between gap-4">
+                  <div className="flex h-20 w-44 items-center">
+                    <img
+                      src={p.logo}
+                      alt={`${p.n} logo`}
+                      loading="lazy"
+                      className="h-full w-auto max-w-full object-contain object-left transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
-                  <div className={`relative h-16 w-16 rounded-2xl bg-gradient-to-br ${p.c} p-3 shadow-md transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110`}>
-                    <div className="grid h-full w-full grid-cols-3 gap-0.5">
-                      {Array.from({ length: 9 }).map((_, k) => (
-                        <div key={k} className={`rounded-[2px] ${k % 2 === 0 ? "bg-white/90" : "bg-white/30"}`} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <p className="relative mt-5 text-base text-muted-foreground">{p.d}</p>
-                <div className="relative mt-8 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 text-sm font-bold text-navy group-hover:text-orange-bright">
-                    Explore Product <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-bright/30 bg-orange-bright/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-orange-bright">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-orange-bright" />
+                    AI Native
                   </span>
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all group-hover:border-orange-bright group-hover:text-orange-bright">
+                </div>
+
+                <div className="relative mt-5">
+                  <div className="text-[11px] font-bold uppercase tracking-widest text-orange-bright">{p.tag}</div>
+                  <p className="mt-2 text-sm leading-relaxed text-navy/75">{p.d}</p>
+                </div>
+
+                <div className="relative mt-7 flex items-center justify-between border-t border-border/60 pt-5">
+                  <span className="inline-flex items-center gap-2 text-sm font-bold text-navy transition-colors group-hover:text-orange-bright">
+                    Explore Product
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all group-hover:border-orange-bright group-hover:bg-orange-bright group-hover:text-white">
                     <ExternalLink className="h-4 w-4" />
                   </span>
                 </div>
@@ -674,12 +790,13 @@ function Products() {
   );
 }
 
+
 /* ───────────────────────── CASE STUDIES (featured + grid) ───────────────────────── */
 const cases = [
-  { n: "SCMT", t: "Supply Chain Modernization", p: "Legacy ERP unable to scale across plants.", s: "Modular cloud-native SCM with AI demand forecasting.", o: "↑ 42% throughput", c: "from-redorange to-orange", ind: "Manufacturing" },
-  { n: "HIYA ERP", t: "Jewelry ERP Platform", p: "Multi-store ops with fragmented inventory.", s: "Unified ERP with realtime stock & POS sync.", o: "↑ 3x faster billing", c: "from-orange-bright to-orange-yellow", ind: "Jewelry" },
-  { n: "Indie", t: "Events & Community App", p: "No central platform for community engagement.", s: "Mobile-first events platform with AI matchmaking.", o: "10k+ active members", c: "from-orange to-redorange", ind: "Events" },
-  { n: "MySphere", t: "Workspace Productivity", p: "Scattered tools fragmenting team workflow.", s: "Single AI-powered workspace OS.", o: "↓ 35% tool sprawl", c: "from-orange-yellow to-orange-bright", ind: "SaaS" },
+  { n: "SCMT", t: "Supply Chain Modernization", p: "Legacy ERP unable to scale across plants.", s: "Modular cloud-native SCM with AI demand forecasting.", o: "↑ 42% throughput", img: caseScmt, ind: "Manufacturing" },
+  { n: "HIYA ERP", t: "Jewelry ERP Platform", p: "Multi-store ops with fragmented inventory.", s: "Unified ERP with realtime stock & POS sync.", o: "↑ 3x faster billing", img: caseHiya, ind: "Jewelry" },
+  { n: "Indie", t: "Events & Community App", p: "No central platform for community engagement.", s: "Mobile-first events platform with AI matchmaking.", o: "10k+ active members", img: caseIndie, ind: "Events" },
+  { n: "MySphere", t: "Workspace Productivity", p: "Scattered tools fragmenting team workflow.", s: "Single AI-powered workspace OS.", o: "↓ 35% tool sprawl", img: caseMysphere, ind: "SaaS" },
 ];
 
 function CaseStudies() {
@@ -694,31 +811,32 @@ function CaseStudies() {
           cta={{ label: "View All Case Studies", href: "#" }}
         />
 
-        <div className="grid gap-5 lg:grid-cols-12">
-          {/* Featured large */}
-          <article className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all hover:-translate-y-1 hover:shadow-glow lg:col-span-7 lg:row-span-2">
-            <div className={`relative h-72 overflow-hidden bg-gradient-to-br ${featured.c}`}>
-              <div className="absolute inset-0 bg-grid-light opacity-50" />
-              <div className="absolute inset-0 flex items-center justify-center p-8">
-                <PixelGrid cols={18} rows={8} className="w-full opacity-90" />
+        <div className="grid gap-6 lg:grid-cols-12">
+          {/* Featured large image-led card */}
+          <article className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all duration-500 hover:-translate-y-1 hover:shadow-glow lg:col-span-7 lg:row-span-2">
+            <div className="relative h-80 overflow-hidden lg:h-96">
+              <img
+                src={featured.img}
+                alt={`${featured.n} case study`}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
+              <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                <Sparkles className="h-3 w-3 text-orange-yellow" /> Featured Case
               </div>
-              {/* gradient overlay */}
-              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-card to-transparent" />
-              <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur">
-                <Sparkles className="h-3 w-3" /> Featured Case
-              </div>
-              <div className="absolute right-6 top-6 rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-navy">
+              <div className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-orange-bright px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white shadow-glow">
                 {featured.o}
               </div>
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="text-[11px] font-bold uppercase tracking-widest text-orange-yellow">{featured.ind}</div>
+                <h3 className="mt-1 font-display text-3xl font-extrabold text-white lg:text-4xl">{featured.n}</h3>
+                <div className="mt-1 text-base font-semibold text-white/80">{featured.t}</div>
+              </div>
             </div>
-            {/* orange accent line */}
-            <div className="h-1 w-full bg-gradient-pixel" />
-            <div className="p-8">
-              <div className="text-xs font-bold uppercase tracking-widest text-orange-bright">{featured.ind}</div>
-              <h3 className="mt-2 font-display text-3xl font-extrabold text-navy">{featured.n}</h3>
-              <div className="mt-1 text-base font-semibold text-navy/70">{featured.t}</div>
 
-              <dl className="mt-6 grid gap-5 sm:grid-cols-2">
+            <div className="p-8">
+              <dl className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Challenge</dt>
                   <dd className="mt-1 text-sm text-navy/80">{featured.p}</dd>
@@ -729,24 +847,30 @@ function CaseStudies() {
                 </div>
               </dl>
 
-              <a href="#" className="mt-8 inline-flex items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-orange-bright">
+              <a
+                href="#"
+                className="mt-7 inline-flex items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-orange-bright"
+              >
                 View Case Study <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
             </div>
           </article>
 
-          {/* Smaller cards */}
+          {/* Smaller image-led cards */}
           {rest.map((cs, i) => (
             <article
               key={cs.n}
-              className="group relative flex overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow lg:col-span-5"
+              className="group relative flex overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow lg:col-span-5"
             >
-              <div className={`relative w-32 shrink-0 overflow-hidden bg-gradient-to-br ${cs.c}`}>
-                <div className="absolute inset-0 bg-grid-light opacity-50" />
-                <div className="absolute inset-0 flex items-center justify-center p-3">
-                  <PixelGrid cols={5} rows={9} className="w-full opacity-90" />
-                </div>
-                <div className="absolute left-1/2 top-3 -translate-x-1/2 rounded-full bg-white/95 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-navy">
+              <div className="relative w-40 shrink-0 overflow-hidden sm:w-48">
+                <img
+                  src={cs.img}
+                  alt={`${cs.n} case study`}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card/30" />
+                <div className="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest text-navy backdrop-blur">
                   CS.{String(i + 2).padStart(2, "0")}
                 </div>
               </div>
@@ -771,7 +895,6 @@ function CaseStudies() {
                   View Case Study <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
-              {/* orange accent line */}
               <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-pixel transition-all duration-500 group-hover:w-full" />
             </article>
           ))}
@@ -978,9 +1101,9 @@ function TechStack() {
 
 /* ───────────────────────── TESTIMONIALS ───────────────────────── */
 const testimonials = [
-  { n: "Apurwa Peters", r: "Founder", q: "Datagrid felt less like a vendor and more like our extended engineering team.", video: true, c: "from-redorange to-orange" },
-  { n: "Heather", r: "Product Lead", q: "Shipped 3x faster than we budgeted, with quality we didn't expect.", video: true, c: "from-orange-bright to-orange-yellow" },
-  { n: "Indie", r: "Co-founder", q: "Their AI-first approach unlocked features we couldn't have built in-house.", video: true, c: "from-orange to-redorange" },
+  { n: "Apurwa Peters", r: "Founder, Indie Events", q: "Datagrid felt less like a vendor and more like our extended engineering team.", thumb: testi1, duration: "2:14" },
+  { n: "Heather Williams", r: "Product Lead, MySphere", q: "Shipped 3x faster than we budgeted, with quality we didn't expect.", thumb: testi2, duration: "1:48" },
+  { n: "Rohan Mehta", r: "Co-founder, HIYA", q: "Their AI-first approach unlocked features we couldn't have built in-house.", thumb: testi3, duration: "3:02" },
   { n: "Bhikshu Impex", r: "Director", q: "End-to-end ownership. Zero hand-holding required.", video: false },
   { n: "Matt — Callbox", r: "VP Engineering", q: "Modern engineering practices applied to a complex enterprise rollout.", video: false },
   { n: "Pankaj Ostwal — Madhya Bharat", r: "CEO", q: "Transformed how our teams operate on a daily basis.", video: false },
@@ -992,32 +1115,63 @@ function Testimonials() {
     <section className="relative bg-secondary py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading
-          eyebrow="Testimonials"
+          eyebrow="Video Testimonials"
           title="What partners say after shipping with us."
         />
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.slice(0, 3).map((t) => (
-            <div
+            <article
               key={t.n}
-              className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${t.c} p-7 text-white shadow-card transition-all hover:-translate-y-1 hover:shadow-glow`}
+              className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow"
             >
-              <div className="absolute inset-0 bg-grid-light opacity-30" />
-              <div className="relative flex h-56 flex-col justify-between">
+              {/* Video thumbnail */}
+              <div className="relative aspect-[16/10] overflow-hidden bg-navy">
+                <img
+                  src={t.thumb}
+                  alt={`${t.n} video testimonial thumbnail`}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent" />
+
+                {/* Play button */}
                 <button
                   aria-label={`Play testimonial from ${t.n}`}
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-navy shadow-glow transition-transform group-hover:scale-110"
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 >
-                  <Play className="ml-0.5 h-5 w-5 fill-current" />
+                  <span className="absolute inset-0 -m-2 animate-pulse rounded-full bg-orange-bright/30 blur-md" />
+                  <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/95 text-navy shadow-glow ring-4 ring-white/20 backdrop-blur transition-all duration-300 group-hover:scale-110 group-hover:bg-orange-bright group-hover:text-white">
+                    <Play className="ml-1 h-6 w-6 fill-current" />
+                  </span>
                 </button>
-                <div>
-                  <p className="font-display text-lg font-bold leading-snug">"{t.q}"</p>
-                  <div className="mt-3 text-sm font-semibold text-white/90">{t.n}</div>
-                  <div className="text-xs text-white/70">{t.r}</div>
+
+                {/* Duration badge */}
+                <div className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-md bg-navy/80 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-redorange" />
+                  {t.duration}
+                </div>
+                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-navy backdrop-blur">
+                  <Play className="h-2.5 w-2.5 fill-current" /> Watch story
                 </div>
               </div>
-            </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <p className="font-display text-base font-bold leading-snug text-navy">"{t.q}"</p>
+                <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-pixel font-display text-sm font-extrabold text-white">
+                    {t.n[0]}
+                  </div>
+                  <div>
+                    <div className="font-display text-sm font-bold text-navy">{t.n}</div>
+                    <div className="text-xs text-muted-foreground">{t.r}</div>
+                  </div>
+                </div>
+              </div>
+            </article>
           ))}
+
 
           {testimonials.slice(3).map((t) => (
             <div
