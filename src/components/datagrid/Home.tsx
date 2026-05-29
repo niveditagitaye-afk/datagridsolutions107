@@ -793,10 +793,10 @@ function Products() {
 
 /* ───────────────────────── CASE STUDIES (featured + grid) ───────────────────────── */
 const cases = [
-  { n: "SCMT", t: "Supply Chain Modernization", p: "Legacy ERP unable to scale across plants.", s: "Modular cloud-native SCM with AI demand forecasting.", o: "↑ 42% throughput", c: "from-redorange to-orange", ind: "Manufacturing" },
-  { n: "HIYA ERP", t: "Jewelry ERP Platform", p: "Multi-store ops with fragmented inventory.", s: "Unified ERP with realtime stock & POS sync.", o: "↑ 3x faster billing", c: "from-orange-bright to-orange-yellow", ind: "Jewelry" },
-  { n: "Indie", t: "Events & Community App", p: "No central platform for community engagement.", s: "Mobile-first events platform with AI matchmaking.", o: "10k+ active members", c: "from-orange to-redorange", ind: "Events" },
-  { n: "MySphere", t: "Workspace Productivity", p: "Scattered tools fragmenting team workflow.", s: "Single AI-powered workspace OS.", o: "↓ 35% tool sprawl", c: "from-orange-yellow to-orange-bright", ind: "SaaS" },
+  { n: "SCMT", t: "Supply Chain Modernization", p: "Legacy ERP unable to scale across plants.", s: "Modular cloud-native SCM with AI demand forecasting.", o: "↑ 42% throughput", img: caseScmt, ind: "Manufacturing" },
+  { n: "HIYA ERP", t: "Jewelry ERP Platform", p: "Multi-store ops with fragmented inventory.", s: "Unified ERP with realtime stock & POS sync.", o: "↑ 3x faster billing", img: caseHiya, ind: "Jewelry" },
+  { n: "Indie", t: "Events & Community App", p: "No central platform for community engagement.", s: "Mobile-first events platform with AI matchmaking.", o: "10k+ active members", img: caseIndie, ind: "Events" },
+  { n: "MySphere", t: "Workspace Productivity", p: "Scattered tools fragmenting team workflow.", s: "Single AI-powered workspace OS.", o: "↓ 35% tool sprawl", img: caseMysphere, ind: "SaaS" },
 ];
 
 function CaseStudies() {
@@ -811,31 +811,32 @@ function CaseStudies() {
           cta={{ label: "View All Case Studies", href: "#" }}
         />
 
-        <div className="grid gap-5 lg:grid-cols-12">
-          {/* Featured large */}
-          <article className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all hover:-translate-y-1 hover:shadow-glow lg:col-span-7 lg:row-span-2">
-            <div className={`relative h-72 overflow-hidden bg-gradient-to-br ${featured.c}`}>
-              <div className="absolute inset-0 bg-grid-light opacity-50" />
-              <div className="absolute inset-0 flex items-center justify-center p-8">
-                <PixelGrid cols={18} rows={8} className="w-full opacity-90" />
+        <div className="grid gap-6 lg:grid-cols-12">
+          {/* Featured large image-led card */}
+          <article className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all duration-500 hover:-translate-y-1 hover:shadow-glow lg:col-span-7 lg:row-span-2">
+            <div className="relative h-80 overflow-hidden lg:h-96">
+              <img
+                src={featured.img}
+                alt={`${featured.n} case study`}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
+              <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                <Sparkles className="h-3 w-3 text-orange-yellow" /> Featured Case
               </div>
-              {/* gradient overlay */}
-              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-card to-transparent" />
-              <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur">
-                <Sparkles className="h-3 w-3" /> Featured Case
-              </div>
-              <div className="absolute right-6 top-6 rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-navy">
+              <div className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-orange-bright px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white shadow-glow">
                 {featured.o}
               </div>
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="text-[11px] font-bold uppercase tracking-widest text-orange-yellow">{featured.ind}</div>
+                <h3 className="mt-1 font-display text-3xl font-extrabold text-white lg:text-4xl">{featured.n}</h3>
+                <div className="mt-1 text-base font-semibold text-white/80">{featured.t}</div>
+              </div>
             </div>
-            {/* orange accent line */}
-            <div className="h-1 w-full bg-gradient-pixel" />
-            <div className="p-8">
-              <div className="text-xs font-bold uppercase tracking-widest text-orange-bright">{featured.ind}</div>
-              <h3 className="mt-2 font-display text-3xl font-extrabold text-navy">{featured.n}</h3>
-              <div className="mt-1 text-base font-semibold text-navy/70">{featured.t}</div>
 
-              <dl className="mt-6 grid gap-5 sm:grid-cols-2">
+            <div className="p-8">
+              <dl className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Challenge</dt>
                   <dd className="mt-1 text-sm text-navy/80">{featured.p}</dd>
@@ -846,24 +847,30 @@ function CaseStudies() {
                 </div>
               </dl>
 
-              <a href="#" className="mt-8 inline-flex items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-orange-bright">
+              <a
+                href="#"
+                className="mt-7 inline-flex items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-orange-bright"
+              >
                 View Case Study <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
             </div>
           </article>
 
-          {/* Smaller cards */}
+          {/* Smaller image-led cards */}
           {rest.map((cs, i) => (
             <article
               key={cs.n}
-              className="group relative flex overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow lg:col-span-5"
+              className="group relative flex overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow lg:col-span-5"
             >
-              <div className={`relative w-32 shrink-0 overflow-hidden bg-gradient-to-br ${cs.c}`}>
-                <div className="absolute inset-0 bg-grid-light opacity-50" />
-                <div className="absolute inset-0 flex items-center justify-center p-3">
-                  <PixelGrid cols={5} rows={9} className="w-full opacity-90" />
-                </div>
-                <div className="absolute left-1/2 top-3 -translate-x-1/2 rounded-full bg-white/95 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-navy">
+              <div className="relative w-40 shrink-0 overflow-hidden sm:w-48">
+                <img
+                  src={cs.img}
+                  alt={`${cs.n} case study`}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card/30" />
+                <div className="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest text-navy backdrop-blur">
                   CS.{String(i + 2).padStart(2, "0")}
                 </div>
               </div>
@@ -888,7 +895,6 @@ function CaseStudies() {
                   View Case Study <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
-              {/* orange accent line */}
               <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-pixel transition-all duration-500 group-hover:w-full" />
             </article>
           ))}
