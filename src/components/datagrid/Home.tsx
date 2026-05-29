@@ -542,112 +542,145 @@ function TrustMatrix() {
 }
 
 /* ───────────────────────── INDUSTRIES ───────────────────────── */
-const industries = [
-  { l: "Associations & Events", i: Calendar, featured: true },
-  { l: "Jewelry", i: Gem, featured: true },
-  { l: "Manufacturing & Supply", i: Factory, featured: true },
-  { l: "Hospitality", i: Hotel },
-  { l: "Education", i: GraduationCap },
-  { l: "Retail & Ecommerce", i: ShoppingBag },
-  { l: "Agritech", i: Leaf },
-  { l: "Insurance", i: ShieldCheck },
-  { l: "Real Estate", i: Building2 },
-  { l: "Accounting", i: FileSpreadsheet },
-  { l: "Healthcare", i: Stethoscope },
-  { l: "Corporates", i: Briefcase },
+const industries: { l: string; i: typeof Calendar; tagline: string; size?: "lg" | "md" | "sm"; featured?: boolean }[] = [
+  { l: "Associations & Events", i: Calendar, tagline: "AMS + community OS", size: "lg", featured: true },
+  { l: "Jewelry", i: Gem, tagline: "Retail ERP & catalog", size: "md", featured: true },
+  { l: "Manufacturing & Supply", i: Factory, tagline: "Production + SCM", size: "md", featured: true },
+  { l: "Hospitality", i: Hotel, tagline: "Guest experience tech", size: "sm" },
+  { l: "Education", i: GraduationCap, tagline: "LMS & campus ops", size: "sm" },
+  { l: "Retail & Ecommerce", i: ShoppingBag, tagline: "Omnichannel commerce", size: "md" },
+  { l: "Agritech", i: Leaf, tagline: "Farm-to-supply intel", size: "sm" },
+  { l: "Insurance", i: ShieldCheck, tagline: "Claims & policy AI", size: "sm" },
+  { l: "Real Estate", i: Building2, tagline: "CRM + property OS", size: "md" },
+  { l: "Accounting", i: FileSpreadsheet, tagline: "Books, audit, billing", size: "sm" },
+  { l: "Healthcare", i: Stethoscope, tagline: "EMR & care workflows", size: "sm" },
+  { l: "Corporates", i: Briefcase, tagline: "Internal platforms", size: "sm" },
 ];
 
 function Industries() {
+  const [active, setActive] = useState(0);
   return (
-    <section id="industries" className="relative overflow-hidden bg-secondary py-24 lg:py-32">
-      {/* world-map style dotted background */}
+    <section id="industries" className="relative overflow-hidden bg-navy py-24 text-white lg:py-32">
+      {/* world-map dotted background */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        className="pointer-events-none absolute inset-0 opacity-[0.22]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, oklch(0.40 0.07 240) 1.2px, transparent 1.2px)",
-          backgroundSize: "22px 22px",
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 80%)",
+            "radial-gradient(circle, rgba(247,166,38,0.45) 1.1px, transparent 1.1px)",
+          backgroundSize: "26px 26px",
+          maskImage: "radial-gradient(ellipse 75% 60% at 50% 50%, black 30%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 75% 60% at 50% 50%, black 30%, transparent 80%)",
         }}
         aria-hidden
       />
       <div
-        className="absolute -top-20 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+        className="absolute -top-32 left-1/4 h-80 w-[36rem] rounded-full opacity-25 blur-3xl"
+        style={{ background: "var(--gradient-pixel)" }}
+        aria-hidden
+      />
+      <div
+        className="absolute -bottom-20 right-0 h-72 w-[30rem] rounded-full opacity-20 blur-3xl"
         style={{ background: "var(--gradient-pixel)" }}
         aria-hidden
       />
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading
+          light
           eyebrow="Industries We Serve"
-          title="Domain depth across twelve verticals."
+          title="Twelve verticals. One engineering language."
           description="From jewelry ERP to agritech to event tech — we bring battle-tested patterns to every engagement."
         />
 
-        {/* Mobile horizontal scroll, desktop matrix grid */}
-        <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-4 md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
+        {/* Bento matrix — varied sizes */}
+        <div className="grid auto-rows-[120px] grid-cols-2 gap-3 md:grid-cols-4 md:gap-4 lg:grid-cols-6 lg:auto-rows-[140px]">
           {industries.map((ind, i) => {
-            const featured = ind.featured;
+            const isActive = i === active;
+            const span =
+              ind.size === "lg"
+                ? "col-span-2 row-span-2 lg:col-span-2 lg:row-span-2"
+                : ind.size === "md"
+                ? "col-span-2 row-span-1 lg:col-span-2 lg:row-span-1"
+                : "col-span-1 row-span-1";
+            const Icon = ind.i;
             return (
               <a
                 key={ind.l}
                 href="#"
-                className={`group relative w-[220px] shrink-0 snap-start overflow-hidden rounded-2xl border p-5 transition-all hover:-translate-y-1 md:w-auto ${
-                  featured
-                    ? "border-transparent bg-navy text-white shadow-navy hover:shadow-glow"
-                    : "border-border bg-card hover:border-orange-bright"
+                onMouseEnter={() => setActive(i)}
+                className={`group relative overflow-hidden rounded-2xl border p-4 transition-all duration-500 ${span} ${
+                  isActive || ind.featured
+                    ? "border-orange-bright/40 bg-white/[0.04] shadow-glow"
+                    : "border-white/10 bg-white/[0.02] hover:border-orange-bright/30 hover:bg-white/[0.04]"
                 }`}
+                style={{ animationDelay: `${i * 0.04}s`, animation: "fade-up 0.6s ease-out both" }}
               >
-                {/* warm accent corner */}
+                {/* warm corner glow */}
                 <div
-                  className={`pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full blur-2xl transition-opacity duration-500 ${
-                    featured ? "opacity-40" : "opacity-0 group-hover:opacity-30"
+                  className={`pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl transition-opacity duration-500 ${
+                    isActive || ind.featured ? "opacity-40" : "opacity-0 group-hover:opacity-30"
                   }`}
                   style={{ background: "var(--gradient-pixel)" }}
                   aria-hidden
                 />
-                <div className="relative flex h-full flex-col gap-4">
-                  <div className="flex items-center justify-between">
-                    <div className={`flex h-11 w-11 items-center justify-center rounded-xl transition-colors ${
-                      featured
-                        ? "bg-white/10 text-orange-yellow"
-                        : "bg-navy text-orange-yellow group-hover:bg-orange-bright group-hover:text-white"
-                    }`}>
-                      <ind.i className="h-5 w-5" />
+                {/* mini pixel accent for large tiles */}
+                {ind.size === "lg" && (
+                  <div className="pointer-events-none absolute bottom-3 right-3 opacity-50">
+                    <PixelGrid cols={6} rows={3} className="w-16" />
+                  </div>
+                )}
+
+                <div className="relative flex h-full flex-col">
+                  <div className="flex items-start justify-between">
+                    <div
+                      className={`flex items-center justify-center rounded-xl transition-all ${
+                        ind.size === "lg" ? "h-12 w-12" : "h-10 w-10"
+                      } ${
+                        isActive || ind.featured
+                          ? "bg-gradient-warm text-white shadow-md"
+                          : "bg-white/10 text-orange-yellow group-hover:bg-gradient-warm group-hover:text-white"
+                      }`}
+                    >
+                      <Icon className={ind.size === "lg" ? "h-6 w-6" : "h-5 w-5"} />
                     </div>
-                    {featured && (
-                      <span className="rounded-full border border-orange-bright/50 bg-orange-bright/15 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-orange-yellow">
-                        Flagship
-                      </span>
-                    )}
-                  </div>
-
-                  <div className={`font-display text-base font-extrabold leading-tight ${
-                    featured ? "text-white" : "text-navy"
-                  }`}>
-                    {ind.l}
-                  </div>
-
-                  <div className="mt-auto flex items-center justify-between">
-                    <span className={`font-mono text-[10px] tracking-widest ${
-                      featured ? "text-white/40" : "text-muted-foreground/60"
-                    }`}>
-                      VERT.{String(i + 1).padStart(2, "0")}
+                    <span className="font-mono text-[9px] tracking-widest text-white/35">
+                      .{String(i + 1).padStart(2, "0")}
                     </span>
-                    <ArrowUpRight className={`h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
-                      featured ? "text-orange-yellow" : "text-muted-foreground group-hover:text-orange-bright"
-                    }`} />
+                  </div>
+
+                  <div className="mt-auto">
+                    <div
+                      className={`font-display font-extrabold leading-tight text-white ${
+                        ind.size === "lg" ? "text-xl lg:text-2xl" : "text-sm lg:text-base"
+                      }`}
+                    >
+                      {ind.l}
+                    </div>
+                    {(ind.size === "lg" || ind.size === "md") && (
+                      <div className="mt-1 text-[11px] text-white/55">{ind.tagline}</div>
+                    )}
+                    <div className="mt-2 flex items-center gap-1.5">
+                      <span className="h-px w-6 bg-gradient-warm transition-all duration-500 group-hover:w-10" />
+                      <ArrowUpRight className="h-3 w-3 text-orange-yellow opacity-0 transition-opacity group-hover:opacity-100" />
+                    </div>
                   </div>
                 </div>
               </a>
             );
           })}
         </div>
+
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 text-xs text-white/50">
+          <span className="font-mono uppercase tracking-widest">12 verticals · 750+ projects · 15+ countries</span>
+          <a href="#cta" className="inline-flex items-center gap-1.5 font-semibold text-orange-yellow hover:text-orange-bright">
+            Don't see your industry? Talk to us <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
       </div>
     </section>
   );
 }
+
 
 /* ───────────────────────── PRODUCTS (ecosystem) ───────────────────────── */
 const products = [
