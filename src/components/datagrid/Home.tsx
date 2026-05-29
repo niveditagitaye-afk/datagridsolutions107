@@ -12,6 +12,17 @@ import { Header } from "@/components/datagrid/Header";
 import { Footer } from "@/components/datagrid/Footer";
 import { PixelGrid } from "@/components/datagrid/PixelGrid";
 import heroImg from "@/assets/hero-grid.jpg";
+import optifyLogo from "@/assets/products/optify.png";
+import sellingoLogo from "@/assets/products/sellingo.jpg";
+import glammifyLogo from "@/assets/products/glammify.png";
+import unifyamsLogo from "@/assets/products/unifyams.png";
+import caseScmt from "@/assets/cases/scmt.jpg";
+import caseHiya from "@/assets/cases/hiya.jpg";
+import caseIndie from "@/assets/cases/indie.jpg";
+import caseMysphere from "@/assets/cases/mysphere.jpg";
+import testi1 from "@/assets/testimonials/t1.jpg";
+import testi2 from "@/assets/testimonials/t2.jpg";
+import testi3 from "@/assets/testimonials/t3.jpg";
 
 /* ───────────────────────── HERO ───────────────────────── */
 function Hero() {
