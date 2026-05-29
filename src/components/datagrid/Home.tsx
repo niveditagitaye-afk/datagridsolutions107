@@ -85,6 +85,18 @@ function Hero() {
           <div className="mt-12 grid max-w-md grid-cols-3 gap-6 text-white">
             {[
               { k: "20+", v: "Years" },
+              { k: "750+", v: "Projects" },
+              { k: "15+", v: "Countries" },
+            ].map((s) => (
+              <div key={s.k}>
+                <div className="font-display text-3xl font-extrabold text-orange-yellow">{s.k}</div>
+                <div className="text-xs uppercase tracking-widest text-white/60">{s.v}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+
         <div className="relative lg:col-span-5">
           <div className="relative mx-auto aspect-square w-full max-w-[460px]">
             {/* central core */}
