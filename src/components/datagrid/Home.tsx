@@ -175,22 +175,6 @@ function Hero() {
       </div>
     </section>
   );
-}
-                  <div className="font-display text-sm font-bold text-white">{m.l}</div>
-                  <div className="text-[10px] font-mono uppercase text-white/40">module.connect()</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="absolute -bottom-6 -right-6 w-32 animate-float opacity-90">
-            <PixelGrid cols={6} rows={4} />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ───────────────────────── SECTION HEADING ───────────────────────── */
 function SectionHeading({
