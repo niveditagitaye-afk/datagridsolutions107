@@ -175,6 +175,8 @@ function Hero() {
       </div>
     </section>
   );
+}
+
 
 /* ───────────────────────── SECTION HEADING ───────────────────────── */
 function SectionHeading({
