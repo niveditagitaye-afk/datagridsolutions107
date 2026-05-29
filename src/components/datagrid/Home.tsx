@@ -85,38 +85,97 @@ function Hero() {
           <div className="mt-12 grid max-w-md grid-cols-3 gap-6 text-white">
             {[
               { k: "20+", v: "Years" },
-              { k: "750+", v: "Projects" },
-              { k: "15+", v: "Countries" },
-            ].map((s) => (
-              <div key={s.k}>
-                <div className="font-display text-3xl font-extrabold text-orange-yellow">{s.k}</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">{s.v}</div>
+        <div className="relative lg:col-span-5">
+          <div className="relative mx-auto aspect-square w-full max-w-[460px]">
+            {/* central core */}
+            <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+              <div
+                className="absolute inset-0 -m-10 rounded-full opacity-50 blur-2xl"
+                style={{ background: "var(--gradient-pixel)" }}
+                aria-hidden
+              />
+              <div className="relative flex h-28 w-28 flex-col items-center justify-center rounded-3xl border border-white/25 bg-navy-deep/90 shadow-glow backdrop-blur">
+                <PixelGrid cols={4} rows={4} className="w-10 opacity-90" />
+                <div className="mt-1.5 font-display text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-yellow">
+                  Datagrid
+                </div>
+                <div className="font-mono text-[8px] uppercase tracking-widest text-white/50">
+                  core.os
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* orbital ring */}
+            <div className="pointer-events-none absolute inset-[14%] rounded-full border border-dashed border-white/15" aria-hidden />
+            <div className="pointer-events-none absolute inset-[2%] rounded-full border border-white/10" aria-hidden />
+
+            {/* connector lines */}
+            <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden>
+              {[30, 90, 150, 210, 270, 330].map((deg) => {
+                const r = 38;
+                const rad = (deg * Math.PI) / 180;
+                const x = 50 + r * Math.cos(rad);
+                const y = 50 + r * Math.sin(rad);
+                return (
+                  <line
+                    key={deg}
+                    x1="50" y1="50" x2={x} y2={y}
+                    stroke="url(#hg)"
+                    strokeWidth="0.3"
+                    strokeDasharray="0.8 1.2"
+                  />
+                );
+              })}
+              <defs>
+                <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#ed5816" stopOpacity="0.7" />
+                  <stop offset="100%" stopColor="#f7a626" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            {/* 6 modules in balanced hex arrangement */}
+            {[
+              { i: Code2, l: "Software", deg: 270 },
+              { i: Brain, l: "AI / LLM", deg: 330 },
+              { i: Cloud, l: "Cloud", deg: 30 },
+              { i: Workflow, l: "ERP", deg: 90 },
+              { i: Bot, l: "Automation", deg: 150 },
+              { i: Smartphone, l: "Mobile", deg: 210 },
+            ].map((m, idx) => {
+              const rad = (m.deg * Math.PI) / 180;
+              const left = 50 + 42 * Math.cos(rad);
+              const top = 50 + 42 * Math.sin(rad);
+              const Icon = m.i;
+              return (
+                <div
+                  key={m.l}
+                  className="group absolute z-10 -translate-x-1/2 -translate-y-1/2 animate-float"
+                  style={{
+                    left: `${left}%`,
+                    top: `${top}%`,
+                    animationDelay: `${idx * 0.4}s`,
+                    animationDuration: "6s",
+                  }}
+                >
+                  <div className="glass-dark flex w-32 items-center gap-2.5 rounded-2xl border border-white/15 px-3 py-2.5 backdrop-blur-md transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-orange-bright group-hover:shadow-glow">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-warm text-white">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="truncate font-display text-[12px] font-bold leading-tight text-white">{m.l}</div>
+                      <div className="truncate font-mono text-[9px] uppercase text-white/45">module.connect()</div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-
-        <div className="relative lg:col-span-5">
-          <div className="relative grid h-full grid-cols-3 grid-rows-4 gap-3">
-            {[
-              { i: Code2, l: "Software", c: "bg-redorange" },
-              { i: Brain, l: "AI / LLM", c: "bg-orange-bright" },
-              { i: Cloud, l: "Cloud", c: "bg-orange" },
-              { i: Smartphone, l: "Mobile", c: "bg-orange-yellow" },
-              { i: Workflow, l: "ERP", c: "bg-orange-light" },
-              { i: Bot, l: "Automation", c: "bg-redorange" },
-            ].map((m, idx) => (
-              <div
-                key={idx}
-                className={`glass-dark group flex flex-col justify-between rounded-2xl p-4 backdrop-blur transition-all hover:-translate-y-1 hover:border-orange-bright ${
-                  idx === 0 ? "col-span-2 row-span-2" : ""
-                } ${idx === 5 ? "col-span-2" : ""}`}
-                style={{ animationDelay: `${idx * 0.1}s`, animation: "fade-up 0.8s ease-out both" }}
-              >
-                <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${m.c} text-white`}>
-                  <m.i className="h-5 w-5" />
-                </div>
-                <div>
+      </div>
+    </section>
+  );
+}
                   <div className="font-display text-sm font-bold text-white">{m.l}</div>
                   <div className="text-[10px] font-mono uppercase text-white/40">module.connect()</div>
                 </div>
