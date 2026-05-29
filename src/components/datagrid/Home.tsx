@@ -684,16 +684,21 @@ function Industries() {
 
 /* ───────────────────────── PRODUCTS (ecosystem) ───────────────────────── */
 const products = [
-  { n: "UnifyAMS.ai", tag: "Associations & Events", d: "AI-powered association management — memberships, events, communities, all unified.", c: "from-redorange to-orange-bright" },
-  { n: "Glammify.ai", tag: "Jewelry Tech", d: "Modern jewelry retail & catalog OS with AI-led merchandising and virtual try-on.", c: "from-orange-bright to-orange" },
-  { n: "Optifyerp.ai", tag: "Manufacturing ERP", d: "Next-gen ERP for manufacturers — production, inventory, finance with AI insights.", c: "from-orange to-orange-yellow" },
-  { n: "Sellingo.ai", tag: "Sales Enablement", d: "AI sales workspace — pipelines, outreach, conversation intelligence in one place.", c: "from-orange-yellow to-redorange" },
+  { n: "Optify", logo: optifyLogo, tag: "ERP Simplified", d: "Next-gen ERP platform — production, inventory, finance and operations unified with AI insights.", accent: "from-[#5b3aa9] to-[#1f49a8]" },
+  { n: "Sellingo", logo: sellingoLogo, tag: "Selling Simplified", d: "AI sales workspace — pipelines, outreach and conversation intelligence in one connected place.", accent: "from-[#1f496b] to-[#ed5816]" },
+  { n: "Glammify", logo: glammifyLogo, tag: "Where Glamour Meets AI", d: "Modern jewelry & beauty retail OS with AI-led merchandising, catalogs and virtual try-on.", accent: "from-[#ed5816] to-[#f7a626]" },
+  { n: "Unify AMS", logo: unifyamsLogo, tag: "Association Management", d: "AI-powered association management — memberships, events, communities, all unified.", accent: "from-[#d73b1a] to-[#f17e00]" },
 ];
 
 function Products() {
   return (
-    <section id="products" className="relative overflow-hidden py-24 lg:py-32">
+    <section id="products" className="relative overflow-hidden bg-secondary py-24 lg:py-32">
       <div className="absolute inset-0 bg-grid opacity-30" aria-hidden />
+      <div
+        className="absolute -top-24 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+        style={{ background: "var(--gradient-pixel)" }}
+        aria-hidden
+      />
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading
           eyebrow="Datagrid Product Ecosystem"
@@ -702,67 +707,77 @@ function Products() {
         />
 
         <div className="relative">
-          {/* central ecosystem hub (desktop) */}
-          <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-40 w-40 -translate-x-1/2 -translate-y-1/2 lg:block" aria-hidden>
+          {/* central hub (desktop) */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-28 w-28 -translate-x-1/2 -translate-y-1/2 lg:block" aria-hidden>
             <div
-              className="absolute inset-0 rounded-full opacity-30 blur-2xl"
+              className="absolute inset-0 -m-4 rounded-full opacity-50 blur-2xl"
               style={{ background: "var(--gradient-pixel)" }}
             />
-            <div className="absolute inset-6 rounded-full border border-orange-bright/30" />
-            <div className="absolute inset-10 flex items-center justify-center rounded-full border border-orange-bright/50 bg-navy text-orange-yellow font-display text-xs font-extrabold uppercase tracking-widest">
-              Datagrid
+            <div className="relative flex h-full w-full flex-col items-center justify-center rounded-3xl border border-orange-bright/40 bg-navy shadow-glow">
+              <PixelGrid cols={4} rows={4} className="w-9 opacity-90" />
+              <div className="mt-1 font-display text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-yellow">
+                Datagrid
+              </div>
+              <div className="font-mono text-[8px] uppercase tracking-widest text-white/45">hub</div>
             </div>
           </div>
 
-          {/* connecting cross lines on desktop */}
-          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-orange-bright/30 to-transparent lg:block" aria-hidden />
-          <div className="pointer-events-none absolute left-0 top-1/2 hidden h-px w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-orange-bright/30 to-transparent lg:block" aria-hidden />
+          {/* subtle connecting cross (desktop) */}
+          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-orange-bright/25 to-transparent lg:block" aria-hidden />
+          <div className="pointer-events-none absolute left-0 top-1/2 hidden h-px w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-orange-bright/25 to-transparent lg:block" aria-hidden />
 
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2 lg:gap-8">
             {products.map((p, i) => (
               <a
                 key={p.n}
                 href="#"
-                className="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-card transition-all duration-500 hover:-translate-y-1.5 hover:shadow-glow"
-                style={{
-                  animationDelay: `${i * 0.08}s`,
-                  animation: "fade-up 0.7s ease-out both",
-                }}
+                className="group relative overflow-hidden rounded-3xl border border-border bg-white p-7 shadow-card backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-orange-bright/40 hover:shadow-glow"
+                style={{ animationDelay: `${i * 0.08}s`, animation: "fade-up 0.7s ease-out both" }}
               >
+                {/* corner gradient wash */}
                 <div
-                  className={`pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-10 transition-all duration-500 group-hover:opacity-30 group-hover:scale-125 bg-gradient-to-br ${p.c}`}
+                  className={`pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-gradient-to-br opacity-[0.07] transition-all duration-500 group-hover:opacity-20 group-hover:scale-110 ${p.accent}`}
                 />
-                {/* connector dot pointing to center */}
-                <div className={`pointer-events-none absolute hidden h-2 w-2 rounded-full bg-orange-bright shadow-[0_0_12px_2px_rgba(237,88,22,0.6)] lg:block ${
-                  i === 0 ? "bottom-0 right-0 translate-x-1 translate-y-1"
-                  : i === 1 ? "bottom-0 left-0 -translate-x-1 translate-y-1"
-                  : i === 2 ? "top-0 right-0 translate-x-1 -translate-y-1"
-                  : "top-0 left-0 -translate-x-1 -translate-y-1"
-                }`} aria-hidden />
+                {/* connector node toward center hub */}
+                <div
+                  className={`pointer-events-none absolute hidden h-2.5 w-2.5 rounded-full bg-orange-bright shadow-[0_0_14px_3px_rgba(237,88,22,0.55)] lg:block ${
+                    i === 0
+                      ? "bottom-0 right-0 translate-x-1.5 translate-y-1.5"
+                      : i === 1
+                      ? "bottom-0 left-0 -translate-x-1.5 translate-y-1.5"
+                      : i === 2
+                      ? "top-0 right-0 translate-x-1.5 -translate-y-1.5"
+                      : "top-0 left-0 -translate-x-1.5 -translate-y-1.5"
+                  }`}
+                  aria-hidden
+                />
 
-                <div className="relative flex items-start justify-between">
-                  <div>
-                    <div className={`inline-flex items-center gap-2 rounded-md bg-gradient-to-br ${p.c} px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white`}>
-                      <span className="h-1.5 w-1.5 rounded-sm bg-white" />
-                      AI Native
-                    </div>
-                    <h3 className="mt-4 font-display text-3xl font-extrabold text-navy">{p.n}</h3>
-                    <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{p.tag}</div>
+                <div className="relative flex items-start justify-between gap-4">
+                  <div className="flex h-20 w-44 items-center">
+                    <img
+                      src={p.logo}
+                      alt={`${p.n} logo`}
+                      loading="lazy"
+                      className="h-full w-auto max-w-full object-contain object-left transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
-                  <div className={`relative h-16 w-16 rounded-2xl bg-gradient-to-br ${p.c} p-3 shadow-md transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110`}>
-                    <div className="grid h-full w-full grid-cols-3 gap-0.5">
-                      {Array.from({ length: 9 }).map((_, k) => (
-                        <div key={k} className={`rounded-[2px] ${k % 2 === 0 ? "bg-white/90" : "bg-white/30"}`} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <p className="relative mt-5 text-base text-muted-foreground">{p.d}</p>
-                <div className="relative mt-8 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 text-sm font-bold text-navy group-hover:text-orange-bright">
-                    Explore Product <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-bright/30 bg-orange-bright/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-orange-bright">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-orange-bright" />
+                    AI Native
                   </span>
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all group-hover:border-orange-bright group-hover:text-orange-bright">
+                </div>
+
+                <div className="relative mt-5">
+                  <div className="text-[11px] font-bold uppercase tracking-widest text-orange-bright">{p.tag}</div>
+                  <p className="mt-2 text-sm leading-relaxed text-navy/75">{p.d}</p>
+                </div>
+
+                <div className="relative mt-7 flex items-center justify-between border-t border-border/60 pt-5">
+                  <span className="inline-flex items-center gap-2 text-sm font-bold text-navy transition-colors group-hover:text-orange-bright">
+                    Explore Product
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all group-hover:border-orange-bright group-hover:bg-orange-bright group-hover:text-white">
                     <ExternalLink className="h-4 w-4" />
                   </span>
                 </div>
@@ -774,6 +789,7 @@ function Products() {
     </section>
   );
 }
+
 
 /* ───────────────────────── CASE STUDIES (featured + grid) ───────────────────────── */
 const cases = [
