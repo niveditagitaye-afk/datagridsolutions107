@@ -1101,9 +1101,9 @@ function TechStack() {
 
 /* ───────────────────────── TESTIMONIALS ───────────────────────── */
 const testimonials = [
-  { n: "Apurwa Peters", r: "Founder", q: "Datagrid felt less like a vendor and more like our extended engineering team.", video: true, c: "from-redorange to-orange" },
-  { n: "Heather", r: "Product Lead", q: "Shipped 3x faster than we budgeted, with quality we didn't expect.", video: true, c: "from-orange-bright to-orange-yellow" },
-  { n: "Indie", r: "Co-founder", q: "Their AI-first approach unlocked features we couldn't have built in-house.", video: true, c: "from-orange to-redorange" },
+  { n: "Apurwa Peters", r: "Founder, Indie Events", q: "Datagrid felt less like a vendor and more like our extended engineering team.", thumb: testi1, duration: "2:14" },
+  { n: "Heather Williams", r: "Product Lead, MySphere", q: "Shipped 3x faster than we budgeted, with quality we didn't expect.", thumb: testi2, duration: "1:48" },
+  { n: "Rohan Mehta", r: "Co-founder, HIYA", q: "Their AI-first approach unlocked features we couldn't have built in-house.", thumb: testi3, duration: "3:02" },
   { n: "Bhikshu Impex", r: "Director", q: "End-to-end ownership. Zero hand-holding required.", video: false },
   { n: "Matt — Callbox", r: "VP Engineering", q: "Modern engineering practices applied to a complex enterprise rollout.", video: false },
   { n: "Pankaj Ostwal — Madhya Bharat", r: "CEO", q: "Transformed how our teams operate on a daily basis.", video: false },
@@ -1115,32 +1115,63 @@ function Testimonials() {
     <section className="relative bg-secondary py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading
-          eyebrow="Testimonials"
+          eyebrow="Video Testimonials"
           title="What partners say after shipping with us."
         />
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.slice(0, 3).map((t) => (
-            <div
+            <article
               key={t.n}
-              className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${t.c} p-7 text-white shadow-card transition-all hover:-translate-y-1 hover:shadow-glow`}
+              className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-all duration-500 hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow"
             >
-              <div className="absolute inset-0 bg-grid-light opacity-30" />
-              <div className="relative flex h-56 flex-col justify-between">
+              {/* Video thumbnail */}
+              <div className="relative aspect-[16/10] overflow-hidden bg-navy">
+                <img
+                  src={t.thumb}
+                  alt={`${t.n} video testimonial thumbnail`}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent" />
+
+                {/* Play button */}
                 <button
                   aria-label={`Play testimonial from ${t.n}`}
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-navy shadow-glow transition-transform group-hover:scale-110"
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 >
-                  <Play className="ml-0.5 h-5 w-5 fill-current" />
+                  <span className="absolute inset-0 -m-2 animate-pulse rounded-full bg-orange-bright/30 blur-md" />
+                  <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/95 text-navy shadow-glow ring-4 ring-white/20 backdrop-blur transition-all duration-300 group-hover:scale-110 group-hover:bg-orange-bright group-hover:text-white">
+                    <Play className="ml-1 h-6 w-6 fill-current" />
+                  </span>
                 </button>
-                <div>
-                  <p className="font-display text-lg font-bold leading-snug">"{t.q}"</p>
-                  <div className="mt-3 text-sm font-semibold text-white/90">{t.n}</div>
-                  <div className="text-xs text-white/70">{t.r}</div>
+
+                {/* Duration badge */}
+                <div className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-md bg-navy/80 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-redorange" />
+                  {t.duration}
+                </div>
+                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-navy backdrop-blur">
+                  <Play className="h-2.5 w-2.5 fill-current" /> Watch story
                 </div>
               </div>
-            </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <p className="font-display text-base font-bold leading-snug text-navy">"{t.q}"</p>
+                <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-pixel font-display text-sm font-extrabold text-white">
+                    {t.n[0]}
+                  </div>
+                  <div>
+                    <div className="font-display text-sm font-bold text-navy">{t.n}</div>
+                    <div className="text-xs text-muted-foreground">{t.r}</div>
+                  </div>
+                </div>
+              </div>
+            </article>
           ))}
+
 
           {testimonials.slice(3).map((t) => (
             <div
