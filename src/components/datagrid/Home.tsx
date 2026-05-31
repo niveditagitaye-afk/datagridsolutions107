@@ -763,8 +763,8 @@ function IndustryNode({
     </a>
   );
 }
-  );
-}
+
+
 
 
 /* ───────────────────────── PRODUCTS (ecosystem) ───────────────────────── */
