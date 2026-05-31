@@ -542,137 +542,153 @@ function TrustMatrix() {
 }
 
 /* ───────────────────────── INDUSTRIES ───────────────────────── */
-const industries: { l: string; i: typeof Calendar; tagline: string; size?: "lg" | "md" | "sm"; featured?: boolean }[] = [
-  { l: "Associations & Events", i: Calendar, tagline: "AMS + community OS", size: "lg", featured: true },
-  { l: "Jewelry", i: Gem, tagline: "Retail ERP & catalog", size: "md", featured: true },
-  { l: "Manufacturing & Supply", i: Factory, tagline: "Production + SCM", size: "md", featured: true },
-  { l: "Hospitality", i: Hotel, tagline: "Guest experience tech", size: "sm" },
-  { l: "Education", i: GraduationCap, tagline: "LMS & campus ops", size: "sm" },
-  { l: "Retail & Ecommerce", i: ShoppingBag, tagline: "Omnichannel commerce", size: "md" },
-  { l: "Agritech", i: Leaf, tagline: "Farm-to-supply intel", size: "sm" },
-  { l: "Insurance", i: ShieldCheck, tagline: "Claims & policy AI", size: "sm" },
-  { l: "Real Estate", i: Building2, tagline: "CRM + property OS", size: "md" },
-  { l: "Accounting", i: FileSpreadsheet, tagline: "Books, audit, billing", size: "sm" },
-  { l: "Healthcare", i: Stethoscope, tagline: "EMR & care workflows", size: "sm" },
-  { l: "Corporates", i: Briefcase, tagline: "Internal platforms", size: "sm" },
+const industries: { l: string; i: typeof Calendar; tagline: string }[] = [
+  { l: "Associations & Events", i: Calendar, tagline: "AMS + community OS" },
+  { l: "Jewelry", i: Gem, tagline: "Retail ERP & catalog" },
+  { l: "Manufacturing & Supply", i: Factory, tagline: "Production + SCM" },
+  { l: "Hospitality", i: Hotel, tagline: "Guest experience tech" },
+  { l: "Education", i: GraduationCap, tagline: "LMS & campus ops" },
+  { l: "Retail & Ecommerce", i: ShoppingBag, tagline: "Omnichannel commerce" },
+  { l: "Agritech", i: Leaf, tagline: "Farm-to-supply intel" },
+  { l: "Insurance", i: ShieldCheck, tagline: "Claims & policy AI" },
+  { l: "Real Estate", i: Building2, tagline: "CRM + property OS" },
+  { l: "Accounting", i: FileSpreadsheet, tagline: "Books, audit, billing" },
+  { l: "Healthcare", i: Stethoscope, tagline: "EMR & care workflows" },
+  { l: "Corporates", i: Briefcase, tagline: "Internal platforms" },
 ];
 
 function Industries() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState<number | null>(null);
+
+  // Two arched rows — 6 nodes above the spine, 6 below, alternating offsets
+  // Positions are computed as % across a 1200x520 viewBox for the desktop infographic.
+  const topRow = industries.slice(0, 6);
+  const bottomRow = industries.slice(6, 12);
+
   return (
-    <section id="industries" className="relative overflow-hidden bg-navy py-24 text-white lg:py-32">
-      {/* world-map dotted background */}
+    <section
+      id="industries"
+      className="relative overflow-hidden bg-[oklch(0.985_0.004_90)] py-24 lg:py-32"
+    >
+      {/* ultra-subtle grid wash */}
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.35]" aria-hidden />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.22]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(247,166,38,0.45) 1.1px, transparent 1.1px)",
-          backgroundSize: "26px 26px",
-          maskImage: "radial-gradient(ellipse 75% 60% at 50% 50%, black 30%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse 75% 60% at 50% 50%, black 30%, transparent 80%)",
-        }}
-        aria-hidden
-      />
-      <div
-        className="absolute -top-32 left-1/4 h-80 w-[36rem] rounded-full opacity-25 blur-3xl"
-        style={{ background: "var(--gradient-pixel)" }}
-        aria-hidden
-      />
-      <div
-        className="absolute -bottom-20 right-0 h-72 w-[30rem] rounded-full opacity-20 blur-3xl"
+        className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full opacity-25 blur-3xl"
         style={{ background: "var(--gradient-pixel)" }}
         aria-hidden
       />
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading
-          light
           eyebrow="Industries We Serve"
-          title="Twelve verticals. One engineering language."
-          description="From jewelry ERP to agritech to event tech — we bring battle-tested patterns to every engagement."
+          title="Tailored digital solutions across twelve verticals."
+          description="From associations to agritech, we build battle-tested products that fit the rhythm of each industry."
         />
 
-        {/* Bento matrix — varied sizes */}
-        <div className="grid auto-rows-[120px] grid-cols-2 gap-3 md:grid-cols-4 md:gap-4 lg:grid-cols-6 lg:auto-rows-[140px]">
-          {industries.map((ind, i) => {
-            const isActive = i === active;
-            const span =
-              ind.size === "lg"
-                ? "col-span-2 row-span-2 lg:col-span-2 lg:row-span-2"
-                : ind.size === "md"
-                ? "col-span-2 row-span-1 lg:col-span-2 lg:row-span-1"
-                : "col-span-1 row-span-1";
-            const Icon = ind.i;
-            return (
-              <a
+        {/* ───── Desktop infographic: connected node constellation ───── */}
+        <div className="relative mt-6 hidden lg:block">
+          {/* SVG connector layer */}
+          <svg
+            viewBox="0 0 1200 520"
+            className="absolute inset-0 h-full w-full"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <defs>
+              <linearGradient id="spine" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stopColor="#1f496b" stopOpacity="0.15" />
+                <stop offset="50%" stopColor="#ed5816" stopOpacity="0.55" />
+                <stop offset="100%" stopColor="#1f496b" stopOpacity="0.15" />
+              </linearGradient>
+            </defs>
+            {/* horizontal spine */}
+            <line x1="40" y1="260" x2="1160" y2="260" stroke="url(#spine)" strokeWidth="1.5" strokeDasharray="2 6" />
+            {/* connectors from spine to each node */}
+            {topRow.map((_, i) => {
+              const x = 120 + i * 192;
+              return <line key={`t${i}`} x1={x} y1="260" x2={x} y2="120" stroke="#1f496b" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="2 5" />;
+            })}
+            {bottomRow.map((_, i) => {
+              const x = 120 + i * 192;
+              return <line key={`b${i}`} x1={x} y1="260" x2={x} y2="400" stroke="#1f496b" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="2 5" />;
+            })}
+            {/* dots on spine */}
+            {Array.from({ length: 6 }).map((_, i) => {
+              const x = 120 + i * 192;
+              return <circle key={`d${i}`} cx={x} cy="260" r="3" fill="#ed5816" />;
+            })}
+          </svg>
+
+          {/* Centered Datagrid hub badge */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+            <div className="flex items-center gap-2 rounded-full border border-navy/10 bg-white px-4 py-2 shadow-card">
+              <span className="h-2 w-2 rounded-full bg-orange-bright animate-pixel-pulse" />
+              <span className="font-display text-xs font-bold tracking-widest text-navy">
+                DATAGRID · CORE
+              </span>
+            </div>
+          </div>
+
+          {/* Node grid (matches SVG viewBox proportionally via aspect ratio) */}
+          <div className="relative" style={{ aspectRatio: "1200 / 520" }}>
+            {topRow.map((ind, i) => (
+              <IndustryNode
                 key={ind.l}
-                href="#"
-                onMouseEnter={() => setActive(i)}
-                className={`group relative overflow-hidden rounded-2xl border p-4 transition-all duration-500 ${span} ${
-                  isActive || ind.featured
-                    ? "border-orange-bright/40 bg-white/[0.04] shadow-glow"
-                    : "border-white/10 bg-white/[0.02] hover:border-orange-bright/30 hover:bg-white/[0.04]"
-                }`}
-                style={{ animationDelay: `${i * 0.04}s`, animation: "fade-up 0.6s ease-out both" }}
-              >
-                {/* warm corner glow */}
-                <div
-                  className={`pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl transition-opacity duration-500 ${
-                    isActive || ind.featured ? "opacity-40" : "opacity-0 group-hover:opacity-30"
-                  }`}
-                  style={{ background: "var(--gradient-pixel)" }}
-                  aria-hidden
-                />
-                {/* mini pixel accent for large tiles */}
-                {ind.size === "lg" && (
-                  <div className="pointer-events-none absolute bottom-3 right-3 opacity-50">
-                    <PixelGrid cols={6} rows={3} className="w-16" />
-                  </div>
-                )}
-
-                <div className="relative flex h-full flex-col">
-                  <div className="flex items-start justify-between">
-                    <div
-                      className={`flex items-center justify-center rounded-xl transition-all ${
-                        ind.size === "lg" ? "h-12 w-12" : "h-10 w-10"
-                      } ${
-                        isActive || ind.featured
-                          ? "bg-gradient-warm text-white shadow-md"
-                          : "bg-white/10 text-orange-yellow group-hover:bg-gradient-warm group-hover:text-white"
-                      }`}
-                    >
-                      <Icon className={ind.size === "lg" ? "h-6 w-6" : "h-5 w-5"} />
-                    </div>
-                    <span className="font-mono text-[9px] tracking-widest text-white/35">
-                      .{String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  <div className="mt-auto">
-                    <div
-                      className={`font-display font-extrabold leading-tight text-white ${
-                        ind.size === "lg" ? "text-xl lg:text-2xl" : "text-sm lg:text-base"
-                      }`}
-                    >
-                      {ind.l}
-                    </div>
-                    {(ind.size === "lg" || ind.size === "md") && (
-                      <div className="mt-1 text-[11px] text-white/55">{ind.tagline}</div>
-                    )}
-                    <div className="mt-2 flex items-center gap-1.5">
-                      <span className="h-px w-6 bg-gradient-warm transition-all duration-500 group-hover:w-10" />
-                      <ArrowUpRight className="h-3 w-3 text-orange-yellow opacity-0 transition-opacity group-hover:opacity-100" />
-                    </div>
-                  </div>
-                </div>
-              </a>
-            );
-          })}
+                ind={ind}
+                index={i}
+                active={active === i}
+                onHover={() => setActive(i)}
+                onLeave={() => setActive(null)}
+                style={{
+                  position: "absolute",
+                  left: `${((120 + i * 192) / 1200) * 100}%`,
+                  top: `${(120 / 520) * 100}%`,
+                  transform: "translate(-50%, -50%)",
+                }}
+              />
+            ))}
+            {bottomRow.map((ind, i) => (
+              <IndustryNode
+                key={ind.l}
+                ind={ind}
+                index={i + 6}
+                active={active === i + 6}
+                onHover={() => setActive(i + 6)}
+                onLeave={() => setActive(null)}
+                style={{
+                  position: "absolute",
+                  left: `${((120 + i * 192) / 1200) * 100}%`,
+                  top: `${(400 / 520) * 100}%`,
+                  transform: "translate(-50%, -50%)",
+                }}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 text-xs text-white/50">
-          <span className="font-mono uppercase tracking-widest">12 verticals · 750+ projects · 15+ countries</span>
-          <a href="#cta" className="inline-flex items-center gap-1.5 font-semibold text-orange-yellow hover:text-orange-bright">
+        {/* ───── Tablet / mobile: clean circular grid ───── */}
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:hidden">
+          {industries.map((ind, i) => (
+            <IndustryNode
+              key={ind.l}
+              ind={ind}
+              index={i}
+              active={active === i}
+              onHover={() => setActive(i)}
+              onLeave={() => setActive(null)}
+              compact
+            />
+          ))}
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-navy/10 pt-6 text-xs text-muted-foreground">
+          <span className="font-mono uppercase tracking-widest">
+            12 verticals · 750+ projects · 15+ countries
+          </span>
+          <a
+            href="#cta"
+            className="inline-flex items-center gap-1.5 font-semibold text-orange-bright hover:text-redorange"
+          >
             Don't see your industry? Talk to us <ArrowRight className="h-3.5 w-3.5" />
           </a>
         </div>
@@ -680,6 +696,75 @@ function Industries() {
     </section>
   );
 }
+
+function IndustryNode({
+  ind,
+  index,
+  active,
+  onHover,
+  onLeave,
+  style,
+  compact = false,
+}: {
+  ind: { l: string; i: typeof Calendar; tagline: string };
+  index: number;
+  active: boolean;
+  onHover: () => void;
+  onLeave: () => void;
+  style?: React.CSSProperties;
+  compact?: boolean;
+}) {
+  const Icon = ind.i;
+  return (
+    <a
+      href="#"
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+      style={style}
+      className="group flex flex-col items-center text-center"
+    >
+      <div
+        className={`relative flex items-center justify-center rounded-full border bg-white transition-all duration-300 ${
+          compact ? "h-16 w-16" : "h-20 w-20"
+        } ${
+          active
+            ? "-translate-y-1 border-orange-bright/60 shadow-glow"
+            : "border-navy/10 shadow-card group-hover:-translate-y-1 group-hover:border-orange-bright/40 group-hover:shadow-glow"
+        }`}
+      >
+        {/* warm halo */}
+        <span
+          className={`pointer-events-none absolute inset-0 rounded-full transition-opacity duration-300 ${
+            active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+          }`}
+          style={{
+            background:
+              "radial-gradient(circle at 50% 50%, rgba(237,88,22,0.18), transparent 70%)",
+          }}
+          aria-hidden
+        />
+        <Icon
+          className={`relative transition-colors duration-300 ${
+            compact ? "h-6 w-6" : "h-7 w-7"
+          } ${active ? "text-orange-bright" : "text-navy group-hover:text-orange-bright"}`}
+        />
+        <span className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-navy font-mono text-[9px] font-bold text-white">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+      </div>
+      <div
+        className={`mt-3 font-display font-bold leading-tight text-navy ${
+          compact ? "text-xs" : "text-[13px]"
+        }`}
+      >
+        {ind.l}
+      </div>
+      <div className="mt-0.5 text-[10px] text-muted-foreground">{ind.tagline}</div>
+    </a>
+  );
+}
+
+
 
 
 /* ───────────────────────── PRODUCTS (ecosystem) ───────────────────────── */
