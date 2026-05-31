@@ -53,10 +53,12 @@ export function Header() {
           </div>
           <div className="flex items-center gap-5">
             <a href="mailto:hello@datagrid.co.in" className="inline-flex items-center gap-1.5 hover:text-orange-yellow transition-colors">
-              <Mail className="h-3 w-3" /> hello@datagrid.co.in
+              <Mail className="h-3 w-3" />
+              <span>hello@datagrid.co.in</span>
             </a>
             <a href="tel:+919999999999" className="inline-flex items-center gap-1.5 hover:text-orange-yellow transition-colors">
-              <Phone className="h-3 w-3" /> +91 99999 99999
+              <Phone className="h-3 w-3" />
+              <span>+91 99999 99999</span>
             </a>
             <a
               href="https://linkedin.com"
@@ -132,8 +134,8 @@ export function Header() {
               Start Your Project
             </a>
             <div className="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4 text-xs text-white/60">
-              <a href="mailto:hello@datagrid.co.in" className="inline-flex items-center gap-2"><Mail className="h-3 w-3" /> hello@datagrid.co.in</a>
-              <a href="tel:+919999999999" className="inline-flex items-center gap-2"><Phone className="h-3 w-3" /> +91 99999 99999</a>
+              <a href="mailto:hello@datagrid.co.in" className="inline-flex items-center gap-2"><Mail className="h-3 w-3" /><span>hello@datagrid.co.in</span></a>
+              <a href="tel:+919999999999" className="inline-flex items-center gap-2"><Phone className="h-3 w-3" /><span>+91 99999 99999</span></a>
             </div>
           </div>
         </div>

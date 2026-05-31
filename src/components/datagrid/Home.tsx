@@ -24,6 +24,14 @@ import testi1 from "@/assets/testimonials/t1.jpg";
 import testi2 from "@/assets/testimonials/t2.jpg";
 import testi3 from "@/assets/testimonials/t3.jpg";
 
+const activityPalette = ["bg-orange-pale", "bg-orange-light", "bg-orange-yellow", "bg-orange-bright"] as const;
+
+function getActivityCellClass(index: number) {
+  const intensity = (index * 7 + 3) % activityPalette.length;
+  const isActive = (index * 5 + 2) % 9 > 2;
+  return isActive ? activityPalette[intensity] : "bg-muted";
+}
+
 /* ───────────────────────── HERO ───────────────────────── */
 function Hero() {
   return (
@@ -1146,16 +1154,12 @@ function TechStack() {
 
               {/* mini activity grid */}
               <div className="mt-8 grid grid-cols-16 gap-1" style={{ gridTemplateColumns: "repeat(16, minmax(0, 1fr))" }} aria-hidden>
-                {Array.from({ length: 48 }).map((_, k) => {
-                  const palette = ["bg-orange-pale", "bg-orange-light", "bg-orange-yellow", "bg-orange-bright"];
-                  const intensity = Math.floor(Math.random() * 4);
-                  return (
-                    <span
-                      key={k}
-                      className={`h-3 rounded-[2px] ${Math.random() > 0.35 ? palette[intensity] : "bg-muted"}`}
-                    />
-                  );
-                })}
+                {Array.from({ length: 48 }).map((_, k) => (
+                  <span
+                    key={k}
+                    className={`h-3 rounded-[2px] ${getActivityCellClass(k)}`}
+                  />
+                ))}
               </div>
             </div>
           </div>

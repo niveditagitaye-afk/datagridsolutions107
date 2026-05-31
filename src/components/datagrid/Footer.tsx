@@ -1,6 +1,8 @@
 import { Linkedin, Mail, Phone, Twitter, Github } from "lucide-react";
 import logo from "@/assets/datagrid-logo.png";
 
+const footerYear = 2026;
+
 const industries = [
   "Association & Event Technology",
   "Jewelry Technology",
@@ -92,7 +94,7 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 md:flex-row md:items-center">
-          <p>© {new Date().getFullYear()} Datagrid Solutions. All rights reserved. ISO 9001 & ISO 27001 Certified.</p>
+          <p>© {footerYear} Datagrid Solutions. All rights reserved. ISO 9001 & ISO 27001 Certified.</p>
           <p className="font-mono">Built with grid, pixels & AI.</p>
         </div>
       </div>
