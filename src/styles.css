@@ -44,7 +44,7 @@
   --color-orange-light: var(--orange-light);
   --color-orange-pale: var(--orange-pale);
 
-  --font-display: "Montserrat", system-ui, sans-serif;
+  --font-display: "Jost", "Nexa", "Montserrat", system-ui, sans-serif;
   --font-sans: "Open Sans", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
