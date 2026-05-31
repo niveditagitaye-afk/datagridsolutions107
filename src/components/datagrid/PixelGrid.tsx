@@ -20,6 +20,13 @@ export function PixelGrid({
     "bg-orange-pale",
   ];
   const cells = Array.from({ length: cols * rows });
+
+  const isFilled = (index: number) => {
+    const x = index % cols;
+    const y = Math.floor(index / cols);
+    return (x * 3 + y * 5 + cols + rows) % 7 > 1;
+  };
+
   return (
     <div
       className={`grid gap-1 ${className}`}
@@ -27,7 +34,7 @@ export function PixelGrid({
       aria-hidden="true"
     >
       {cells.map((_, i) => {
-        const filled = Math.random() > 0.35;
+        const filled = isFilled(i);
         const color = palette[i % palette.length];
         return (
           <div
