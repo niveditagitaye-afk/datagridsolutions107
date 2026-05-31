@@ -119,6 +119,8 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-weight: 400;
+    font-size: 17px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
