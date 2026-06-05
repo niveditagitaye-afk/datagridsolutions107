@@ -77,7 +77,7 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-white/70">
               <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-sm bg-orange-bright" /> 3 global accreditations</div>
               <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-sm bg-orange-yellow" /> 750+ clients trusted</div>
-              <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-sm bg-orange-yellow-light" /> Continuous compliance</div>
+              <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-sm bg-orange-yellow/70" /> Continuous compliance</div>
             </div>
           </div>
 
@@ -115,7 +115,7 @@ function Hero() {
 function CertCards() {
   return (
     <section className="relative overflow-hidden bg-background py-20 lg:py-28">
-      <div className="pointer-events-none absolute inset-0 bg-grid-dark opacity-[0.04]" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-[0.04]" aria-hidden />
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-orange-bright/20 bg-orange-bright/5 px-3.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.18em] text-orange-bright">
@@ -139,7 +139,7 @@ function CertCards() {
                 style={{ animationDelay: `${i * 80}ms` }}
               >
                 {/* certificate visual */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-navy-deep to-navy-mid">
+                <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-navy-deep to-navy-deep">
                   <div className="absolute inset-0 bg-grid-light opacity-20" aria-hidden />
                   <img
                     src={c.image}
@@ -203,7 +203,7 @@ function Trust() {
                 className="group relative rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow animate-fade-up"
                 style={{ animationDelay: `${i * 70}ms` }}
               >
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-navy-deep to-navy-mid text-orange-yellow">
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-navy-deep to-navy-deep text-orange-yellow">
                   <Icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-4 font-display text-base font-bold text-foreground">{t.title}</h3>
