@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhyDatagridRouteImport } from './routes/why-datagrid'
 import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as CertificationRouteImport } from './routes/certification'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WhyDatagridRoute = WhyDatagridRouteImport.update({
+  id: '/why-datagrid',
+  path: '/why-datagrid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LeadershipRoute = LeadershipRouteImport.update({
   id: '/leadership',
   path: '/leadership',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/certification': typeof CertificationRoute
   '/leadership': typeof LeadershipRoute
+  '/why-datagrid': typeof WhyDatagridRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/certification': typeof CertificationRoute
   '/leadership': typeof LeadershipRoute
+  '/why-datagrid': typeof WhyDatagridRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/certification': typeof CertificationRoute
   '/leadership': typeof LeadershipRoute
+  '/why-datagrid': typeof WhyDatagridRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/certification' | '/leadership'
+  fullPaths: '/' | '/certification' | '/leadership' | '/why-datagrid'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/certification' | '/leadership'
-  id: '__root__' | '/' | '/certification' | '/leadership'
+  to: '/' | '/certification' | '/leadership' | '/why-datagrid'
+  id: '__root__' | '/' | '/certification' | '/leadership' | '/why-datagrid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CertificationRoute: typeof CertificationRoute
   LeadershipRoute: typeof LeadershipRoute
+  WhyDatagridRoute: typeof WhyDatagridRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/why-datagrid': {
+      id: '/why-datagrid'
+      path: '/why-datagrid'
+      fullPath: '/why-datagrid'
+      preLoaderRoute: typeof WhyDatagridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/leadership': {
       id: '/leadership'
       path: '/leadership'
@@ -89,7 +106,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CertificationRoute: CertificationRoute,
   LeadershipRoute: LeadershipRoute,
+  WhyDatagridRoute: WhyDatagridRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
