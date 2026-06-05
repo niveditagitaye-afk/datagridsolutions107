@@ -17,6 +17,7 @@ const nav: NavItem[] = [
     label: "Company",
     children: [
       { label: "Leadership Team", to: "/leadership", description: "Meet the people behind Datagrid" },
+      { label: "Certification", to: "/certification", description: "ISO & CMMI accredited standards" },
       { label: "Industries", href: "/#industries", description: "Sectors we serve worldwide" },
       { label: "Technology", href: "/#tech", description: "Our engineering stack" },
     ],
