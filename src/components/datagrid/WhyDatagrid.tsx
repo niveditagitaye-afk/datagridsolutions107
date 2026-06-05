@@ -15,7 +15,7 @@ const features = [
     text: "We provide to your specific needs and project requirements.",
   },
   {
-    icon: FlagCheck,
+    icon: Target,
     title: "Goals",
     text: "Offer seamless coordination with your hiring managers. We act as a support team.",
   },
