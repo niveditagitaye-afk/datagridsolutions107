@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronRight, Search, Compass, FlagCheck } from "lucide-react";
+import { ArrowRight, ChevronRight, Search, Compass, Target } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Header } from "@/components/datagrid/Header";
 import { Footer } from "@/components/datagrid/Footer";
