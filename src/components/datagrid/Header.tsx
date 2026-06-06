@@ -24,7 +24,12 @@ const nav: NavItem[] = [
     ],
   },
   { label: "Careers", href: "/#careers" },
-  { label: "Insights", href: "/#insights" },
+  {
+    label: "Insights",
+    children: [
+      { label: "Case Studies", to: "/case-studies", description: "Client success stories & outcomes" },
+    ],
+  },
   { label: "Contact", to: "/contact" },
 ];
 
