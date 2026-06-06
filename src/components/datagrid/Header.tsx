@@ -24,15 +24,20 @@ const nav: NavItem[] = [
     ],
   },
   { label: "Careers", href: "/#careers" },
-  { label: "Insights", href: "/#insights" },
+  {
+    label: "Insights",
+    children: [
+      { label: "Case Studies", to: "/case-studies", description: "Client success stories & outcomes" },
+    ],
+  },
   { label: "Contact", to: "/contact" },
 ];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [companyOpen, setCompanyOpen] = useState(false);
-  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [mobileOpenMenu, setMobileOpenMenu] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -99,17 +104,17 @@ export function Header() {
         <nav className="hidden items-center gap-0.5 xl:flex">
           {nav.map((n) => {
             if ("children" in n && n.children) {
-              const isOpen = companyOpen;
+              const isOpen = openMenu === n.label;
               return (
                 <div
                   key={n.label}
                   className="relative"
-                  onMouseEnter={() => setCompanyOpen(true)}
-                  onMouseLeave={() => setCompanyOpen(false)}
+                  onMouseEnter={() => setOpenMenu(n.label)}
+                  onMouseLeave={() => setOpenMenu((v) => (v === n.label ? null : v))}
                 >
                   <button
                     type="button"
-                    onClick={() => setCompanyOpen((v) => !v)}
+                    onClick={() => setOpenMenu((v) => (v === n.label ? null : n.label))}
                     className="group relative inline-flex items-center gap-1 rounded-md px-3 py-2 text-[13px] font-semibold text-white/85 transition-colors hover:text-white"
                     aria-expanded={isOpen}
                     aria-haspopup="menu"
@@ -131,7 +136,7 @@ export function Header() {
                             <Link
                               key={c.label}
                               to={c.to}
-                              onClick={() => setCompanyOpen(false)}
+                              onClick={() => setOpenMenu(null)}
                               className="group/item block rounded-lg px-3 py-2.5 transition-colors hover:bg-white/5"
                             >
                               <div className="text-sm font-semibold text-white group-hover/item:text-orange-yellow">{c.label}</div>
@@ -141,7 +146,7 @@ export function Header() {
                             <a
                               key={c.label}
                               href={c.href}
-                              onClick={() => setCompanyOpen(false)}
+                              onClick={() => setOpenMenu(null)}
                               className="group/item block rounded-lg px-3 py-2.5 transition-colors hover:bg-white/5"
                             >
                               <div className="text-sm font-semibold text-white group-hover/item:text-orange-yellow">{c.label}</div>
@@ -206,17 +211,18 @@ export function Header() {
           <div className="space-y-1 px-5 py-4">
             {nav.map((n) => {
               if ("children" in n && n.children) {
+                const mIsOpen = mobileOpenMenu === n.label;
                 return (
                   <div key={n.label}>
                     <button
                       type="button"
-                      onClick={() => setMobileCompanyOpen((v) => !v)}
+                      onClick={() => setMobileOpenMenu((v) => (v === n.label ? null : n.label))}
                       className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/5 hover:text-orange-yellow"
                     >
                       {n.label}
-                      <ChevronDown className={`h-4 w-4 transition-transform ${mobileCompanyOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown className={`h-4 w-4 transition-transform ${mIsOpen ? "rotate-180" : ""}`} />
                     </button>
-                    {mobileCompanyOpen && (
+                    {mIsOpen && (
                       <div className="ml-3 mt-1 space-y-1 border-l border-white/10 pl-3">
                         {n.children.map((c) =>
                           c.to ? (
