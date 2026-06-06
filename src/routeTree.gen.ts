@@ -13,6 +13,7 @@ import { Route as WhyDatagridRouteImport } from './routes/why-datagrid'
 import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CertificationRouteImport } from './routes/certification'
+import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WhyDatagridRoute = WhyDatagridRouteImport.update({
@@ -35,6 +36,11 @@ const CertificationRoute = CertificationRouteImport.update({
   path: '/certification',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CaseStudiesRoute = CaseStudiesRouteImport.update({
+  id: '/case-studies',
+  path: '/case-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/case-studies': typeof CaseStudiesRoute
   '/certification': typeof CertificationRoute
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/case-studies': typeof CaseStudiesRoute
   '/certification': typeof CertificationRoute
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/case-studies': typeof CaseStudiesRoute
   '/certification': typeof CertificationRoute
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
@@ -67,15 +76,23 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/case-studies'
     | '/certification'
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/certification' | '/contact' | '/leadership' | '/why-datagrid'
+  to:
+    | '/'
+    | '/case-studies'
+    | '/certification'
+    | '/contact'
+    | '/leadership'
+    | '/why-datagrid'
   id:
     | '__root__'
     | '/'
+    | '/case-studies'
     | '/certification'
     | '/contact'
     | '/leadership'
@@ -84,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CaseStudiesRoute: typeof CaseStudiesRoute
   CertificationRoute: typeof CertificationRoute
   ContactRoute: typeof ContactRoute
   LeadershipRoute: typeof LeadershipRoute
@@ -120,6 +138,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CertificationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/case-studies': {
+      id: '/case-studies'
+      path: '/case-studies'
+      fullPath: '/case-studies'
+      preLoaderRoute: typeof CaseStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -132,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CaseStudiesRoute: CaseStudiesRoute,
   CertificationRoute: CertificationRoute,
   ContactRoute: ContactRoute,
   LeadershipRoute: LeadershipRoute,
@@ -140,3 +166,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
