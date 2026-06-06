@@ -25,7 +25,7 @@ const nav: NavItem[] = [
   },
   { label: "Careers", href: "/#careers" },
   { label: "Insights", href: "/#insights" },
-  { label: "Contact", href: "/#cta" },
+  { label: "Contact", to: "/contact" },
 ];
 
 export function Header() {
