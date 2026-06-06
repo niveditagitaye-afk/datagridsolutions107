@@ -36,8 +36,8 @@ const nav: NavItem[] = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [companyOpen, setCompanyOpen] = useState(false);
-  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [mobileOpenMenu, setMobileOpenMenu] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
