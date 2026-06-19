@@ -565,210 +565,233 @@ const industries: { l: string; i: typeof Calendar; tagline: string }[] = [
   { l: "Corporates", i: Briefcase, tagline: "Internal platforms" },
 ];
 
-function Industries() {
-  const [active, setActive] = useState<number | null>(null);
+const industryClusters: {
+  id: string;
+  code: string;
+  title: string;
+  blurb: string;
+  items: { l: string; i: typeof Calendar; tagline: string }[];
+}[] = [
+  {
+    id: "biz",
+    code: "POD · 01",
+    title: "Business Platforms",
+    blurb: "Operating systems for organizations and teams.",
+    items: [industries[0], industries[11], industries[9]],
+  },
+  {
+    id: "commerce",
+    code: "POD · 02",
+    title: "Commerce & Lifestyle",
+    blurb: "Customer-facing retail, hospitality and brand tech.",
+    items: [industries[1], industries[5], industries[3]],
+  },
+  {
+    id: "ops",
+    code: "POD · 03",
+    title: "Operations & Supply",
+    blurb: "Workflows that move products, assets and land.",
+    items: [industries[2], industries[6], industries[8]],
+  },
+  {
+    id: "impact",
+    code: "POD · 04",
+    title: "Impact Sectors",
+    blurb: "Mission-driven platforms with real-world outcomes.",
+    items: [industries[4], industries[10], industries[7]],
+  },
+];
 
-  // Two arched rows — 6 nodes above the spine, 6 below, alternating offsets
-  // Positions are computed as % across a 1200x520 viewBox for the desktop infographic.
-  const topRow = industries.slice(0, 6);
-  const bottomRow = industries.slice(6, 12);
+function ClusterCard({
+  cluster,
+  index,
+  active,
+  onEnter,
+  onLeave,
+}: {
+  cluster: (typeof industryClusters)[number];
+  index: number;
+  active: boolean;
+  onEnter: () => void;
+  onLeave: () => void;
+}) {
+  return (
+    <div
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      className={`group relative overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-300 ${
+        active
+          ? "-translate-y-1 border-orange-bright/50 shadow-glow"
+          : "border-navy/10 shadow-card hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow"
+      }`}
+    >
+      {/* corner pixel accent */}
+      <div className="pointer-events-none absolute right-3 top-3 opacity-60">
+        <PixelGrid cols={3} rows={3} className="w-7" />
+      </div>
+      {/* soft glow */}
+      <div
+        className={`pointer-events-none absolute -bottom-16 -right-10 h-40 w-40 rounded-full blur-3xl transition-opacity duration-500 ${
+          active ? "opacity-40" : "opacity-0 group-hover:opacity-30"
+        }`}
+        style={{ background: "radial-gradient(circle, rgba(237,88,22,0.45), transparent 70%)" }}
+        aria-hidden
+      />
+
+      <div className="relative flex items-center gap-2">
+        <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-orange-bright">
+          {cluster.code}
+        </span>
+        <span className="h-px flex-1 bg-gradient-to-r from-orange-bright/40 to-transparent" />
+        <span className="font-mono text-[10px] text-muted-foreground">
+          {String(index + 1).padStart(2, "0")}/04
+        </span>
+      </div>
+
+      <h3 className="relative mt-3 font-display text-lg font-extrabold leading-tight text-navy">
+        {cluster.title}
+      </h3>
+      <p className="relative mt-1 text-[12.5px] leading-relaxed text-muted-foreground">
+        {cluster.blurb}
+      </p>
+
+      <ul className="relative mt-4 space-y-2">
+        {cluster.items.map((ind) => {
+          const Icon = ind.i;
+          return (
+            <li
+              key={ind.l}
+              className="flex items-center gap-3 rounded-xl border border-navy/[0.06] bg-[oklch(0.985_0.004_90)] px-3 py-2.5 transition-all duration-200 hover:border-orange-bright/30 hover:bg-white"
+            >
+              <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-navy/10 bg-white text-navy transition-all duration-300 group-hover:border-orange-bright/40">
+                <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              </span>
+              <div className="min-w-0">
+                <div className="font-display text-[13px] font-bold leading-tight text-navy">
+                  {ind.l}
+                </div>
+                <div className="truncate text-[11px] text-muted-foreground">{ind.tagline}</div>
+              </div>
+              <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-navy/30 transition-all group-hover:translate-x-0.5 group-hover:text-orange-bright" />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+function Industries() {
+  const [active, setActive] = useState<string | null>(null);
 
   return (
     <section
       id="industries"
       className="relative overflow-hidden bg-[oklch(0.985_0.004_90)] py-24 lg:py-32"
     >
-      {/* ultra-subtle grid wash */}
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.35]" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.25]" aria-hidden />
       <div
-        className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full opacity-25 blur-3xl"
-        style={{ background: "var(--gradient-pixel)" }}
+        className="pointer-events-none absolute -top-32 -left-24 h-80 w-[36rem] rounded-full opacity-20 blur-3xl"
+        style={{ background: "radial-gradient(circle, #f7a626, transparent 70%)" }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-0 h-80 w-[32rem] rounded-full opacity-20 blur-3xl"
+        style={{ background: "radial-gradient(circle, #1f496b, transparent 70%)" }}
         aria-hidden
       />
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading
-          eyebrow="Industries We Serve"
-          title="Tailored digital solutions across twelve verticals."
-          description="From associations to agritech, we build battle-tested products that fit the rhythm of each industry."
-        />
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+          {/* ─── Left intro / stats ─── */}
+          <div className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-bright/25 bg-white px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-orange-bright shadow-card">
+              <span className="h-1.5 w-1.5 rounded-full bg-orange-bright animate-pixel-pulse" />
+              Industry Intelligence
+            </span>
+            <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-navy sm:text-5xl">
+              Industries <span className="text-gradient-warm">We Serve</span>
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+              Tailored digital solutions for industries that need scalable platforms, automation,
+              intelligence, and long-term technology support.
+            </p>
 
-        {/* ───── Desktop infographic: connected node constellation ───── */}
-        <div className="relative mt-6 hidden lg:block">
-          {/* SVG connector layer */}
-          <svg
-            viewBox="0 0 1200 520"
-            className="absolute inset-0 h-full w-full"
-            preserveAspectRatio="none"
-            aria-hidden
-          >
-            <defs>
-              <linearGradient id="spine" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0%" stopColor="#1f496b" stopOpacity="0.15" />
-                <stop offset="50%" stopColor="#ed5816" stopOpacity="0.55" />
-                <stop offset="100%" stopColor="#1f496b" stopOpacity="0.15" />
-              </linearGradient>
-            </defs>
-            {/* horizontal spine */}
-            <line x1="40" y1="260" x2="1160" y2="260" stroke="url(#spine)" strokeWidth="1.5" strokeDasharray="2 6" />
-            {/* connectors from spine to each node */}
-            {topRow.map((_, i) => {
-              const x = 120 + i * 192;
-              return <line key={`t${i}`} x1={x} y1="260" x2={x} y2="120" stroke="#1f496b" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="2 5" />;
-            })}
-            {bottomRow.map((_, i) => {
-              const x = 120 + i * 192;
-              return <line key={`b${i}`} x1={x} y1="260" x2={x} y2="400" stroke="#1f496b" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="2 5" />;
-            })}
-            {/* dots on spine */}
-            {Array.from({ length: 6 }).map((_, i) => {
-              const x = 120 + i * 192;
-              return <circle key={`d${i}`} cx={x} cy="260" r="3" fill="#ed5816" />;
-            })}
-          </svg>
+            {/* Stats row */}
+            <div className="mt-8 grid grid-cols-3 gap-3">
+              {[
+                { k: "12+", l: "Verticals" },
+                { k: "750+", l: "Projects" },
+                { k: "15+", l: "Countries" },
+              ].map((s) => (
+                <div
+                  key={s.l}
+                  className="rounded-xl border border-navy/10 bg-white px-3 py-3 text-center shadow-card"
+                >
+                  <div className="font-display text-xl font-extrabold text-navy">{s.k}</div>
+                  <div className="mt-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                    {s.l}
+                  </div>
+                </div>
+              ))}
+            </div>
 
-          {/* Centered Datagrid hub badge */}
-          <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-            <div className="flex items-center gap-2 rounded-full border border-navy/10 bg-white px-4 py-2 shadow-card">
-              <span className="h-2 w-2 rounded-full bg-orange-bright animate-pixel-pulse" />
-              <span className="font-display text-xs font-bold tracking-widest text-navy">
-                DATAGRID · CORE
-              </span>
+            {/* Datagrid core terminal */}
+            <div className="mt-8 overflow-hidden rounded-2xl border border-navy/10 bg-navy p-5 text-white shadow-card">
+              <div className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-orange-bright animate-pixel-pulse" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-orange-yellow">
+                  Datagrid · Core
+                </span>
+                <span className="ml-auto font-mono text-[10px] text-white/40">v.2026</span>
+              </div>
+              <div className="mt-4 flex items-center gap-3">
+                <PixelGrid cols={5} rows={5} className="w-14 shrink-0 opacity-90" />
+                <p className="text-[12.5px] leading-relaxed text-white/75">
+                  Four industry pods, one engineering core. Hover a pod to focus its verticals.
+                </p>
+              </div>
+              <a
+                href="#cta"
+                className="mt-5 inline-flex items-center gap-1.5 font-display text-sm font-bold text-orange-yellow hover:text-white"
+              >
+                Don't see your industry? Talk to us
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
             </div>
           </div>
 
-          {/* Node grid (matches SVG viewBox proportionally via aspect ratio) */}
-          <div className="relative" style={{ aspectRatio: "1200 / 520" }}>
-            {topRow.map((ind, i) => (
-              <IndustryNode
-                key={ind.l}
-                ind={ind}
-                index={i}
-                active={active === i}
-                onHover={() => setActive(i)}
-                onLeave={() => setActive(null)}
-                style={{
-                  position: "absolute",
-                  left: `${((120 + i * 192) / 1200) * 100}%`,
-                  top: `${(120 / 520) * 100}%`,
-                  transform: "translate(-50%, -50%)",
-                }}
-              />
-            ))}
-            {bottomRow.map((ind, i) => (
-              <IndustryNode
-                key={ind.l}
-                ind={ind}
-                index={i + 6}
-                active={active === i + 6}
-                onHover={() => setActive(i + 6)}
-                onLeave={() => setActive(null)}
-                style={{
-                  position: "absolute",
-                  left: `${((120 + i * 192) / 1200) * 100}%`,
-                  top: `${(400 / 520) * 100}%`,
-                  transform: "translate(-50%, -50%)",
-                }}
-              />
-            ))}
+          {/* ─── Right dashboard / clusters ─── */}
+          <div className="relative lg:col-span-7">
+            {/* dashboard frame chrome */}
+            <div className="mb-3 flex items-center justify-between rounded-t-xl border border-navy/10 bg-white px-4 py-2 shadow-card">
+              <div className="flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-redorange/70" />
+                <span className="h-2 w-2 rounded-full bg-orange-yellow/80" />
+                <span className="h-2 w-2 rounded-full bg-navy/30" />
+                <span className="ml-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  industries.dashboard
+                </span>
+              </div>
+              <span className="font-mono text-[10px] text-muted-foreground">12 verticals</span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {industryClusters.map((c, i) => (
+                <ClusterCard
+                  key={c.id}
+                  cluster={c}
+                  index={i}
+                  active={active === c.id}
+                  onEnter={() => setActive(c.id)}
+                  onLeave={() => setActive(null)}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-
-        {/* ───── Tablet / mobile: clean circular grid ───── */}
-        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:hidden">
-          {industries.map((ind, i) => (
-            <IndustryNode
-              key={ind.l}
-              ind={ind}
-              index={i}
-              active={active === i}
-              onHover={() => setActive(i)}
-              onLeave={() => setActive(null)}
-              compact
-            />
-          ))}
-        </div>
-
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-navy/10 pt-6 text-xs text-muted-foreground">
-          <span className="font-mono uppercase tracking-widest">
-            12 verticals · 750+ projects · 15+ countries
-          </span>
-          <a
-            href="#cta"
-            className="inline-flex items-center gap-1.5 font-semibold text-orange-bright hover:text-redorange"
-          >
-            Don't see your industry? Talk to us <ArrowRight className="h-3.5 w-3.5" />
-          </a>
         </div>
       </div>
     </section>
-  );
-}
-
-function IndustryNode({
-  ind,
-  index,
-  active,
-  onHover,
-  onLeave,
-  style,
-  compact = false,
-}: {
-  ind: { l: string; i: typeof Calendar; tagline: string };
-  index: number;
-  active: boolean;
-  onHover: () => void;
-  onLeave: () => void;
-  style?: React.CSSProperties;
-  compact?: boolean;
-}) {
-  const Icon = ind.i;
-  return (
-    <a
-      href="#"
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      style={style}
-      className="group flex flex-col items-center text-center"
-    >
-      <div
-        className={`relative flex items-center justify-center rounded-full border bg-white transition-all duration-300 ${
-          compact ? "h-16 w-16" : "h-20 w-20"
-        } ${
-          active
-            ? "-translate-y-1 border-orange-bright/60 shadow-glow"
-            : "border-navy/10 shadow-card group-hover:-translate-y-1 group-hover:border-orange-bright/40 group-hover:shadow-glow"
-        }`}
-      >
-        {/* warm halo */}
-        <span
-          className={`pointer-events-none absolute inset-0 rounded-full transition-opacity duration-300 ${
-            active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-          }`}
-          style={{
-            background:
-              "radial-gradient(circle at 50% 50%, rgba(237,88,22,0.18), transparent 70%)",
-          }}
-          aria-hidden
-        />
-        <Icon
-          className={`relative transition-colors duration-300 ${
-            compact ? "h-6 w-6" : "h-7 w-7"
-          } ${active ? "text-orange-bright" : "text-navy group-hover:text-orange-bright"}`}
-        />
-        <span className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-navy font-mono text-[9px] font-bold text-white">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-      </div>
-      <div
-        className={`mt-3 font-display font-bold leading-tight text-navy ${
-          compact ? "text-xs" : "text-[13px]"
-        }`}
-      >
-        {ind.l}
-      </div>
-      <div className="mt-0.5 text-[10px] text-muted-foreground">{ind.tagline}</div>
-    </a>
   );
 }
 
