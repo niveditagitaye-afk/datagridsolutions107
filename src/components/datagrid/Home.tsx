@@ -565,7 +565,6 @@ const industries: { l: string; i: typeof Calendar; tagline: string }[] = [
   { l: "Corporates", i: Briefcase, tagline: "Internal platforms" },
 ];
 
-function Industries() {
 const industryClusters: {
   id: string;
   code: string;
