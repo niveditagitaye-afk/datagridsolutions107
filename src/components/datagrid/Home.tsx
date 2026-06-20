@@ -602,123 +602,64 @@ const industryClusters: {
   },
 ];
 
-function ClusterCard({
-  cluster,
-  index,
-  active,
-  onEnter,
-  onLeave,
-}: {
-  cluster: (typeof industryClusters)[number];
-  index: number;
-  active: boolean;
-  onEnter: () => void;
-  onLeave: () => void;
-}) {
-  return (
-    <div
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      className={`group relative overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-300 ${
-        active
-          ? "-translate-y-1 border-orange-bright/50 shadow-glow"
-          : "border-navy/10 shadow-card hover:-translate-y-1 hover:border-orange-bright/40 hover:shadow-glow"
-      }`}
-    >
-      {/* corner pixel accent */}
-      <div className="pointer-events-none absolute right-3 top-3 opacity-60">
-        <PixelGrid cols={3} rows={3} className="w-7" />
-      </div>
-      {/* soft glow */}
-      <div
-        className={`pointer-events-none absolute -bottom-16 -right-10 h-40 w-40 rounded-full blur-3xl transition-opacity duration-500 ${
-          active ? "opacity-40" : "opacity-0 group-hover:opacity-30"
-        }`}
-        style={{ background: "radial-gradient(circle, rgba(237,88,22,0.45), transparent 70%)" }}
-        aria-hidden
-      />
-
-      <div className="relative flex items-center gap-2">
-        <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-orange-bright">
-          {cluster.code}
-        </span>
-        <span className="h-px flex-1 bg-gradient-to-r from-orange-bright/40 to-transparent" />
-        <span className="font-mono text-[10px] text-muted-foreground">
-          {String(index + 1).padStart(2, "0")}/04
-        </span>
-      </div>
-
-      <h3 className="relative mt-3 font-display text-lg font-extrabold leading-tight text-navy">
-        {cluster.title}
-      </h3>
-      <p className="relative mt-1 text-[12.5px] leading-relaxed text-muted-foreground">
-        {cluster.blurb}
-      </p>
-
-      <ul className="relative mt-4 space-y-2">
-        {cluster.items.map((ind) => {
-          const Icon = ind.i;
-          return (
-            <li
-              key={ind.l}
-              className="flex items-center gap-3 rounded-xl border border-navy/[0.06] bg-[oklch(0.985_0.004_90)] px-3 py-2.5 transition-all duration-200 hover:border-orange-bright/30 hover:bg-white"
-            >
-              <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-navy/10 bg-white text-navy transition-all duration-300 group-hover:border-orange-bright/40">
-                <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-              </span>
-              <div className="min-w-0">
-                <div className="font-display text-[13px] font-bold leading-tight text-navy">
-                  {ind.l}
-                </div>
-                <div className="truncate text-[11px] text-muted-foreground">{ind.tagline}</div>
-              </div>
-              <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-navy/30 transition-all group-hover:translate-x-0.5 group-hover:text-orange-bright" />
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
-
 function Industries() {
-  const [active, setActive] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string>(industryClusters[0].id);
+  const active = industryClusters.find((c) => c.id === activeId) ?? industryClusters[0];
+  const ActiveIcons = active.items;
 
   return (
     <section
       id="industries"
       className="relative overflow-hidden bg-[oklch(0.985_0.004_90)] py-24 lg:py-32"
     >
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.25]" aria-hidden />
+      {/* ambient background */}
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.22]" aria-hidden />
       <div
-        className="pointer-events-none absolute -top-32 -left-24 h-80 w-[36rem] rounded-full opacity-20 blur-3xl"
+        className="pointer-events-none absolute -top-40 left-1/3 h-96 w-[42rem] -translate-x-1/2 rounded-full opacity-[0.18] blur-3xl"
         style={{ background: "radial-gradient(circle, #f7a626, transparent 70%)" }}
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute bottom-0 right-0 h-80 w-[32rem] rounded-full opacity-20 blur-3xl"
+        className="pointer-events-none absolute -bottom-32 right-0 h-96 w-[36rem] rounded-full opacity-[0.18] blur-3xl"
         style={{ background: "radial-gradient(circle, #1f496b, transparent 70%)" }}
         aria-hidden
       />
+      {/* faint connector lines */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.12]"
+        preserveAspectRatio="none"
+        viewBox="0 0 1200 800"
+      >
+        <defs>
+          <linearGradient id="ind-line" x1="0" x2="1">
+            <stop offset="0%" stopColor="#1f496b" stopOpacity="0" />
+            <stop offset="50%" stopColor="#ed5816" />
+            <stop offset="100%" stopColor="#1f496b" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <path d="M0 220 Q 400 120 800 280 T 1200 240" stroke="url(#ind-line)" strokeWidth="1.2" fill="none" />
+        <path d="M0 560 Q 350 700 720 520 T 1200 600" stroke="url(#ind-line)" strokeWidth="1.2" fill="none" />
+      </svg>
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          {/* ─── Left intro / stats ─── */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
+        {/* ── header band ── */}
+        <div className="grid items-end gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-7">
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-bright/25 bg-white px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-orange-bright shadow-card">
               <span className="h-1.5 w-1.5 rounded-full bg-orange-bright animate-pixel-pulse" />
-              Industry Intelligence
+              Industry Intelligence · 04 Pods
             </span>
-            <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-navy sm:text-5xl">
+            <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-navy sm:text-5xl lg:text-[56px]">
               Industries <span className="text-gradient-warm">We Serve</span>
             </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground lg:text-[17px]">
               Tailored digital solutions for industries that need scalable platforms, automation,
               intelligence, and long-term technology support.
             </p>
-
-            {/* Stats row */}
-            <div className="mt-8 grid grid-cols-3 gap-3">
+          </div>
+          <div className="lg:col-span-5">
+            <div className="grid grid-cols-3 gap-3">
               {[
                 { k: "12+", l: "Verticals" },
                 { k: "750+", l: "Projects" },
@@ -726,68 +667,227 @@ function Industries() {
               ].map((s) => (
                 <div
                   key={s.l}
-                  className="rounded-xl border border-navy/10 bg-white px-3 py-3 text-center shadow-card"
+                  className="relative overflow-hidden rounded-xl border border-navy/10 bg-white px-3 py-4 text-center shadow-card"
                 >
-                  <div className="font-display text-xl font-extrabold text-navy">{s.k}</div>
+                  <PixelGrid cols={4} rows={4} className="pointer-events-none absolute -right-2 -top-2 w-10 opacity-40" />
+                  <div className="font-display text-2xl font-extrabold text-navy">{s.k}</div>
                   <div className="mt-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                     {s.l}
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+        </div>
 
-            {/* Datagrid core terminal */}
-            <div className="mt-8 overflow-hidden rounded-2xl border border-navy/10 bg-navy p-5 text-white shadow-card">
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-orange-bright animate-pixel-pulse" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-orange-yellow">
-                  Datagrid · Core
+        {/* ── spotlight dashboard ── */}
+        <div className="relative mt-14 grid gap-5 lg:grid-cols-12">
+          {/* Left: pod selector */}
+          <div className="lg:col-span-4">
+            <div className="rounded-2xl border border-navy/10 bg-white p-2 shadow-card">
+              <div className="flex items-center justify-between px-3 py-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-redorange/70" />
+                  <span className="h-2 w-2 rounded-full bg-orange-yellow/80" />
+                  <span className="h-2 w-2 rounded-full bg-navy/30" />
+                </div>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  industry.pods
                 </span>
-                <span className="ml-auto font-mono text-[10px] text-white/40">v.2026</span>
               </div>
-              <div className="mt-4 flex items-center gap-3">
-                <PixelGrid cols={5} rows={5} className="w-14 shrink-0 opacity-90" />
-                <p className="text-[12.5px] leading-relaxed text-white/75">
-                  Four industry pods, one engineering core. Hover a pod to focus its verticals.
+              <ul className="space-y-1.5 p-1.5">
+                {industryClusters.map((c, i) => {
+                  const isActive = c.id === activeId;
+                  return (
+                    <li key={c.id}>
+                      <button
+                        type="button"
+                        onMouseEnter={() => setActiveId(c.id)}
+                        onClick={() => setActiveId(c.id)}
+                        className={`group relative flex w-full items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition-all duration-300 ${
+                          isActive
+                            ? "border-orange-bright/50 bg-gradient-to-r from-orange-bright/[0.07] to-transparent shadow-glow"
+                            : "border-navy/[0.08] bg-white hover:border-orange-bright/30 hover:bg-orange-bright/[0.03]"
+                        }`}
+                      >
+                        <span
+                          className={`font-mono text-[10px] font-bold tracking-[0.16em] ${
+                            isActive ? "text-orange-bright" : "text-muted-foreground"
+                          }`}
+                        >
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="flex-1">
+                          <span className="block font-display text-[14px] font-extrabold leading-tight text-navy">
+                            {c.title}
+                          </span>
+                          <span className="mt-0.5 block text-[11.5px] leading-snug text-muted-foreground">
+                            {c.items.length} verticals
+                          </span>
+                        </span>
+                        <ArrowRight
+                          className={`h-4 w-4 transition-all ${
+                            isActive
+                              ? "translate-x-0.5 text-orange-bright"
+                              : "text-navy/25 group-hover:translate-x-0.5 group-hover:text-orange-bright"
+                          }`}
+                        />
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              {/* core terminal */}
+              <div className="m-1.5 mt-3 overflow-hidden rounded-xl bg-navy p-4 text-white">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-orange-bright animate-pixel-pulse" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-orange-yellow">
+                    Datagrid · Core
+                  </span>
+                </div>
+                <p className="mt-3 text-[12.5px] leading-relaxed text-white/75">
+                  One engineering core. Four industry pods. Hover a pod to focus its verticals.
                 </p>
+                <a
+                  href="#cta"
+                  className="mt-4 inline-flex items-center gap-1.5 font-display text-[13px] font-bold text-orange-yellow hover:text-white"
+                >
+                  Don't see your industry?
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </a>
               </div>
-              <a
-                href="#cta"
-                className="mt-5 inline-flex items-center gap-1.5 font-display text-sm font-bold text-orange-yellow hover:text-white"
-              >
-                Don't see your industry? Talk to us
-                <ArrowRight className="h-3.5 w-3.5" />
-              </a>
             </div>
           </div>
 
-          {/* ─── Right dashboard / clusters ─── */}
-          <div className="relative lg:col-span-7">
-            {/* dashboard frame chrome */}
-            <div className="mb-3 flex items-center justify-between rounded-t-xl border border-navy/10 bg-white px-4 py-2 shadow-card">
-              <div className="flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-redorange/70" />
-                <span className="h-2 w-2 rounded-full bg-orange-yellow/80" />
-                <span className="h-2 w-2 rounded-full bg-navy/30" />
-                <span className="ml-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  industries.dashboard
+          {/* Right: spotlight + bento */}
+          <div className="lg:col-span-8">
+            {/* spotlight card */}
+            <div className="relative overflow-hidden rounded-2xl border border-navy/10 bg-white p-6 shadow-card sm:p-8">
+              <div
+                className="pointer-events-none absolute -top-24 -right-16 h-64 w-64 rounded-full opacity-30 blur-3xl"
+                style={{ background: "radial-gradient(circle, rgba(247,166,38,0.55), transparent 70%)" }}
+                aria-hidden
+              />
+              <PixelGrid cols={6} rows={6} className="pointer-events-none absolute right-5 top-5 w-16 opacity-50" />
+
+              <div className="relative flex items-center gap-2">
+                <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-orange-bright">
+                  {active.code}
+                </span>
+                <span className="h-px flex-1 bg-gradient-to-r from-orange-bright/40 to-transparent" />
+                <span className="rounded-full bg-navy/[0.06] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-navy/60">
+                  live
                 </span>
               </div>
-              <span className="font-mono text-[10px] text-muted-foreground">12 verticals</span>
+              <h3 className="relative mt-3 font-display text-2xl font-extrabold leading-tight text-navy sm:text-[28px]">
+                {active.title}
+              </h3>
+              <p className="relative mt-2 max-w-xl text-[14px] leading-relaxed text-muted-foreground">
+                {active.blurb}
+              </p>
+
+              {/* vertical tiles */}
+              <div className="relative mt-6 grid gap-3 sm:grid-cols-3">
+                {ActiveIcons.map((ind, idx) => {
+                  const Icon = ind.i;
+                  return (
+                    <div
+                      key={ind.l}
+                      className="group relative overflow-hidden rounded-xl border border-navy/10 bg-[oklch(0.985_0.004_90)] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-orange-bright/40 hover:bg-white hover:shadow-glow"
+                      style={{ animation: `fade-in 0.4s ease-out both`, animationDelay: `${idx * 80}ms` }}
+                    >
+                      <div className="flex items-start justify-between">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-navy/10 bg-white text-navy transition-all duration-300 group-hover:border-orange-bright/50 group-hover:text-orange-bright">
+                          <Icon className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                        </span>
+                        <span className="font-mono text-[10px] text-navy/40">
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      <div className="mt-4 font-display text-[14px] font-extrabold leading-tight text-navy">
+                        {ind.l}
+                      </div>
+                      <div className="mt-1 text-[11.5px] leading-snug text-muted-foreground">
+                        {ind.tagline}
+                      </div>
+                      <ArrowRight className="absolute bottom-3 right-3 h-3.5 w-3.5 text-navy/20 transition-all group-hover:translate-x-0.5 group-hover:text-orange-bright" />
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* floating data tags */}
+              <div className="relative mt-6 flex flex-wrap items-center gap-2">
+                {["scalable", "automation-ready", "AI-augmented", "long-term support"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-navy/10 bg-white px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-widest text-navy/70"
+                  >
+                    <span className="h-1 w-1 rounded-full bg-orange-bright" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {industryClusters.map((c, i) => (
-                <ClusterCard
-                  key={c.id}
-                  cluster={c}
-                  index={i}
-                  active={active === c.id}
-                  onEnter={() => setActive(c.id)}
-                  onLeave={() => setActive(null)}
-                />
-              ))}
+            {/* mini bento — other pods at a glance */}
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              {industryClusters
+                .filter((c) => c.id !== activeId)
+                .map((c) => (
+                  <button
+                    type="button"
+                    key={c.id}
+                    onMouseEnter={() => setActiveId(c.id)}
+                    onClick={() => setActiveId(c.id)}
+                    className="group relative overflow-hidden rounded-xl border border-navy/10 bg-white p-4 text-left shadow-card transition-all hover:-translate-y-0.5 hover:border-orange-bright/40 hover:shadow-glow"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[10px] font-bold tracking-[0.16em] text-orange-bright">
+                        {c.code}
+                      </span>
+                      <span className="h-px flex-1 bg-navy/10" />
+                    </div>
+                    <div className="mt-2 font-display text-[14px] font-extrabold leading-tight text-navy">
+                      {c.title}
+                    </div>
+                    <div className="mt-2 flex -space-x-1.5">
+                      {c.items.map((ind) => {
+                        const Icon = ind.i;
+                        return (
+                          <span
+                            key={ind.l}
+                            title={ind.l}
+                            className="flex h-7 w-7 items-center justify-center rounded-full border border-navy/10 bg-[oklch(0.985_0.004_90)] text-navy transition-colors group-hover:border-orange-bright/40 group-hover:text-orange-bright"
+                          >
+                            <Icon className="h-3.5 w-3.5" />
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </button>
+                ))}
             </div>
+          </div>
+        </div>
+
+        {/* ── ticker of all verticals ── */}
+        <div className="relative mt-10 overflow-hidden rounded-2xl border border-navy/10 bg-white py-3 shadow-card">
+          <div className="flex items-center gap-6 overflow-x-auto px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {industries.map((ind) => {
+              const Icon = ind.i;
+              return (
+                <div
+                  key={ind.l}
+                  className="flex shrink-0 items-center gap-2 font-mono text-[11.5px] uppercase tracking-widest text-navy/70"
+                >
+                  <Icon className="h-3.5 w-3.5 text-orange-bright" />
+                  {ind.l}
+                  <span className="ml-4 h-1 w-1 rounded-full bg-navy/20" />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
