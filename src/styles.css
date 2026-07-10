@@ -133,6 +133,15 @@
 }
 
 @layer utilities {
+  /* Enforce brand navy (#1f496b) on all headings on light backgrounds,
+     even when a page still uses the legacy text-foreground utility. */
+  h1.text-foreground, h2.text-foreground, h3.text-foreground,
+  h4.text-foreground, h5.text-foreground, h6.text-foreground {
+    color: var(--navy);
+  }
+
+
+@layer utilities {
   .font-display { font-family: var(--font-display); }
   .font-mono { font-family: var(--font-mono); }
 
