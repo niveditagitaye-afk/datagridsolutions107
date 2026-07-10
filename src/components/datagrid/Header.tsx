@@ -17,6 +17,11 @@ const nav: NavItem[] = [
         to: "/services/custom-software-development",
         description: "Tailor-made platforms built around your business",
       },
+      {
+        label: "AI & ML Development",
+        to: "/services/ai-ml-development",
+        description: "Generative AI, NLP, CV, agents & predictive analytics",
+      },
     ],
   },
   { label: "Expertise", href: "/#expertise" },
