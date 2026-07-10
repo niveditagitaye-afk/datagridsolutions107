@@ -16,6 +16,7 @@ import { Route as CertificationRouteImport } from './routes/certification'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/services.custom-software-development'
+import { Route as ServicesAiMlDevelopmentRouteImport } from './routes/services.ai-ml-development'
 
 const WhyDatagridRoute = WhyDatagridRouteImport.update({
   id: '/why-datagrid',
@@ -53,6 +54,11 @@ const ServicesCustomSoftwareDevelopmentRoute =
     path: '/services/custom-software-development',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ServicesAiMlDevelopmentRoute = ServicesAiMlDevelopmentRouteImport.update({
+  id: '/services/ai-ml-development',
+  path: '/services/ai-ml-development',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
 }
 export interface FileRoutesByTo {
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
 }
 export interface FileRoutesById {
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
 }
 export interface FileRouteTypes {
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/services/ai-ml-development'
     | '/services/custom-software-development'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/services/ai-ml-development'
     | '/services/custom-software-development'
   id:
     | '__root__'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/services/ai-ml-development'
     | '/services/custom-software-development'
   fileRoutesById: FileRoutesById
 }
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   LeadershipRoute: typeof LeadershipRoute
   WhyDatagridRoute: typeof WhyDatagridRoute
+  ServicesAiMlDevelopmentRoute: typeof ServicesAiMlDevelopmentRoute
   ServicesCustomSoftwareDevelopmentRoute: typeof ServicesCustomSoftwareDevelopmentRoute
 }
 
@@ -173,6 +186,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesCustomSoftwareDevelopmentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/ai-ml-development': {
+      id: '/services/ai-ml-development'
+      path: '/services/ai-ml-development'
+      fullPath: '/services/ai-ml-development'
+      preLoaderRoute: typeof ServicesAiMlDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   LeadershipRoute: LeadershipRoute,
   WhyDatagridRoute: WhyDatagridRoute,
+  ServicesAiMlDevelopmentRoute: ServicesAiMlDevelopmentRoute,
   ServicesCustomSoftwareDevelopmentRoute:
     ServicesCustomSoftwareDevelopmentRoute,
 }
