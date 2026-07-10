@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ArrowRight, ArrowUpRight, Sparkles, Code2, Brain, Bot, Users, Workflow,
   Smartphone, Cloud, Megaphone, Play, Globe, Briefcase, Users2, Clock,
@@ -6,7 +6,7 @@ import {
   Activity, Calendar, GraduationCap, Stethoscope, Hotel, ShoppingBag,
   Factory, Leaf, FileSpreadsheet, Building2, Gem, ClipboardList, Hammer,
   TestTube2, Rocket, LifeBuoy, ExternalLink, Server, Palette, Database,
-  Cog,
+  Cog, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { Header } from "@/components/datagrid/Header";
 import { Footer } from "@/components/datagrid/Footer";
