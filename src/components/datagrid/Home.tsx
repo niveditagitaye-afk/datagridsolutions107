@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ArrowRight, ArrowUpRight, Sparkles, Code2, Brain, Bot, Users, Workflow,
   Smartphone, Cloud, Megaphone, Play, Globe, Briefcase, Users2, Clock,
@@ -6,7 +6,7 @@ import {
   Activity, Calendar, GraduationCap, Stethoscope, Hotel, ShoppingBag,
   Factory, Leaf, FileSpreadsheet, Building2, Gem, ClipboardList, Hammer,
   TestTube2, Rocket, LifeBuoy, ExternalLink, Server, Palette, Database,
-  Cog,
+  Cog, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { Header } from "@/components/datagrid/Header";
 import { Footer } from "@/components/datagrid/Footer";
@@ -33,9 +33,188 @@ function getActivityCellClass(index: number) {
 }
 
 /* ───────────────────────── HERO ───────────────────────── */
-function Hero() {
+type HeroSlide = {
+  kicker: string;
+  kickerIcon?: boolean;
+  heading: React.ReactNode;
+  description: string;
+  primary: { label: string; href: string };
+  secondary?: { label: string; href: string };
+  tertiary?: { label: string; href: string };
+  showStats?: boolean;
+};
+
+const heroSlides: HeroSlide[] = [
+  {
+    kicker: "AI-First Engineering Partner",
+    kickerIcon: true,
+    heading: (
+      <>
+        AI-First Software{" "}
+        <span className="text-gradient-warm">Development</span>{" "}
+        Company for Global Businesses
+      </>
+    ),
+    description:
+      "Transform your business ideas into scalable digital products — engineered with modern AI, shipped at startup speed, built for enterprise scale.",
+    primary: { label: "Start Your Project", href: "/contact" },
+    secondary: { label: "View Case Studies", href: "/case-studies" },
+    tertiary: { label: "Schedule Consultation", href: "/contact" },
+    showStats: true,
+  },
+  {
+    kicker: "Our Services",
+    heading: (
+      <>
+        Transform Your Business Ideas Into{" "}
+        <span className="text-gradient-warm">Scalable Digital Products</span>
+      </>
+    ),
+    description:
+      "End-to-end product engineering — from strategy and design to AI-powered software, cloud, and continuous delivery.",
+    primary: { label: "Schedule Consultation", href: "/contact" },
+  },
+  {
+    kicker: "Our Expertise",
+    heading: (
+      <>
+        Build Faster. Scale Smarter.{" "}
+        <span className="text-gradient-warm">Deliver Excellence.</span>
+      </>
+    ),
+    description:
+      "20+ years of engineering depth across AI, cloud, ERP, and modern web — delivering measurable outcomes for global teams.",
+    primary: { label: "Discuss Your Project", href: "/contact" },
+  },
+  {
+    kicker: "Our Team",
+    heading: (
+      <>
+        Accelerate Your Tech Roadmap with an{" "}
+        <span className="text-gradient-warm">AI-First Development Partner</span>
+      </>
+    ),
+    description:
+      "Partner with a senior, product-minded team that plugs into your business and ships outcomes — not just code.",
+    primary: { label: "Discuss Partnership", href: "/contact" },
+  },
+];
+
+function HeroVisual() {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-hero pt-44 pb-24 text-white lg:pt-52 lg:pb-32">
+    <div className="relative mx-auto aspect-square w-full max-w-[460px]">
+      <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+        <div
+          className="absolute inset-0 -m-10 rounded-full opacity-50 blur-2xl"
+          style={{ background: "var(--gradient-pixel)" }}
+          aria-hidden
+        />
+        <div className="relative flex h-28 w-28 flex-col items-center justify-center rounded-3xl border border-white/25 bg-navy-deep/90 shadow-glow backdrop-blur">
+          <PixelGrid cols={4} rows={4} className="w-10 opacity-90" />
+          <div className="mt-1.5 font-display text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-yellow">
+            Datagrid
+          </div>
+          <div className="font-mono text-[8px] uppercase tracking-widest text-white/50">
+            core.os
+          </div>
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute inset-[14%] rounded-full border border-dashed border-white/15" aria-hidden />
+      <div className="pointer-events-none absolute inset-[2%] rounded-full border border-white/10" aria-hidden />
+
+      <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden>
+        {[30, 90, 150, 210, 270, 330].map((deg) => {
+          const r = 38;
+          const rad = (deg * Math.PI) / 180;
+          const x = 50 + r * Math.cos(rad);
+          const y = 50 + r * Math.sin(rad);
+          return (
+            <line
+              key={deg}
+              x1="50" y1="50" x2={x} y2={y}
+              stroke="url(#hg)"
+              strokeWidth="0.3"
+              strokeDasharray="0.8 1.2"
+            />
+          );
+        })}
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#ed5816" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#f7a626" stopOpacity="0.1" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {[
+        { i: Code2, l: "Software", deg: 270 },
+        { i: Brain, l: "AI / LLM", deg: 330 },
+        { i: Cloud, l: "Cloud", deg: 30 },
+        { i: Workflow, l: "ERP", deg: 90 },
+        { i: Bot, l: "Automation", deg: 150 },
+        { i: Smartphone, l: "Mobile", deg: 210 },
+      ].map((m, idx) => {
+        const rad = (m.deg * Math.PI) / 180;
+        const left = 50 + 42 * Math.cos(rad);
+        const top = 50 + 42 * Math.sin(rad);
+        const Icon = m.i;
+        return (
+          <div
+            key={m.l}
+            className="group absolute z-10 -translate-x-1/2 -translate-y-1/2 animate-float"
+            style={{
+              left: `${left}%`,
+              top: `${top}%`,
+              animationDelay: `${idx * 0.4}s`,
+              animationDuration: "6s",
+            }}
+          >
+            <div className="glass-dark flex w-32 items-center gap-2.5 rounded-2xl border border-white/15 px-3 py-2.5 backdrop-blur-md transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-orange-bright group-hover:shadow-glow">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-warm text-white">
+                <Icon className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <div className="truncate font-display text-[12px] font-bold leading-tight text-white">{m.l}</div>
+                <div className="truncate font-mono text-[9px] uppercase text-white/45">module.connect()</div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function Hero() {
+  const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const total = heroSlides.length;
+  const touchStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setIdx((i) => (i + 1) % total), 5000);
+    return () => clearInterval(t);
+  }, [paused, total]);
+
+  const go = (i: number) => setIdx(((i % total) + total) % total);
+  const slide = heroSlides[idx];
+
+  return (
+    <section
+      className="relative isolate overflow-hidden bg-gradient-hero pt-44 pb-24 text-white lg:pt-52 lg:pb-32"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+      onTouchEnd={(e) => {
+        if (touchStartX.current == null) return;
+        const dx = e.changedTouches[0].clientX - touchStartX.current;
+        if (Math.abs(dx) > 50) go(idx + (dx < 0 ? 1 : -1));
+        touchStartX.current = null;
+      }}
+      aria-roledescription="carousel"
+    >
       <img
         src={heroImg}
         alt=""
@@ -56,146 +235,105 @@ function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-7">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest backdrop-blur">
-            <Sparkles className="h-3.5 w-3.5 text-orange-yellow" />
-            <span>AI-First Engineering Partner</span>
-          </div>
+          <div
+            key={idx}
+            className="animate-fade-in"
+            aria-live="polite"
+          >
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest backdrop-blur">
+              {slide.kickerIcon && <Sparkles className="h-3.5 w-3.5 text-orange-yellow" />}
+              <span>{slide.kicker}</span>
+            </div>
 
-          <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            AI-First Software{" "}
-            <span className="text-gradient-warm">Development</span>{" "}
-            Company for Global Businesses
-          </h1>
+            <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+              {slide.heading}
+            </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-white/75">
-            Transform your business ideas into scalable digital products — engineered
-            with modern AI, shipped at startup speed, built for enterprise scale.
-          </p>
+            <p className="mt-6 max-w-xl text-lg text-white/75">
+              {slide.description}
+            </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href="#cta"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-3.5 text-sm font-bold text-white shadow-glow transition-all hover:scale-[1.02]"
-              style={{ background: "var(--gradient-pixel)" }}
-            >
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              <span className="relative">Start Your Project</span>
-              <ArrowRight className="relative h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a href="#case-studies" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/10">
-              View Case Studies
-            </a>
-            <a href="#cta" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-orange-yellow hover:text-white">
-              Schedule Consultation <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </div>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a
+                href={slide.primary.href}
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-3.5 text-sm font-bold text-white shadow-glow transition-all hover:scale-[1.02]"
+                style={{ background: "var(--gradient-pixel)" }}
+              >
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <span className="relative">{slide.primary.label}</span>
+                <ArrowRight className="relative h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              {slide.secondary && (
+                <a href={slide.secondary.href} className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/10">
+                  {slide.secondary.label}
+                </a>
+              )}
+              {slide.tertiary && (
+                <a href={slide.tertiary.href} className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-orange-yellow hover:text-white">
+                  {slide.tertiary.label} <ArrowUpRight className="h-4 w-4" />
+                </a>
+              )}
+            </div>
 
-          <div className="mt-12 grid max-w-md grid-cols-3 gap-6 text-white">
-            {[
-              { k: "20+", v: "Years" },
-              { k: "750+", v: "Projects" },
-              { k: "15+", v: "Countries" },
-            ].map((s) => (
-              <div key={s.k}>
-                <div className="font-display text-3xl font-extrabold text-orange-yellow">{s.k}</div>
-                <div className="text-xs uppercase tracking-widest text-white/60">{s.v}</div>
+            {slide.showStats && (
+              <div className="mt-12 grid max-w-md grid-cols-3 gap-6 text-white">
+                {[
+                  { k: "20+", v: "Years" },
+                  { k: "750+", v: "Projects" },
+                  { k: "15+", v: "Countries" },
+                ].map((s) => (
+                  <div key={s.k}>
+                    <div className="font-display text-3xl font-extrabold text-orange-yellow">{s.k}</div>
+                    <div className="text-xs uppercase tracking-widest text-white/60">{s.v}</div>
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
           </div>
         </div>
 
-
         <div className="relative lg:col-span-5">
-          <div className="relative mx-auto aspect-square w-full max-w-[460px]">
-            {/* central core */}
-            <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
-              <div
-                className="absolute inset-0 -m-10 rounded-full opacity-50 blur-2xl"
-                style={{ background: "var(--gradient-pixel)" }}
-                aria-hidden
-              />
-              <div className="relative flex h-28 w-28 flex-col items-center justify-center rounded-3xl border border-white/25 bg-navy-deep/90 shadow-glow backdrop-blur">
-                <PixelGrid cols={4} rows={4} className="w-10 opacity-90" />
-                <div className="mt-1.5 font-display text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-yellow">
-                  Datagrid
-                </div>
-                <div className="font-mono text-[8px] uppercase tracking-widest text-white/50">
-                  core.os
-                </div>
-              </div>
-            </div>
+          <HeroVisual />
+        </div>
+      </div>
 
-            {/* orbital ring */}
-            <div className="pointer-events-none absolute inset-[14%] rounded-full border border-dashed border-white/15" aria-hidden />
-            <div className="pointer-events-none absolute inset-[2%] rounded-full border border-white/10" aria-hidden />
-
-            {/* connector lines */}
-            <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden>
-              {[30, 90, 150, 210, 270, 330].map((deg) => {
-                const r = 38;
-                const rad = (deg * Math.PI) / 180;
-                const x = 50 + r * Math.cos(rad);
-                const y = 50 + r * Math.sin(rad);
-                return (
-                  <line
-                    key={deg}
-                    x1="50" y1="50" x2={x} y2={y}
-                    stroke="url(#hg)"
-                    strokeWidth="0.3"
-                    strokeDasharray="0.8 1.2"
-                  />
-                );
-              })}
-              <defs>
-                <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#ed5816" stopOpacity="0.7" />
-                  <stop offset="100%" stopColor="#f7a626" stopOpacity="0.1" />
-                </linearGradient>
-              </defs>
-            </svg>
-
-            {/* 6 modules in balanced hex arrangement */}
-            {[
-              { i: Code2, l: "Software", deg: 270 },
-              { i: Brain, l: "AI / LLM", deg: 330 },
-              { i: Cloud, l: "Cloud", deg: 30 },
-              { i: Workflow, l: "ERP", deg: 90 },
-              { i: Bot, l: "Automation", deg: 150 },
-              { i: Smartphone, l: "Mobile", deg: 210 },
-            ].map((m, idx) => {
-              const rad = (m.deg * Math.PI) / 180;
-              const left = 50 + 42 * Math.cos(rad);
-              const top = 50 + 42 * Math.sin(rad);
-              const Icon = m.i;
-              return (
-                <div
-                  key={m.l}
-                  className="group absolute z-10 -translate-x-1/2 -translate-y-1/2 animate-float"
-                  style={{
-                    left: `${left}%`,
-                    top: `${top}%`,
-                    animationDelay: `${idx * 0.4}s`,
-                    animationDuration: "6s",
-                  }}
-                >
-                  <div className="glass-dark flex w-32 items-center gap-2.5 rounded-2xl border border-white/15 px-3 py-2.5 backdrop-blur-md transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-orange-bright group-hover:shadow-glow">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-warm text-white">
-                      <Icon className="h-4 w-4" />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="truncate font-display text-[12px] font-bold leading-tight text-white">{m.l}</div>
-                      <div className="truncate font-mono text-[9px] uppercase text-white/45">module.connect()</div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+      {/* Slider controls */}
+      <div className="relative mx-auto mt-12 flex max-w-7xl items-center justify-between px-5 lg:px-8">
+        <div className="flex items-center gap-2.5" role="tablist" aria-label="Hero slides">
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              role="tab"
+              aria-selected={i === idx}
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={() => go(i)}
+              className={`h-2 rounded-full transition-all ${
+                i === idx ? "w-8 bg-orange-yellow" : "w-2 bg-white/30 hover:bg-white/50"
+              }`}
+            />
+          ))}
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => go(idx - 1)}
+            aria-label="Previous slide"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            onClick={() => go(idx + 1)}
+            aria-label="Next slide"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </section>
   );
 }
+
 
 
 /* ───────────────────────── SECTION HEADING ───────────────────────── */
