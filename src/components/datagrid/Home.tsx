@@ -33,15 +33,16 @@ function getActivityCellClass(index: number) {
 }
 
 /* ───────────────────────── HERO ───────────────────────── */
+type HeroCTA = { label: string; href: string };
 type HeroSlide = {
   kicker: string;
   kickerIcon?: boolean;
   heading: React.ReactNode;
   description: string;
-  primary: { label: string; href: string };
-  secondary?: { label: string; href: string };
-  tertiary?: { label: string; href: string };
+  primary: HeroCTA;
+  secondary: HeroCTA;
   showStats?: boolean;
+  visual: "core" | "products" | "engineering" | "partnership";
 };
 
 const heroSlides: HeroSlide[] = [
@@ -59,8 +60,8 @@ const heroSlides: HeroSlide[] = [
       "Transform your business ideas into scalable digital products — engineered with modern AI, shipped at startup speed, built for enterprise scale.",
     primary: { label: "Start Your Project", href: "/contact" },
     secondary: { label: "View Case Studies", href: "/case-studies" },
-    tertiary: { label: "Schedule Consultation", href: "/contact" },
     showStats: true,
+    visual: "core",
   },
   {
     kicker: "Our Services",
@@ -73,6 +74,8 @@ const heroSlides: HeroSlide[] = [
     description:
       "End-to-end product engineering — from strategy and design to AI-powered software, cloud, and continuous delivery.",
     primary: { label: "Schedule Consultation", href: "/contact" },
+    secondary: { label: "Our Services", href: "/#services" },
+    visual: "products",
   },
   {
     kicker: "Our Expertise",
@@ -85,6 +88,8 @@ const heroSlides: HeroSlide[] = [
     description:
       "20+ years of engineering depth across AI, cloud, ERP, and modern web — delivering measurable outcomes for global teams.",
     primary: { label: "Discuss Your Project", href: "/contact" },
+    secondary: { label: "Our Expertise", href: "/#expertise" },
+    visual: "engineering",
   },
   {
     kicker: "Our Team",
@@ -97,46 +102,73 @@ const heroSlides: HeroSlide[] = [
     description:
       "Partner with a senior, product-minded team that plugs into your business and ships outcomes — not just code.",
     primary: { label: "Discuss Partnership", href: "/contact" },
+    secondary: { label: "Our Team", href: "/leadership" },
+    visual: "partnership",
   },
 ];
 
-function HeroVisual() {
+/* Shared visual chrome ------------------------------------- */
+function VisualFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[460px]">
-      <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
-        <div
-          className="absolute inset-0 -m-10 rounded-full opacity-50 blur-2xl"
-          style={{ background: "var(--gradient-pixel)" }}
-          aria-hidden
-        />
-        <div className="relative flex h-28 w-28 flex-col items-center justify-center rounded-3xl border border-white/25 bg-navy-deep/90 shadow-glow backdrop-blur">
-          <PixelGrid cols={4} rows={4} className="w-10 opacity-90" />
-          <div className="mt-1.5 font-display text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-yellow">
-            Datagrid
-          </div>
-          <div className="font-mono text-[8px] uppercase tracking-widest text-white/50">
-            core.os
-          </div>
-        </div>
-      </div>
-
       <div className="pointer-events-none absolute inset-[14%] rounded-full border border-dashed border-white/15" aria-hidden />
       <div className="pointer-events-none absolute inset-[2%] rounded-full border border-white/10" aria-hidden />
+      <div
+        className="pointer-events-none absolute inset-0 rounded-full opacity-40 blur-3xl"
+        style={{ background: "var(--gradient-pixel)" }}
+        aria-hidden
+      />
+      {children}
+    </div>
+  );
+}
 
+function CenterBadge({
+  icon: Icon,
+  title,
+  subtitle,
+  pixel = false,
+}: {
+  icon?: React.ComponentType<{ className?: string }>;
+  title: string;
+  subtitle: string;
+  pixel?: boolean;
+}) {
+  return (
+    <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+      <div className="relative flex h-28 w-28 flex-col items-center justify-center rounded-3xl border border-white/25 bg-navy-deep/90 shadow-glow backdrop-blur">
+        {pixel ? (
+          <PixelGrid cols={4} rows={4} className="w-10 opacity-90" />
+        ) : Icon ? (
+          <Icon className="h-8 w-8 text-orange-yellow" />
+        ) : null}
+        <div className="mt-1.5 font-display text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-yellow">
+          {title}
+        </div>
+        <div className="font-mono text-[8px] uppercase tracking-widest text-white/50">
+          {subtitle}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function OrbitModules({
+  items,
+  radius = 42,
+}: {
+  items: { i: React.ComponentType<{ className?: string }>; l: string; sub?: string; deg: number }[];
+  radius?: number;
+}) {
+  return (
+    <>
       <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden>
-        {[30, 90, 150, 210, 270, 330].map((deg) => {
-          const r = 38;
-          const rad = (deg * Math.PI) / 180;
-          const x = 50 + r * Math.cos(rad);
-          const y = 50 + r * Math.sin(rad);
+        {items.map((m) => {
+          const rad = (m.deg * Math.PI) / 180;
+          const x = 50 + (radius - 4) * Math.cos(rad);
+          const y = 50 + (radius - 4) * Math.sin(rad);
           return (
-            <line
-              key={deg}
-              x1="50" y1="50" x2={x} y2={y}
-              stroke="url(#hg)"
-              strokeWidth="0.3"
-              strokeDasharray="0.8 1.2"
-            />
+            <line key={m.deg} x1="50" y1="50" x2={x} y2={y} stroke="url(#hg)" strokeWidth="0.3" strokeDasharray="0.8 1.2" />
           );
         })}
         <defs>
@@ -146,29 +178,16 @@ function HeroVisual() {
           </linearGradient>
         </defs>
       </svg>
-
-      {[
-        { i: Code2, l: "Software", deg: 270 },
-        { i: Brain, l: "AI / LLM", deg: 330 },
-        { i: Cloud, l: "Cloud", deg: 30 },
-        { i: Workflow, l: "ERP", deg: 90 },
-        { i: Bot, l: "Automation", deg: 150 },
-        { i: Smartphone, l: "Mobile", deg: 210 },
-      ].map((m, idx) => {
+      {items.map((m, idx) => {
         const rad = (m.deg * Math.PI) / 180;
-        const left = 50 + 42 * Math.cos(rad);
-        const top = 50 + 42 * Math.sin(rad);
+        const left = 50 + radius * Math.cos(rad);
+        const top = 50 + radius * Math.sin(rad);
         const Icon = m.i;
         return (
           <div
             key={m.l}
             className="group absolute z-10 -translate-x-1/2 -translate-y-1/2 animate-float"
-            style={{
-              left: `${left}%`,
-              top: `${top}%`,
-              animationDelay: `${idx * 0.4}s`,
-              animationDuration: "6s",
-            }}
+            style={{ left: `${left}%`, top: `${top}%`, animationDelay: `${idx * 0.4}s`, animationDuration: "6s" }}
           >
             <div className="glass-dark flex w-32 items-center gap-2.5 rounded-2xl border border-white/15 px-3 py-2.5 backdrop-blur-md transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-orange-bright group-hover:shadow-glow">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-warm text-white">
@@ -176,30 +195,125 @@ function HeroVisual() {
               </div>
               <div className="min-w-0">
                 <div className="truncate font-display text-[12px] font-bold leading-tight text-white">{m.l}</div>
-                <div className="truncate font-mono text-[9px] uppercase text-white/45">module.connect()</div>
+                <div className="truncate font-mono text-[9px] uppercase text-white/45">{m.sub ?? "module.connect()"}</div>
               </div>
             </div>
           </div>
         );
       })}
-    </div>
+    </>
   );
+}
+
+function HeroVisualCore() {
+  return (
+    <VisualFrame>
+      <CenterBadge title="Datagrid" subtitle="core.os" pixel />
+      <OrbitModules
+        items={[
+          { i: Code2, l: "Software", deg: 270 },
+          { i: Brain, l: "AI / LLM", deg: 330 },
+          { i: Cloud, l: "Cloud", deg: 30 },
+          { i: Workflow, l: "ERP", deg: 90 },
+          { i: Bot, l: "Automation", deg: 150 },
+          { i: Smartphone, l: "Mobile", deg: 210 },
+        ]}
+      />
+    </VisualFrame>
+  );
+}
+
+function HeroVisualProducts() {
+  return (
+    <VisualFrame>
+      <CenterBadge icon={Boxes} title="Products" subtitle="build.ship" />
+      <OrbitModules
+        items={[
+          { i: Layers, l: "Web App", sub: "screens.tsx", deg: 270 },
+          { i: Smartphone, l: "Mobile", sub: "ios / android", deg: 330 },
+          { i: Server, l: "API", sub: "gateway.ts", deg: 30 },
+          { i: Database, l: "Data", sub: "store.sql", deg: 90 },
+          { i: Palette, l: "Design", sub: "system.ui", deg: 150 },
+          { i: Cloud, l: "Cloud", sub: "deploy.io", deg: 210 },
+        ]}
+      />
+    </VisualFrame>
+  );
+}
+
+function HeroVisualEngineering() {
+  return (
+    <VisualFrame>
+      <CenterBadge icon={Cpu} title="Pipeline" subtitle="ci / cd" />
+      <OrbitModules
+        items={[
+          { i: GitBranch, l: "Branch", sub: "main → prod", deg: 270 },
+          { i: Code2, l: "Build", sub: "vite.build", deg: 330 },
+          { i: TestTube2, l: "Test", sub: "suite.pass", deg: 30 },
+          { i: Rocket, l: "Deploy", sub: "edge.push", deg: 90 },
+          { i: Activity, l: "Monitor", sub: "p95.ok", deg: 150 },
+          { i: ShieldCheck, l: "Secure", sub: "scan.clean", deg: 210 },
+        ]}
+      />
+    </VisualFrame>
+  );
+}
+
+function HeroVisualPartnership() {
+  return (
+    <VisualFrame>
+      <CenterBadge icon={Brain} title="AI Partner" subtitle="co.build" />
+      <OrbitModules
+        items={[
+          { i: Users, l: "Team", sub: "senior.pod", deg: 270 },
+          { i: Bot, l: "LLM Agents", sub: "assist.dev", deg: 330 },
+          { i: Calendar, l: "Roadmap", sub: "quarter.plan", deg: 30 },
+          { i: Briefcase, l: "Strategy", sub: "outcomes.md", deg: 90 },
+          { i: Workflow, l: "Automation", sub: "flow.run", deg: 150 },
+          { i: LifeBuoy, l: "Support", sub: "24 / 7", deg: 210 },
+        ]}
+      />
+    </VisualFrame>
+  );
+}
+
+function HeroVisual({ type }: { type: HeroSlide["visual"] }) {
+  switch (type) {
+    case "products":
+      return <HeroVisualProducts />;
+    case "engineering":
+      return <HeroVisualEngineering />;
+    case "partnership":
+      return <HeroVisualPartnership />;
+    default:
+      return <HeroVisualCore />;
+  }
 }
 
 function Hero() {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [dir, setDir] = useState<1 | -1>(1);
   const total = heroSlides.length;
   const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => setIdx((i) => (i + 1) % total), 5000);
+    const t = setInterval(() => {
+      setDir(1);
+      setIdx((i) => (i + 1) % total);
+    }, 6000);
     return () => clearInterval(t);
   }, [paused, total]);
 
-  const go = (i: number) => setIdx(((i % total) + total) % total);
+  const go = (i: number) => {
+    const next = ((i % total) + total) % total;
+    setDir(next > idx || (idx === total - 1 && next === 0) ? 1 : -1);
+    setIdx(next);
+  };
+
   const slide = heroSlides[idx];
+  const enterAnim = dir === 1 ? "animate-hero-slide-in-right" : "animate-hero-slide-in-left";
 
   return (
     <section
@@ -235,11 +349,7 @@ function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-7">
-          <div
-            key={idx}
-            className="animate-fade-in"
-            aria-live="polite"
-          >
+          <div key={`t-${idx}`} className={enterAnim} aria-live="polite">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest backdrop-blur">
               {slide.kickerIcon && <Sparkles className="h-3.5 w-3.5 text-orange-yellow" />}
               <span>{slide.kicker}</span>
@@ -249,9 +359,7 @@ function Hero() {
               {slide.heading}
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg text-white/75">
-              {slide.description}
-            </p>
+            <p className="mt-6 max-w-xl text-lg text-white/75">{slide.description}</p>
 
             <div className="mt-10 flex flex-wrap gap-3">
               <a
@@ -263,16 +371,13 @@ function Hero() {
                 <span className="relative">{slide.primary.label}</span>
                 <ArrowRight className="relative h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
-              {slide.secondary && (
-                <a href={slide.secondary.href} className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/10">
-                  {slide.secondary.label}
-                </a>
-              )}
-              {slide.tertiary && (
-                <a href={slide.tertiary.href} className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-orange-yellow hover:text-white">
-                  {slide.tertiary.label} <ArrowUpRight className="h-4 w-4" />
-                </a>
-              )}
+              <a
+                href={slide.secondary.href}
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/10 hover:border-orange-bright"
+              >
+                {slide.secondary.label}
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
             </div>
 
             {slide.showStats && (
@@ -293,12 +398,37 @@ function Hero() {
         </div>
 
         <div className="relative lg:col-span-5">
-          <HeroVisual />
+          <div key={`v-${idx}`} className={enterAnim}>
+            <HeroVisual type={slide.visual} />
+          </div>
         </div>
       </div>
 
-      {/* Slider controls */}
-      <div className="relative mx-auto mt-12 flex max-w-7xl items-center justify-between px-5 lg:px-8">
+      {/* Edge arrows — desktop */}
+      <button
+        onClick={() => go(idx - 1)}
+        aria-label="Previous slide"
+        className="group absolute left-3 top-1/2 z-30 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-navy-deep/60 text-white backdrop-blur-md transition-all hover:scale-110 hover:border-orange-bright hover:shadow-glow md:flex lg:left-6"
+      >
+        <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5" />
+      </button>
+      <button
+        onClick={() => go(idx + 1)}
+        aria-label="Next slide"
+        className="group absolute right-3 top-1/2 z-30 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-navy-deep/60 text-white backdrop-blur-md transition-all hover:scale-110 hover:border-orange-bright hover:shadow-glow md:flex lg:right-6"
+      >
+        <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+      </button>
+
+      {/* Dots + mobile arrows */}
+      <div className="relative mx-auto mt-12 flex max-w-7xl items-center justify-center gap-4 px-5 lg:px-8">
+        <button
+          onClick={() => go(idx - 1)}
+          aria-label="Previous slide"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10 md:hidden"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
         <div className="flex items-center gap-2.5" role="tablist" aria-label="Hero slides">
           {heroSlides.map((_, i) => (
             <button
@@ -313,22 +443,13 @@ function Hero() {
             />
           ))}
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => go(idx - 1)}
-            aria-label="Previous slide"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          <button
-            onClick={() => go(idx + 1)}
-            aria-label="Next slide"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
+        <button
+          onClick={() => go(idx + 1)}
+          aria-label="Next slide"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10 md:hidden"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
       </div>
     </section>
   );
