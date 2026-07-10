@@ -9,7 +9,16 @@ type NavItem =
   | { label: string; children: { label: string; to?: string; href?: string; description?: string }[]; href?: undefined; to?: undefined };
 
 const nav: NavItem[] = [
-  { label: "Services", href: "/#services" },
+  {
+    label: "Services",
+    children: [
+      {
+        label: "Custom Software Development",
+        to: "/services/custom-software-development",
+        description: "Tailor-made platforms built around your business",
+      },
+    ],
+  },
   { label: "Expertise", href: "/#expertise" },
   { label: "Products", href: "/#products" },
   { label: "Case Studies", href: "/#case-studies" },

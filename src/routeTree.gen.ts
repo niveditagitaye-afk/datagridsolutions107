@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CertificationRouteImport } from './routes/certification'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/services.custom-software-development'
 
 const WhyDatagridRoute = WhyDatagridRouteImport.update({
   id: '/why-datagrid',
@@ -46,6 +47,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesCustomSoftwareDevelopmentRoute =
+  ServicesCustomSoftwareDevelopmentRouteImport.update({
+    id: '/services/custom-software-development',
+    path: '/services/custom-software-development',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +70,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +80,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +91,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/services/custom-software-development'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +100,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/services/custom-software-development'
   id:
     | '__root__'
     | '/'
@@ -97,6 +109,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/services/custom-software-development'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +119,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   LeadershipRoute: typeof LeadershipRoute
   WhyDatagridRoute: typeof WhyDatagridRoute
+  ServicesCustomSoftwareDevelopmentRoute: typeof ServicesCustomSoftwareDevelopmentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +166,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/custom-software-development': {
+      id: '/services/custom-software-development'
+      path: '/services/custom-software-development'
+      fullPath: '/services/custom-software-development'
+      preLoaderRoute: typeof ServicesCustomSoftwareDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +183,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   LeadershipRoute: LeadershipRoute,
   WhyDatagridRoute: WhyDatagridRoute,
+  ServicesCustomSoftwareDevelopmentRoute:
+    ServicesCustomSoftwareDevelopmentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
