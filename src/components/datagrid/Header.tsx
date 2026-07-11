@@ -22,6 +22,11 @@ const nav: NavItem[] = [
         to: "/services/ai-ml-development",
         description: "Generative AI, NLP, CV, agents & predictive analytics",
       },
+      {
+        label: "GCC & Dedicated Teams",
+        to: "/services/global-capability-centers-dedicated-teams",
+        description: "Global Capability Centers & dedicated engineering teams in India",
+      },
     ],
   },
   { label: "Expertise", href: "/#expertise" },
