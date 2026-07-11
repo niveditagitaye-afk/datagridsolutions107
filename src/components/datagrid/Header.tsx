@@ -32,6 +32,12 @@ const nav: NavItem[] = [
         to: "/services/mobile-app-development",
         description: "Native, Flutter, React Native & PWA experiences that scale",
       },
+      {
+        label: "Web Application Development",
+        to: "/services/web-application-development",
+        description: "Enterprise web apps, SaaS platforms, portals & PWAs built to scale",
+      },
+
 
     ],
   },
