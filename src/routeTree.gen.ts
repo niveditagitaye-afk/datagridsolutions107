@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CertificationRouteImport } from './routes/certification'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesGlobalCapabilityCentersDedicatedTeamsRouteImport } from './routes/services.global-capability-centers-dedicated-teams'
 import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/services.custom-software-development'
 import { Route as ServicesAiMlDevelopmentRouteImport } from './routes/services.ai-ml-development'
 
@@ -48,6 +49,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesGlobalCapabilityCentersDedicatedTeamsRoute =
+  ServicesGlobalCapabilityCentersDedicatedTeamsRouteImport.update({
+    id: '/services/global-capability-centers-dedicated-teams',
+    path: '/services/global-capability-centers-dedicated-teams',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServicesCustomSoftwareDevelopmentRoute =
   ServicesCustomSoftwareDevelopmentRouteImport.update({
     id: '/services/custom-software-development',
@@ -69,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/why-datagrid': typeof WhyDatagridRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
+  '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -79,6 +87,7 @@ export interface FileRoutesByTo {
   '/why-datagrid': typeof WhyDatagridRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
+  '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -90,6 +99,7 @@ export interface FileRoutesById {
   '/why-datagrid': typeof WhyDatagridRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
+  '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -102,6 +112,7 @@ export interface FileRouteTypes {
     | '/why-datagrid'
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
+    | '/services/global-capability-centers-dedicated-teams'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
     | '/why-datagrid'
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
+    | '/services/global-capability-centers-dedicated-teams'
   id:
     | '__root__'
     | '/'
@@ -122,6 +134,7 @@ export interface FileRouteTypes {
     | '/why-datagrid'
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
+    | '/services/global-capability-centers-dedicated-teams'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -133,6 +146,7 @@ export interface RootRouteChildren {
   WhyDatagridRoute: typeof WhyDatagridRoute
   ServicesAiMlDevelopmentRoute: typeof ServicesAiMlDevelopmentRoute
   ServicesCustomSoftwareDevelopmentRoute: typeof ServicesCustomSoftwareDevelopmentRoute
+  ServicesGlobalCapabilityCentersDedicatedTeamsRoute: typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -179,6 +193,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/global-capability-centers-dedicated-teams': {
+      id: '/services/global-capability-centers-dedicated-teams'
+      path: '/services/global-capability-centers-dedicated-teams'
+      fullPath: '/services/global-capability-centers-dedicated-teams'
+      preLoaderRoute: typeof ServicesGlobalCapabilityCentersDedicatedTeamsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/custom-software-development': {
       id: '/services/custom-software-development'
       path: '/services/custom-software-development'
@@ -206,17 +227,9 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesAiMlDevelopmentRoute: ServicesAiMlDevelopmentRoute,
   ServicesCustomSoftwareDevelopmentRoute:
     ServicesCustomSoftwareDevelopmentRoute,
+  ServicesGlobalCapabilityCentersDedicatedTeamsRoute:
+    ServicesGlobalCapabilityCentersDedicatedTeamsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
