@@ -27,6 +27,12 @@ const nav: NavItem[] = [
         to: "/services/global-capability-centers-dedicated-teams",
         description: "Global Capability Centers & dedicated engineering teams in India",
       },
+      {
+        label: "Mobile App Development",
+        to: "/services/mobile-app-development",
+        description: "Native, Flutter, React Native & PWA experiences that scale",
+      },
+
     ],
   },
   { label: "Expertise", href: "/#expertise" },

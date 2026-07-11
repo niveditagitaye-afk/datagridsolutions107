@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CertificationRouteImport } from './routes/certification'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesMobileAppDevelopmentRouteImport } from './routes/services.mobile-app-development'
 import { Route as ServicesGlobalCapabilityCentersDedicatedTeamsRouteImport } from './routes/services.global-capability-centers-dedicated-teams'
 import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/services.custom-software-development'
 import { Route as ServicesAiMlDevelopmentRouteImport } from './routes/services.ai-ml-development'
@@ -49,6 +50,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesMobileAppDevelopmentRoute =
+  ServicesMobileAppDevelopmentRouteImport.update({
+    id: '/services/mobile-app-development',
+    path: '/services/mobile-app-development',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServicesGlobalCapabilityCentersDedicatedTeamsRoute =
   ServicesGlobalCapabilityCentersDedicatedTeamsRouteImport.update({
     id: '/services/global-capability-centers-dedicated-teams',
@@ -77,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
+  '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -88,6 +96,7 @@ export interface FileRoutesByTo {
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
+  '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -100,6 +109,7 @@ export interface FileRoutesById {
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
+  '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -113,6 +123,7 @@ export interface FileRouteTypes {
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
     | '/services/global-capability-centers-dedicated-teams'
+    | '/services/mobile-app-development'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -124,6 +135,7 @@ export interface FileRouteTypes {
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
     | '/services/global-capability-centers-dedicated-teams'
+    | '/services/mobile-app-development'
   id:
     | '__root__'
     | '/'
@@ -135,6 +147,7 @@ export interface FileRouteTypes {
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
     | '/services/global-capability-centers-dedicated-teams'
+    | '/services/mobile-app-development'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -147,6 +160,7 @@ export interface RootRouteChildren {
   ServicesAiMlDevelopmentRoute: typeof ServicesAiMlDevelopmentRoute
   ServicesCustomSoftwareDevelopmentRoute: typeof ServicesCustomSoftwareDevelopmentRoute
   ServicesGlobalCapabilityCentersDedicatedTeamsRoute: typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
+  ServicesMobileAppDevelopmentRoute: typeof ServicesMobileAppDevelopmentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -193,6 +207,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/mobile-app-development': {
+      id: '/services/mobile-app-development'
+      path: '/services/mobile-app-development'
+      fullPath: '/services/mobile-app-development'
+      preLoaderRoute: typeof ServicesMobileAppDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/global-capability-centers-dedicated-teams': {
       id: '/services/global-capability-centers-dedicated-teams'
       path: '/services/global-capability-centers-dedicated-teams'
@@ -229,6 +250,7 @@ const rootRouteChildren: RootRouteChildren = {
     ServicesCustomSoftwareDevelopmentRoute,
   ServicesGlobalCapabilityCentersDedicatedTeamsRoute:
     ServicesGlobalCapabilityCentersDedicatedTeamsRoute,
+  ServicesMobileAppDevelopmentRoute: ServicesMobileAppDevelopmentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
