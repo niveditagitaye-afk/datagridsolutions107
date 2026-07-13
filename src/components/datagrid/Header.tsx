@@ -37,6 +37,11 @@ const nav: NavItem[] = [
         to: "/services/web-application-development",
         description: "Enterprise web apps, SaaS platforms, portals & PWAs built to scale",
       },
+      {
+        label: "Fractional CTO Advisory",
+        to: "/services/fractional-cto-technology-advisory",
+        description: "Strategic technology leadership, AI adoption & advisory for founders and enterprises",
+      },
 
 
     ],
