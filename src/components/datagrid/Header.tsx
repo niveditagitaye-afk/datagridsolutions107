@@ -52,6 +52,11 @@ const nav: NavItem[] = [
         to: "/services/erp-workflow-automation",
         description: "Scalable ERP systems & business process automation across departments",
       },
+      {
+        label: "MVP Development",
+        to: "/services/mvp-development",
+        description: "Turn ideas into market-ready MVPs—launch fast, validate, and scale confidently",
+      },
     ],
   },
   { label: "Expertise", href: "/#expertise" },
