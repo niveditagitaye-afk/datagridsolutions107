@@ -42,6 +42,11 @@ const nav: NavItem[] = [
         to: "/services/fractional-cto-technology-advisory",
         description: "Strategic technology leadership, AI adoption & advisory for founders and enterprises",
       },
+      {
+        label: "Decision Intelligence",
+        to: "/services/decision-intelligence-business-insights",
+        description: "Executive dashboards, predictive analytics & AI-powered business insights",
+      },
 
 
     ],
