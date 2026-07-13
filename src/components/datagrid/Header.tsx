@@ -47,8 +47,11 @@ const nav: NavItem[] = [
         to: "/services/decision-intelligence-business-insights",
         description: "Executive dashboards, predictive analytics & AI-powered business insights",
       },
-
-
+      {
+        label: "ERP & Workflow Automation",
+        to: "/services/erp-workflow-automation",
+        description: "Scalable ERP systems & business process automation across departments",
+      },
     ],
   },
   { label: "Expertise", href: "/#expertise" },
