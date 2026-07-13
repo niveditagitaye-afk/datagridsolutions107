@@ -18,6 +18,7 @@ import {
   Users,
   Compass,
   LifeBuoy,
+  Cloud,
   type LucideIcon,
 } from "lucide-react";
 import logoWhite from "@/assets/datagrid-logo-white.png";
@@ -53,11 +54,12 @@ const nav: NavItem[] = [
         ],
       },
       {
-        title: "Teams & Advisory",
+        title: "Teams, Advisory & Operations",
         items: [
           { label: "GCC & Dedicated Teams", to: "/services/global-capability-centers-dedicated-teams", description: "Global capability centers in India", icon: Users },
           { label: "Fractional CTO Advisory", to: "/services/fractional-cto-technology-advisory", description: "Strategic technology leadership", icon: Compass },
           { label: "Support & Maintenance", to: "/services/support-maintenance", description: "Reliable long-term application support", icon: LifeBuoy },
+          { label: "Cloud, DevOps & SRE", to: "/services/cloud-devops-sre", description: "AWS, Azure, GCP, CI/CD & 24×7 SRE", icon: Cloud },
         ],
       },
     ],

@@ -24,6 +24,7 @@ import { Route as ServicesFractionalCtoTechnologyAdvisoryRouteImport } from './r
 import { Route as ServicesErpWorkflowAutomationRouteImport } from './routes/services.erp-workflow-automation'
 import { Route as ServicesDecisionIntelligenceBusinessInsightsRouteImport } from './routes/services.decision-intelligence-business-insights'
 import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/services.custom-software-development'
+import { Route as ServicesCloudDevopsSreRouteImport } from './routes/services.cloud-devops-sre'
 import { Route as ServicesAiMlDevelopmentRouteImport } from './routes/services.ai-ml-development'
 
 const WhyDatagridRoute = WhyDatagridRouteImport.update({
@@ -109,6 +110,11 @@ const ServicesCustomSoftwareDevelopmentRoute =
     path: '/services/custom-software-development',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ServicesCloudDevopsSreRoute = ServicesCloudDevopsSreRouteImport.update({
+  id: '/services/cloud-devops-sre',
+  path: '/services/cloud-devops-sre',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesAiMlDevelopmentRoute = ServicesAiMlDevelopmentRouteImport.update({
   id: '/services/ai-ml-development',
   path: '/services/ai-ml-development',
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
+  '/services/cloud-devops-sre': typeof ServicesCloudDevopsSreRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
   '/services/decision-intelligence-business-insights': typeof ServicesDecisionIntelligenceBusinessInsightsRoute
   '/services/erp-workflow-automation': typeof ServicesErpWorkflowAutomationRoute
@@ -141,6 +148,7 @@ export interface FileRoutesByTo {
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
+  '/services/cloud-devops-sre': typeof ServicesCloudDevopsSreRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
   '/services/decision-intelligence-business-insights': typeof ServicesDecisionIntelligenceBusinessInsightsRoute
   '/services/erp-workflow-automation': typeof ServicesErpWorkflowAutomationRoute
@@ -160,6 +168,7 @@ export interface FileRoutesById {
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
+  '/services/cloud-devops-sre': typeof ServicesCloudDevopsSreRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
   '/services/decision-intelligence-business-insights': typeof ServicesDecisionIntelligenceBusinessInsightsRoute
   '/services/erp-workflow-automation': typeof ServicesErpWorkflowAutomationRoute
@@ -180,6 +189,7 @@ export interface FileRouteTypes {
     | '/leadership'
     | '/why-datagrid'
     | '/services/ai-ml-development'
+    | '/services/cloud-devops-sre'
     | '/services/custom-software-development'
     | '/services/decision-intelligence-business-insights'
     | '/services/erp-workflow-automation'
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/leadership'
     | '/why-datagrid'
     | '/services/ai-ml-development'
+    | '/services/cloud-devops-sre'
     | '/services/custom-software-development'
     | '/services/decision-intelligence-business-insights'
     | '/services/erp-workflow-automation'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/leadership'
     | '/why-datagrid'
     | '/services/ai-ml-development'
+    | '/services/cloud-devops-sre'
     | '/services/custom-software-development'
     | '/services/decision-intelligence-business-insights'
     | '/services/erp-workflow-automation'
@@ -235,6 +247,7 @@ export interface RootRouteChildren {
   LeadershipRoute: typeof LeadershipRoute
   WhyDatagridRoute: typeof WhyDatagridRoute
   ServicesAiMlDevelopmentRoute: typeof ServicesAiMlDevelopmentRoute
+  ServicesCloudDevopsSreRoute: typeof ServicesCloudDevopsSreRoute
   ServicesCustomSoftwareDevelopmentRoute: typeof ServicesCustomSoftwareDevelopmentRoute
   ServicesDecisionIntelligenceBusinessInsightsRoute: typeof ServicesDecisionIntelligenceBusinessInsightsRoute
   ServicesErpWorkflowAutomationRoute: typeof ServicesErpWorkflowAutomationRoute
@@ -353,6 +366,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesCustomSoftwareDevelopmentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/cloud-devops-sre': {
+      id: '/services/cloud-devops-sre'
+      path: '/services/cloud-devops-sre'
+      fullPath: '/services/cloud-devops-sre'
+      preLoaderRoute: typeof ServicesCloudDevopsSreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/ai-ml-development': {
       id: '/services/ai-ml-development'
       path: '/services/ai-ml-development'
@@ -371,6 +391,7 @@ const rootRouteChildren: RootRouteChildren = {
   LeadershipRoute: LeadershipRoute,
   WhyDatagridRoute: WhyDatagridRoute,
   ServicesAiMlDevelopmentRoute: ServicesAiMlDevelopmentRoute,
+  ServicesCloudDevopsSreRoute: ServicesCloudDevopsSreRoute,
   ServicesCustomSoftwareDevelopmentRoute:
     ServicesCustomSoftwareDevelopmentRoute,
   ServicesDecisionIntelligenceBusinessInsightsRoute:
