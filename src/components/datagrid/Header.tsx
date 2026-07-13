@@ -18,6 +18,7 @@ import {
   Users,
   Compass,
   LifeBuoy,
+  Cloud,
   type LucideIcon,
 } from "lucide-react";
 import logoWhite from "@/assets/datagrid-logo-white.png";
