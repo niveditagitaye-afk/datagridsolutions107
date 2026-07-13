@@ -19,6 +19,7 @@ import { Route as ServicesWebApplicationDevelopmentRouteImport } from './routes/
 import { Route as ServicesMobileAppDevelopmentRouteImport } from './routes/services.mobile-app-development'
 import { Route as ServicesGlobalCapabilityCentersDedicatedTeamsRouteImport } from './routes/services.global-capability-centers-dedicated-teams'
 import { Route as ServicesFractionalCtoTechnologyAdvisoryRouteImport } from './routes/services.fractional-cto-technology-advisory'
+import { Route as ServicesDecisionIntelligenceBusinessInsightsRouteImport } from './routes/services.decision-intelligence-business-insights'
 import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/services.custom-software-development'
 import { Route as ServicesAiMlDevelopmentRouteImport } from './routes/services.ai-ml-development'
 
@@ -76,6 +77,12 @@ const ServicesFractionalCtoTechnologyAdvisoryRoute =
     path: '/services/fractional-cto-technology-advisory',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ServicesDecisionIntelligenceBusinessInsightsRoute =
+  ServicesDecisionIntelligenceBusinessInsightsRouteImport.update({
+    id: '/services/decision-intelligence-business-insights',
+    path: '/services/decision-intelligence-business-insights',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServicesCustomSoftwareDevelopmentRoute =
   ServicesCustomSoftwareDevelopmentRouteImport.update({
     id: '/services/custom-software-development',
@@ -97,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/why-datagrid': typeof WhyDatagridRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
+  '/services/decision-intelligence-business-insights': typeof ServicesDecisionIntelligenceBusinessInsightsRoute
   '/services/fractional-cto-technology-advisory': typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
@@ -111,6 +119,7 @@ export interface FileRoutesByTo {
   '/why-datagrid': typeof WhyDatagridRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
+  '/services/decision-intelligence-business-insights': typeof ServicesDecisionIntelligenceBusinessInsightsRoute
   '/services/fractional-cto-technology-advisory': typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
@@ -126,6 +135,7 @@ export interface FileRoutesById {
   '/why-datagrid': typeof WhyDatagridRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
+  '/services/decision-intelligence-business-insights': typeof ServicesDecisionIntelligenceBusinessInsightsRoute
   '/services/fractional-cto-technology-advisory': typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/why-datagrid'
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
+    | '/services/decision-intelligence-business-insights'
     | '/services/fractional-cto-technology-advisory'
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
     | '/why-datagrid'
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
+    | '/services/decision-intelligence-business-insights'
     | '/services/fractional-cto-technology-advisory'
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
@@ -170,6 +182,7 @@ export interface FileRouteTypes {
     | '/why-datagrid'
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
+    | '/services/decision-intelligence-business-insights'
     | '/services/fractional-cto-technology-advisory'
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
@@ -185,6 +198,7 @@ export interface RootRouteChildren {
   WhyDatagridRoute: typeof WhyDatagridRoute
   ServicesAiMlDevelopmentRoute: typeof ServicesAiMlDevelopmentRoute
   ServicesCustomSoftwareDevelopmentRoute: typeof ServicesCustomSoftwareDevelopmentRoute
+  ServicesDecisionIntelligenceBusinessInsightsRoute: typeof ServicesDecisionIntelligenceBusinessInsightsRoute
   ServicesFractionalCtoTechnologyAdvisoryRoute: typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   ServicesGlobalCapabilityCentersDedicatedTeamsRoute: typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   ServicesMobileAppDevelopmentRoute: typeof ServicesMobileAppDevelopmentRoute
@@ -263,6 +277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesFractionalCtoTechnologyAdvisoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/decision-intelligence-business-insights': {
+      id: '/services/decision-intelligence-business-insights'
+      path: '/services/decision-intelligence-business-insights'
+      fullPath: '/services/decision-intelligence-business-insights'
+      preLoaderRoute: typeof ServicesDecisionIntelligenceBusinessInsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/custom-software-development': {
       id: '/services/custom-software-development'
       path: '/services/custom-software-development'
@@ -290,6 +311,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesAiMlDevelopmentRoute: ServicesAiMlDevelopmentRoute,
   ServicesCustomSoftwareDevelopmentRoute:
     ServicesCustomSoftwareDevelopmentRoute,
+  ServicesDecisionIntelligenceBusinessInsightsRoute:
+    ServicesDecisionIntelligenceBusinessInsightsRoute,
   ServicesFractionalCtoTechnologyAdvisoryRoute:
     ServicesFractionalCtoTechnologyAdvisoryRoute,
   ServicesGlobalCapabilityCentersDedicatedTeamsRoute:
