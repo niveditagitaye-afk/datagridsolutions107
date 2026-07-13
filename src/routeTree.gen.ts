@@ -19,6 +19,7 @@ import { Route as ServicesWebApplicationDevelopmentRouteImport } from './routes/
 import { Route as ServicesMobileAppDevelopmentRouteImport } from './routes/services.mobile-app-development'
 import { Route as ServicesGlobalCapabilityCentersDedicatedTeamsRouteImport } from './routes/services.global-capability-centers-dedicated-teams'
 import { Route as ServicesFractionalCtoTechnologyAdvisoryRouteImport } from './routes/services.fractional-cto-technology-advisory'
+import { Route as ServicesErpWorkflowAutomationRouteImport } from './routes/services.erp-workflow-automation'
 import { Route as ServicesDecisionIntelligenceBusinessInsightsRouteImport } from './routes/services.decision-intelligence-business-insights'
 import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/services.custom-software-development'
 import { Route as ServicesAiMlDevelopmentRouteImport } from './routes/services.ai-ml-development'
@@ -77,6 +78,12 @@ const ServicesFractionalCtoTechnologyAdvisoryRoute =
     path: '/services/fractional-cto-technology-advisory',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ServicesErpWorkflowAutomationRoute =
+  ServicesErpWorkflowAutomationRouteImport.update({
+    id: '/services/erp-workflow-automation',
+    path: '/services/erp-workflow-automation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServicesDecisionIntelligenceBusinessInsightsRoute =
   ServicesDecisionIntelligenceBusinessInsightsRouteImport.update({
     id: '/services/decision-intelligence-business-insights',
@@ -105,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
   '/services/decision-intelligence-business-insights': typeof ServicesDecisionIntelligenceBusinessInsightsRoute
+  '/services/erp-workflow-automation': typeof ServicesErpWorkflowAutomationRoute
   '/services/fractional-cto-technology-advisory': typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
@@ -120,6 +128,7 @@ export interface FileRoutesByTo {
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
   '/services/decision-intelligence-business-insights': typeof ServicesDecisionIntelligenceBusinessInsightsRoute
+  '/services/erp-workflow-automation': typeof ServicesErpWorkflowAutomationRoute
   '/services/fractional-cto-technology-advisory': typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
@@ -136,6 +145,7 @@ export interface FileRoutesById {
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
   '/services/decision-intelligence-business-insights': typeof ServicesDecisionIntelligenceBusinessInsightsRoute
+  '/services/erp-workflow-automation': typeof ServicesErpWorkflowAutomationRoute
   '/services/fractional-cto-technology-advisory': typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
@@ -153,6 +163,7 @@ export interface FileRouteTypes {
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
     | '/services/decision-intelligence-business-insights'
+    | '/services/erp-workflow-automation'
     | '/services/fractional-cto-technology-advisory'
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
@@ -168,6 +179,7 @@ export interface FileRouteTypes {
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
     | '/services/decision-intelligence-business-insights'
+    | '/services/erp-workflow-automation'
     | '/services/fractional-cto-technology-advisory'
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
@@ -183,6 +195,7 @@ export interface FileRouteTypes {
     | '/services/ai-ml-development'
     | '/services/custom-software-development'
     | '/services/decision-intelligence-business-insights'
+    | '/services/erp-workflow-automation'
     | '/services/fractional-cto-technology-advisory'
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
@@ -199,6 +212,7 @@ export interface RootRouteChildren {
   ServicesAiMlDevelopmentRoute: typeof ServicesAiMlDevelopmentRoute
   ServicesCustomSoftwareDevelopmentRoute: typeof ServicesCustomSoftwareDevelopmentRoute
   ServicesDecisionIntelligenceBusinessInsightsRoute: typeof ServicesDecisionIntelligenceBusinessInsightsRoute
+  ServicesErpWorkflowAutomationRoute: typeof ServicesErpWorkflowAutomationRoute
   ServicesFractionalCtoTechnologyAdvisoryRoute: typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   ServicesGlobalCapabilityCentersDedicatedTeamsRoute: typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   ServicesMobileAppDevelopmentRoute: typeof ServicesMobileAppDevelopmentRoute
@@ -277,6 +291,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesFractionalCtoTechnologyAdvisoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/erp-workflow-automation': {
+      id: '/services/erp-workflow-automation'
+      path: '/services/erp-workflow-automation'
+      fullPath: '/services/erp-workflow-automation'
+      preLoaderRoute: typeof ServicesErpWorkflowAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/decision-intelligence-business-insights': {
       id: '/services/decision-intelligence-business-insights'
       path: '/services/decision-intelligence-business-insights'
@@ -313,6 +334,7 @@ const rootRouteChildren: RootRouteChildren = {
     ServicesCustomSoftwareDevelopmentRoute,
   ServicesDecisionIntelligenceBusinessInsightsRoute:
     ServicesDecisionIntelligenceBusinessInsightsRoute,
+  ServicesErpWorkflowAutomationRoute: ServicesErpWorkflowAutomationRoute,
   ServicesFractionalCtoTechnologyAdvisoryRoute:
     ServicesFractionalCtoTechnologyAdvisoryRoute,
   ServicesGlobalCapabilityCentersDedicatedTeamsRoute:
