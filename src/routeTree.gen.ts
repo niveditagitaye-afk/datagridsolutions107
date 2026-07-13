@@ -16,6 +16,7 @@ import { Route as CertificationRouteImport } from './routes/certification'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesWebApplicationDevelopmentRouteImport } from './routes/services.web-application-development'
+import { Route as ServicesMvpDevelopmentRouteImport } from './routes/services.mvp-development'
 import { Route as ServicesMobileAppDevelopmentRouteImport } from './routes/services.mobile-app-development'
 import { Route as ServicesGlobalCapabilityCentersDedicatedTeamsRouteImport } from './routes/services.global-capability-centers-dedicated-teams'
 import { Route as ServicesFractionalCtoTechnologyAdvisoryRouteImport } from './routes/services.fractional-cto-technology-advisory'
@@ -60,6 +61,11 @@ const ServicesWebApplicationDevelopmentRoute =
     path: '/services/web-application-development',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ServicesMvpDevelopmentRoute = ServicesMvpDevelopmentRouteImport.update({
+  id: '/services/mvp-development',
+  path: '/services/mvp-development',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesMobileAppDevelopmentRoute =
   ServicesMobileAppDevelopmentRouteImport.update({
     id: '/services/mobile-app-development',
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/services/fractional-cto-technology-advisory': typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
+  '/services/mvp-development': typeof ServicesMvpDevelopmentRoute
   '/services/web-application-development': typeof ServicesWebApplicationDevelopmentRoute
 }
 export interface FileRoutesByTo {
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/services/fractional-cto-technology-advisory': typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
+  '/services/mvp-development': typeof ServicesMvpDevelopmentRoute
   '/services/web-application-development': typeof ServicesWebApplicationDevelopmentRoute
 }
 export interface FileRoutesById {
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/services/fractional-cto-technology-advisory': typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
+  '/services/mvp-development': typeof ServicesMvpDevelopmentRoute
   '/services/web-application-development': typeof ServicesWebApplicationDevelopmentRoute
 }
 export interface FileRouteTypes {
@@ -167,6 +176,7 @@ export interface FileRouteTypes {
     | '/services/fractional-cto-technology-advisory'
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
+    | '/services/mvp-development'
     | '/services/web-application-development'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -183,6 +193,7 @@ export interface FileRouteTypes {
     | '/services/fractional-cto-technology-advisory'
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
+    | '/services/mvp-development'
     | '/services/web-application-development'
   id:
     | '__root__'
@@ -199,6 +210,7 @@ export interface FileRouteTypes {
     | '/services/fractional-cto-technology-advisory'
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
+    | '/services/mvp-development'
     | '/services/web-application-development'
   fileRoutesById: FileRoutesById
 }
@@ -216,6 +228,7 @@ export interface RootRouteChildren {
   ServicesFractionalCtoTechnologyAdvisoryRoute: typeof ServicesFractionalCtoTechnologyAdvisoryRoute
   ServicesGlobalCapabilityCentersDedicatedTeamsRoute: typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   ServicesMobileAppDevelopmentRoute: typeof ServicesMobileAppDevelopmentRoute
+  ServicesMvpDevelopmentRoute: typeof ServicesMvpDevelopmentRoute
   ServicesWebApplicationDevelopmentRoute: typeof ServicesWebApplicationDevelopmentRoute
 }
 
@@ -268,6 +281,13 @@ declare module '@tanstack/react-router' {
       path: '/services/web-application-development'
       fullPath: '/services/web-application-development'
       preLoaderRoute: typeof ServicesWebApplicationDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/mvp-development': {
+      id: '/services/mvp-development'
+      path: '/services/mvp-development'
+      fullPath: '/services/mvp-development'
+      preLoaderRoute: typeof ServicesMvpDevelopmentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/mobile-app-development': {
@@ -340,6 +360,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesGlobalCapabilityCentersDedicatedTeamsRoute:
     ServicesGlobalCapabilityCentersDedicatedTeamsRoute,
   ServicesMobileAppDevelopmentRoute: ServicesMobileAppDevelopmentRoute,
+  ServicesMvpDevelopmentRoute: ServicesMvpDevelopmentRoute,
   ServicesWebApplicationDevelopmentRoute:
     ServicesWebApplicationDevelopmentRoute,
 }
