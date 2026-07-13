@@ -1,61 +1,64 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Mail, Phone, Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import {
+  Linkedin,
+  Mail,
+  Phone,
+  Menu,
+  X,
+  ArrowRight,
+  ChevronDown,
+  Code2,
+  Globe,
+  Smartphone,
+  Rocket,
+  Brain,
+  BarChart3,
+  Cog,
+  Users,
+  Compass,
+  LifeBuoy,
+  type LucideIcon,
+} from "lucide-react";
 import logoWhite from "@/assets/datagrid-logo-white.png";
 
+type ChildLink = { label: string; to?: string; href?: string; description?: string; icon?: LucideIcon };
+type MegaGroup = { title: string; items: ChildLink[] };
+
 type NavItem =
-  | { label: string; href: string; to?: undefined; children?: undefined }
-  | { label: string; to: string; href?: undefined; children?: undefined }
-  | { label: string; children: { label: string; to?: string; href?: string; description?: string }[]; href?: undefined; to?: undefined };
+  | { label: string; href: string; to?: undefined; children?: undefined; mega?: undefined }
+  | { label: string; to: string; href?: undefined; children?: undefined; mega?: undefined }
+  | { label: string; children: ChildLink[]; href?: undefined; to?: undefined; mega?: undefined }
+  | { label: string; mega: MegaGroup[]; href?: undefined; to?: undefined; children?: undefined };
 
 const nav: NavItem[] = [
   {
     label: "Services",
-    children: [
+    mega: [
       {
-        label: "Custom Software Development",
-        to: "/services/custom-software-development",
-        description: "Tailor-made platforms built around your business",
+        title: "Build & Develop",
+        items: [
+          { label: "Custom Software Development", to: "/services/custom-software-development", description: "Tailor-made platforms for your business", icon: Code2 },
+          { label: "Web Application Development", to: "/services/web-application-development", description: "SaaS, portals & PWAs built to scale", icon: Globe },
+          { label: "Mobile App Development", to: "/services/mobile-app-development", description: "Native, Flutter & React Native apps", icon: Smartphone },
+          { label: "MVP Development", to: "/services/mvp-development", description: "Launch fast, validate & scale confidently", icon: Rocket },
+        ],
       },
       {
-        label: "AI & ML Development",
-        to: "/services/ai-ml-development",
-        description: "Generative AI, NLP, CV, agents & predictive analytics",
+        title: "AI, Data & Automation",
+        items: [
+          { label: "AI & ML Development", to: "/services/ai-ml-development", description: "GenAI, NLP, CV, agents & analytics", icon: Brain },
+          { label: "Decision Intelligence", to: "/services/decision-intelligence-business-insights", description: "Dashboards & predictive insights", icon: BarChart3 },
+          { label: "ERP & Workflow Automation", to: "/services/erp-workflow-automation", description: "Scalable ERP & process automation", icon: Cog },
+        ],
       },
       {
-        label: "GCC & Dedicated Teams",
-        to: "/services/global-capability-centers-dedicated-teams",
-        description: "Global Capability Centers & dedicated engineering teams in India",
-      },
-      {
-        label: "Mobile App Development",
-        to: "/services/mobile-app-development",
-        description: "Native, Flutter, React Native & PWA experiences that scale",
-      },
-      {
-        label: "Web Application Development",
-        to: "/services/web-application-development",
-        description: "Enterprise web apps, SaaS platforms, portals & PWAs built to scale",
-      },
-      {
-        label: "Fractional CTO Advisory",
-        to: "/services/fractional-cto-technology-advisory",
-        description: "Strategic technology leadership, AI adoption & advisory for founders and enterprises",
-      },
-      {
-        label: "Decision Intelligence",
-        to: "/services/decision-intelligence-business-insights",
-        description: "Executive dashboards, predictive analytics & AI-powered business insights",
-      },
-      {
-        label: "ERP & Workflow Automation",
-        to: "/services/erp-workflow-automation",
-        description: "Scalable ERP systems & business process automation across departments",
-      },
-      {
-        label: "MVP Development",
-        to: "/services/mvp-development",
-        description: "Turn ideas into market-ready MVPs—launch fast, validate, and scale confidently",
+        title: "Teams & Advisory",
+        items: [
+          { label: "GCC & Dedicated Teams", to: "/services/global-capability-centers-dedicated-teams", description: "Global capability centers in India", icon: Users },
+          { label: "Fractional CTO Advisory", to: "/services/fractional-cto-technology-advisory", description: "Strategic technology leadership", icon: Compass },
+          { label: "Support & Maintenance", to: "/services/support-maintenance", description: "Reliable long-term application support", icon: LifeBuoy },
+        ],
       },
     ],
   },
@@ -103,9 +106,7 @@ export function Header() {
           : "bg-navy-deep"
       }`}
     >
-      {/* subtle grid texture */}
       <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-30" aria-hidden />
-      {/* warm glow accent */}
       <div
         className="pointer-events-none absolute -top-24 right-1/3 h-40 w-[28rem] rounded-full opacity-20 blur-3xl"
         style={{ background: "var(--gradient-pixel)" }}
@@ -152,6 +153,87 @@ export function Header() {
 
         <nav className="hidden items-center gap-0.5 xl:flex">
           {nav.map((n) => {
+            // MEGA MENU
+            if ("mega" in n && n.mega) {
+              const isOpen = openMenu === n.label;
+              return (
+                <div
+                  key={n.label}
+                  className="relative"
+                  onMouseEnter={() => setOpenMenu(n.label)}
+                  onMouseLeave={() => setOpenMenu((v) => (v === n.label ? null : v))}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenMenu((v) => (v === n.label ? null : n.label))}
+                    className="group relative inline-flex items-center gap-1 rounded-md px-3 py-2 text-[13px] font-semibold text-white/85 transition-colors hover:text-white"
+                    aria-expanded={isOpen}
+                    aria-haspopup="menu"
+                  >
+                    {n.label}
+                    <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+                    <span className="absolute inset-x-3 -bottom-0.5 h-px origin-left scale-x-0 bg-gradient-to-r from-orange-bright to-orange-yellow transition-transform duration-300 group-hover:scale-x-100" />
+                  </button>
+                  {/* mega panel: fixed to viewport width so it never clips */}
+                  <div
+                    className={`fixed left-1/2 top-[calc(var(--header-h,64px)+0px)] z-50 w-[min(96vw,1120px)] -translate-x-1/2 px-2 pt-2 transition-all duration-200 ${
+                      isOpen ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-1 opacity-0"
+                    }`}
+                    style={{ top: scrolled ? "56px" : "88px" }}
+                  >
+                    <div className="relative overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-2xl ring-1 ring-black/5">
+                      <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #1f496b 1px, transparent 0)", backgroundSize: "18px 18px" }} aria-hidden />
+                      <div className="relative grid grid-cols-1 gap-6 md:grid-cols-3">
+                        {n.mega.map((group) => (
+                          <div key={group.title}>
+                            <div className="mb-3 flex items-center gap-2 border-b border-slate-200 pb-2">
+                              <span className="h-1.5 w-1.5 rounded-sm bg-orange-bright" />
+                              <span className="text-[11px] font-black uppercase tracking-wider text-[#1f496b]">
+                                {group.title}
+                              </span>
+                            </div>
+                            <ul className="space-y-1">
+                              {group.items.map((c) => {
+                                const Icon = c.icon;
+                                const inner = (
+                                  <div className="group/item flex items-start gap-3 rounded-lg px-2.5 py-2 transition-colors hover:bg-orange-bright/5">
+                                    {Icon && (
+                                      <div className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#1f496b] transition-colors group-hover/item:bg-orange-bright/10 group-hover/item:text-orange-bright">
+                                        <Icon className="h-4 w-4" />
+                                      </div>
+                                    )}
+                                    <div className="min-w-0">
+                                      <div className="text-[13px] font-bold text-[#1f496b] group-hover/item:text-orange-bright">
+                                        {c.label}
+                                      </div>
+                                      {c.description && (
+                                        <div className="mt-0.5 text-[11.5px] leading-snug text-slate-500">
+                                          {c.description}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                );
+                                return c.to ? (
+                                  <li key={c.label}>
+                                    <Link to={c.to} onClick={() => setOpenMenu(null)}>{inner}</Link>
+                                  </li>
+                                ) : (
+                                  <li key={c.label}>
+                                    <a href={c.href} onClick={() => setOpenMenu(null)}>{inner}</a>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+            // STANDARD DROPDOWN
             if ("children" in n && n.children) {
               const isOpen = openMenu === n.label;
               return (
@@ -256,9 +338,59 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="relative border-t border-white/10 bg-navy-deep xl:hidden">
+        <div className="relative max-h-[calc(100vh-64px)] overflow-y-auto border-t border-white/10 bg-navy-deep xl:hidden">
           <div className="space-y-1 px-5 py-4">
             {nav.map((n) => {
+              // Mobile: mega -> accordion with groups flattened
+              if ("mega" in n && n.mega) {
+                const mIsOpen = mobileOpenMenu === n.label;
+                return (
+                  <div key={n.label}>
+                    <button
+                      type="button"
+                      onClick={() => setMobileOpenMenu((v) => (v === n.label ? null : n.label))}
+                      className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/5 hover:text-orange-yellow"
+                    >
+                      {n.label}
+                      <ChevronDown className={`h-4 w-4 transition-transform ${mIsOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    {mIsOpen && (
+                      <div className="ml-3 mt-1 space-y-3 border-l border-white/10 pl-3 pb-2">
+                        {n.mega.map((group) => (
+                          <div key={group.title}>
+                            <div className="px-3 pt-1 text-[10px] font-black uppercase tracking-wider text-orange-yellow/80">
+                              {group.title}
+                            </div>
+                            <div className="mt-1 space-y-0.5">
+                              {group.items.map((c) =>
+                                c.to ? (
+                                  <Link
+                                    key={c.label}
+                                    to={c.to}
+                                    onClick={() => setOpen(false)}
+                                    className="block rounded-md px-3 py-2 text-sm font-medium text-white/75 hover:text-orange-yellow"
+                                  >
+                                    {c.label}
+                                  </Link>
+                                ) : (
+                                  <a
+                                    key={c.label}
+                                    href={c.href}
+                                    onClick={() => setOpen(false)}
+                                    className="block rounded-md px-3 py-2 text-sm font-medium text-white/75 hover:text-orange-yellow"
+                                  >
+                                    {c.label}
+                                  </a>
+                                )
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
               if ("children" in n && n.children) {
                 const mIsOpen = mobileOpenMenu === n.label;
                 return (

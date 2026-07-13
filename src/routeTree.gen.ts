@@ -16,6 +16,7 @@ import { Route as CertificationRouteImport } from './routes/certification'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesWebApplicationDevelopmentRouteImport } from './routes/services.web-application-development'
+import { Route as ServicesSupportMaintenanceRouteImport } from './routes/services.support-maintenance'
 import { Route as ServicesMvpDevelopmentRouteImport } from './routes/services.mvp-development'
 import { Route as ServicesMobileAppDevelopmentRouteImport } from './routes/services.mobile-app-development'
 import { Route as ServicesGlobalCapabilityCentersDedicatedTeamsRouteImport } from './routes/services.global-capability-centers-dedicated-teams'
@@ -59,6 +60,12 @@ const ServicesWebApplicationDevelopmentRoute =
   ServicesWebApplicationDevelopmentRouteImport.update({
     id: '/services/web-application-development',
     path: '/services/web-application-development',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesSupportMaintenanceRoute =
+  ServicesSupportMaintenanceRouteImport.update({
+    id: '/services/support-maintenance',
+    path: '/services/support-maintenance',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ServicesMvpDevelopmentRoute = ServicesMvpDevelopmentRouteImport.update({
@@ -123,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
   '/services/mvp-development': typeof ServicesMvpDevelopmentRoute
+  '/services/support-maintenance': typeof ServicesSupportMaintenanceRoute
   '/services/web-application-development': typeof ServicesWebApplicationDevelopmentRoute
 }
 export interface FileRoutesByTo {
@@ -140,6 +148,7 @@ export interface FileRoutesByTo {
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
   '/services/mvp-development': typeof ServicesMvpDevelopmentRoute
+  '/services/support-maintenance': typeof ServicesSupportMaintenanceRoute
   '/services/web-application-development': typeof ServicesWebApplicationDevelopmentRoute
 }
 export interface FileRoutesById {
@@ -158,6 +167,7 @@ export interface FileRoutesById {
   '/services/global-capability-centers-dedicated-teams': typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   '/services/mobile-app-development': typeof ServicesMobileAppDevelopmentRoute
   '/services/mvp-development': typeof ServicesMvpDevelopmentRoute
+  '/services/support-maintenance': typeof ServicesSupportMaintenanceRoute
   '/services/web-application-development': typeof ServicesWebApplicationDevelopmentRoute
 }
 export interface FileRouteTypes {
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
     | '/services/mvp-development'
+    | '/services/support-maintenance'
     | '/services/web-application-development'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -194,6 +205,7 @@ export interface FileRouteTypes {
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
     | '/services/mvp-development'
+    | '/services/support-maintenance'
     | '/services/web-application-development'
   id:
     | '__root__'
@@ -211,6 +223,7 @@ export interface FileRouteTypes {
     | '/services/global-capability-centers-dedicated-teams'
     | '/services/mobile-app-development'
     | '/services/mvp-development'
+    | '/services/support-maintenance'
     | '/services/web-application-development'
   fileRoutesById: FileRoutesById
 }
@@ -229,6 +242,7 @@ export interface RootRouteChildren {
   ServicesGlobalCapabilityCentersDedicatedTeamsRoute: typeof ServicesGlobalCapabilityCentersDedicatedTeamsRoute
   ServicesMobileAppDevelopmentRoute: typeof ServicesMobileAppDevelopmentRoute
   ServicesMvpDevelopmentRoute: typeof ServicesMvpDevelopmentRoute
+  ServicesSupportMaintenanceRoute: typeof ServicesSupportMaintenanceRoute
   ServicesWebApplicationDevelopmentRoute: typeof ServicesWebApplicationDevelopmentRoute
 }
 
@@ -281,6 +295,13 @@ declare module '@tanstack/react-router' {
       path: '/services/web-application-development'
       fullPath: '/services/web-application-development'
       preLoaderRoute: typeof ServicesWebApplicationDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/support-maintenance': {
+      id: '/services/support-maintenance'
+      path: '/services/support-maintenance'
+      fullPath: '/services/support-maintenance'
+      preLoaderRoute: typeof ServicesSupportMaintenanceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/mvp-development': {
@@ -361,6 +382,7 @@ const rootRouteChildren: RootRouteChildren = {
     ServicesGlobalCapabilityCentersDedicatedTeamsRoute,
   ServicesMobileAppDevelopmentRoute: ServicesMobileAppDevelopmentRoute,
   ServicesMvpDevelopmentRoute: ServicesMvpDevelopmentRoute,
+  ServicesSupportMaintenanceRoute: ServicesSupportMaintenanceRoute,
   ServicesWebApplicationDevelopmentRoute:
     ServicesWebApplicationDevelopmentRoute,
 }
