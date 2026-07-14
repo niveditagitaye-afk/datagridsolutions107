@@ -71,7 +71,7 @@ const nav: NavItem[] = [
       { label: "Industries", to: "/expertise/industries", description: "Domains and sectors we serve" },
     ],
   },
-  { label: "Products", href: "/#products" },
+  { label: "Products", to: "/products" },
   { label: "Case Studies", href: "/#case-studies" },
   {
     label: "Company",
