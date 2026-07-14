@@ -598,23 +598,7 @@ export function Products() {
               { icon: Wand2, title: "Product Innovation", body: "AI-enabled platforms engineered for scale." },
               { icon: BarChart3, title: "Business Impact", body: "Measurable growth, efficiency, and experiences." },
             ].map((s, i, arr) => (
-              <>
-                <div key={s.title} className="rounded-2xl border border-black/5 bg-gradient-to-br from-slate-50 to-white p-5 text-center">
-                  <span className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-orange-bright/10 text-orange-bright">
-                    <s.icon className="h-5 w-5" />
-                  </span>
-                  <div className="mt-3 text-[11px] font-bold uppercase tracking-wider text-orange-bright">
-                    Step {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div className="mt-1 text-base font-bold text-navy">{s.title}</div>
-                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{s.body}</p>
-                </div>
-                {i < arr.length - 1 && (
-                  <div key={`arrow-${i}`} className="hidden justify-center text-orange-bright lg:flex">
-                    <ArrowRight className="h-5 w-5" />
-                  </div>
-                )}
-              </>
+              <FlowStep key={s.title} step={s} index={i} isLast={i === arr.length - 1} />
             ))}
           </div>
         </div>
