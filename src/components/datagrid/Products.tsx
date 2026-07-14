@@ -186,6 +186,37 @@ const reasons = [
   },
 ];
 
+function FlowStep({
+  step,
+  index,
+  isLast,
+}: {
+  step: { icon: typeof Home; title: string; body: string };
+  index: number;
+  isLast: boolean;
+}) {
+  const Icon = step.icon;
+  return (
+    <>
+      <div className="rounded-2xl border border-black/5 bg-gradient-to-br from-slate-50 to-white p-5 text-center">
+        <span className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-orange-bright/10 text-orange-bright">
+          <Icon className="h-5 w-5" />
+        </span>
+        <div className="mt-3 text-[11px] font-bold uppercase tracking-wider text-orange-bright">
+          Step {String(index + 1).padStart(2, "0")}
+        </div>
+        <div className="mt-1 text-base font-bold text-navy">{step.title}</div>
+        <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{step.body}</p>
+      </div>
+      {!isLast && (
+        <div className="hidden justify-center text-orange-bright lg:flex">
+          <ArrowRight className="h-5 w-5" />
+        </div>
+      )}
+    </>
+  );
+}
+
 function HeroVisual() {
   return (
     <div className="relative">
