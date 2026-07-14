@@ -26,6 +26,7 @@ import { Route as ServicesDecisionIntelligenceBusinessInsightsRouteImport } from
 import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/services.custom-software-development'
 import { Route as ServicesCloudDevopsSreRouteImport } from './routes/services.cloud-devops-sre'
 import { Route as ServicesAiMlDevelopmentRouteImport } from './routes/services.ai-ml-development'
+import { Route as ExpertiseTechnologyRouteImport } from './routes/expertise.technology'
 
 const WhyDatagridRoute = WhyDatagridRouteImport.update({
   id: '/why-datagrid',
@@ -120,6 +121,11 @@ const ServicesAiMlDevelopmentRoute = ServicesAiMlDevelopmentRouteImport.update({
   path: '/services/ai-ml-development',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExpertiseTechnologyRoute = ExpertiseTechnologyRouteImport.update({
+  id: '/expertise/technology',
+  path: '/expertise/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/expertise/technology': typeof ExpertiseTechnologyRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/cloud-devops-sre': typeof ServicesCloudDevopsSreRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
@@ -147,6 +154,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/expertise/technology': typeof ExpertiseTechnologyRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/cloud-devops-sre': typeof ServicesCloudDevopsSreRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
@@ -167,6 +175,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/expertise/technology': typeof ExpertiseTechnologyRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/cloud-devops-sre': typeof ServicesCloudDevopsSreRoute
   '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
@@ -188,6 +197,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/expertise/technology'
     | '/services/ai-ml-development'
     | '/services/cloud-devops-sre'
     | '/services/custom-software-development'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/expertise/technology'
     | '/services/ai-ml-development'
     | '/services/cloud-devops-sre'
     | '/services/custom-software-development'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/expertise/technology'
     | '/services/ai-ml-development'
     | '/services/cloud-devops-sre'
     | '/services/custom-software-development'
@@ -246,6 +258,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   LeadershipRoute: typeof LeadershipRoute
   WhyDatagridRoute: typeof WhyDatagridRoute
+  ExpertiseTechnologyRoute: typeof ExpertiseTechnologyRoute
   ServicesAiMlDevelopmentRoute: typeof ServicesAiMlDevelopmentRoute
   ServicesCloudDevopsSreRoute: typeof ServicesCloudDevopsSreRoute
   ServicesCustomSoftwareDevelopmentRoute: typeof ServicesCustomSoftwareDevelopmentRoute
@@ -380,6 +393,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesAiMlDevelopmentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/expertise/technology': {
+      id: '/expertise/technology'
+      path: '/expertise/technology'
+      fullPath: '/expertise/technology'
+      preLoaderRoute: typeof ExpertiseTechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -390,6 +410,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   LeadershipRoute: LeadershipRoute,
   WhyDatagridRoute: WhyDatagridRoute,
+  ExpertiseTechnologyRoute: ExpertiseTechnologyRoute,
   ServicesAiMlDevelopmentRoute: ServicesAiMlDevelopmentRoute,
   ServicesCloudDevopsSreRoute: ServicesCloudDevopsSreRoute,
   ServicesCustomSoftwareDevelopmentRoute:
