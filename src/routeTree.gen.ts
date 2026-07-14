@@ -27,6 +27,7 @@ import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/
 import { Route as ServicesCloudDevopsSreRouteImport } from './routes/services.cloud-devops-sre'
 import { Route as ServicesAiMlDevelopmentRouteImport } from './routes/services.ai-ml-development'
 import { Route as ExpertiseTechnologyRouteImport } from './routes/expertise.technology'
+import { Route as ExpertiseIndustriesRouteImport } from './routes/expertise.industries'
 
 const WhyDatagridRoute = WhyDatagridRouteImport.update({
   id: '/why-datagrid',
@@ -126,6 +127,11 @@ const ExpertiseTechnologyRoute = ExpertiseTechnologyRouteImport.update({
   path: '/expertise/technology',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExpertiseIndustriesRoute = ExpertiseIndustriesRouteImport.update({
+  id: '/expertise/industries',
+  path: '/expertise/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/expertise/industries': typeof ExpertiseIndustriesRoute
   '/expertise/technology': typeof ExpertiseTechnologyRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/cloud-devops-sre': typeof ServicesCloudDevopsSreRoute
@@ -154,6 +161,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/expertise/industries': typeof ExpertiseIndustriesRoute
   '/expertise/technology': typeof ExpertiseTechnologyRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/cloud-devops-sre': typeof ServicesCloudDevopsSreRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
   '/why-datagrid': typeof WhyDatagridRoute
+  '/expertise/industries': typeof ExpertiseIndustriesRoute
   '/expertise/technology': typeof ExpertiseTechnologyRoute
   '/services/ai-ml-development': typeof ServicesAiMlDevelopmentRoute
   '/services/cloud-devops-sre': typeof ServicesCloudDevopsSreRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/expertise/industries'
     | '/expertise/technology'
     | '/services/ai-ml-development'
     | '/services/cloud-devops-sre'
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/expertise/industries'
     | '/expertise/technology'
     | '/services/ai-ml-development'
     | '/services/cloud-devops-sre'
@@ -237,6 +248,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/leadership'
     | '/why-datagrid'
+    | '/expertise/industries'
     | '/expertise/technology'
     | '/services/ai-ml-development'
     | '/services/cloud-devops-sre'
@@ -258,6 +270,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   LeadershipRoute: typeof LeadershipRoute
   WhyDatagridRoute: typeof WhyDatagridRoute
+  ExpertiseIndustriesRoute: typeof ExpertiseIndustriesRoute
   ExpertiseTechnologyRoute: typeof ExpertiseTechnologyRoute
   ServicesAiMlDevelopmentRoute: typeof ServicesAiMlDevelopmentRoute
   ServicesCloudDevopsSreRoute: typeof ServicesCloudDevopsSreRoute
@@ -400,6 +413,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExpertiseTechnologyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/expertise/industries': {
+      id: '/expertise/industries'
+      path: '/expertise/industries'
+      fullPath: '/expertise/industries'
+      preLoaderRoute: typeof ExpertiseIndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -410,6 +430,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   LeadershipRoute: LeadershipRoute,
   WhyDatagridRoute: WhyDatagridRoute,
+  ExpertiseIndustriesRoute: ExpertiseIndustriesRoute,
   ExpertiseTechnologyRoute: ExpertiseTechnologyRoute,
   ServicesAiMlDevelopmentRoute: ServicesAiMlDevelopmentRoute,
   ServicesCloudDevopsSreRoute: ServicesCloudDevopsSreRoute,
