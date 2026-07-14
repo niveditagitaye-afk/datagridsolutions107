@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhyDatagridRouteImport } from './routes/why-datagrid'
+import { Route as ProductsRouteImport } from './routes/products'
 import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CertificationRouteImport } from './routes/certification'
@@ -32,6 +33,11 @@ import { Route as ExpertiseIndustriesRouteImport } from './routes/expertise.indu
 const WhyDatagridRoute = WhyDatagridRouteImport.update({
   id: '/why-datagrid',
   path: '/why-datagrid',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LeadershipRoute = LeadershipRouteImport.update({
@@ -139,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/certification': typeof CertificationRoute
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
+  '/products': typeof ProductsRoute
   '/why-datagrid': typeof WhyDatagridRoute
   '/expertise/industries': typeof ExpertiseIndustriesRoute
   '/expertise/technology': typeof ExpertiseTechnologyRoute
@@ -160,6 +167,7 @@ export interface FileRoutesByTo {
   '/certification': typeof CertificationRoute
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
+  '/products': typeof ProductsRoute
   '/why-datagrid': typeof WhyDatagridRoute
   '/expertise/industries': typeof ExpertiseIndustriesRoute
   '/expertise/technology': typeof ExpertiseTechnologyRoute
@@ -182,6 +190,7 @@ export interface FileRoutesById {
   '/certification': typeof CertificationRoute
   '/contact': typeof ContactRoute
   '/leadership': typeof LeadershipRoute
+  '/products': typeof ProductsRoute
   '/why-datagrid': typeof WhyDatagridRoute
   '/expertise/industries': typeof ExpertiseIndustriesRoute
   '/expertise/technology': typeof ExpertiseTechnologyRoute
@@ -205,6 +214,7 @@ export interface FileRouteTypes {
     | '/certification'
     | '/contact'
     | '/leadership'
+    | '/products'
     | '/why-datagrid'
     | '/expertise/industries'
     | '/expertise/technology'
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
     | '/certification'
     | '/contact'
     | '/leadership'
+    | '/products'
     | '/why-datagrid'
     | '/expertise/industries'
     | '/expertise/technology'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '/certification'
     | '/contact'
     | '/leadership'
+    | '/products'
     | '/why-datagrid'
     | '/expertise/industries'
     | '/expertise/technology'
@@ -269,6 +281,7 @@ export interface RootRouteChildren {
   CertificationRoute: typeof CertificationRoute
   ContactRoute: typeof ContactRoute
   LeadershipRoute: typeof LeadershipRoute
+  ProductsRoute: typeof ProductsRoute
   WhyDatagridRoute: typeof WhyDatagridRoute
   ExpertiseIndustriesRoute: typeof ExpertiseIndustriesRoute
   ExpertiseTechnologyRoute: typeof ExpertiseTechnologyRoute
@@ -292,6 +305,13 @@ declare module '@tanstack/react-router' {
       path: '/why-datagrid'
       fullPath: '/why-datagrid'
       preLoaderRoute: typeof WhyDatagridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/leadership': {
@@ -429,6 +449,7 @@ const rootRouteChildren: RootRouteChildren = {
   CertificationRoute: CertificationRoute,
   ContactRoute: ContactRoute,
   LeadershipRoute: LeadershipRoute,
+  ProductsRoute: ProductsRoute,
   WhyDatagridRoute: WhyDatagridRoute,
   ExpertiseIndustriesRoute: ExpertiseIndustriesRoute,
   ExpertiseTechnologyRoute: ExpertiseTechnologyRoute,
