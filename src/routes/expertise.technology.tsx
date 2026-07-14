@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/datagrid/Header";
+import { Footer } from "@/components/datagrid/Footer";
 import { ExpertiseTechnology } from "@/components/datagrid/ExpertiseTechnology";
 
 export const Route = createFileRoute("/expertise/technology")({
@@ -18,5 +20,15 @@ export const Route = createFileRoute("/expertise/technology")({
       },
     ],
   }),
-  component: ExpertiseTechnology,
+  component: ExpertiseTechnologyPage,
 });
+
+function ExpertiseTechnologyPage() {
+  return (
+    <>
+      <Header />
+      <ExpertiseTechnology />
+      <Footer />
+    </>
+  );
+}
