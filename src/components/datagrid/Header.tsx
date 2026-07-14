@@ -68,6 +68,7 @@ const nav: NavItem[] = [
     label: "Expertise",
     children: [
       { label: "Technology", to: "/expertise/technology", description: "Our modern engineering stack" },
+      { label: "Industries", to: "/expertise/industries", description: "Domains and sectors we serve" },
     ],
   },
   { label: "Products", href: "/#products" },
