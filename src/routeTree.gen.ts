@@ -15,6 +15,7 @@ import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CertificationRouteImport } from './routes/certification'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesWebApplicationDevelopmentRouteImport } from './routes/services.web-application-development'
 import { Route as ServicesSupportMaintenanceRouteImport } from './routes/services.support-maintenance'
@@ -58,6 +59,11 @@ const CertificationRoute = CertificationRouteImport.update({
 const CaseStudiesRoute = CaseStudiesRouteImport.update({
   id: '/case-studies',
   path: '/case-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -141,6 +147,7 @@ const ExpertiseIndustriesRoute = ExpertiseIndustriesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
   '/case-studies': typeof CaseStudiesRoute
   '/certification': typeof CertificationRoute
   '/contact': typeof ContactRoute
@@ -163,6 +170,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
   '/case-studies': typeof CaseStudiesRoute
   '/certification': typeof CertificationRoute
   '/contact': typeof ContactRoute
@@ -186,6 +194,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
   '/case-studies': typeof CaseStudiesRoute
   '/certification': typeof CertificationRoute
   '/contact': typeof ContactRoute
@@ -210,6 +219,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about-us'
     | '/case-studies'
     | '/certification'
     | '/contact'
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about-us'
     | '/case-studies'
     | '/certification'
     | '/contact'
@@ -254,6 +265,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about-us'
     | '/case-studies'
     | '/certification'
     | '/contact'
@@ -277,6 +289,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutUsRoute: typeof AboutUsRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   CertificationRoute: typeof CertificationRoute
   ContactRoute: typeof ContactRoute
@@ -340,6 +353,13 @@ declare module '@tanstack/react-router' {
       path: '/case-studies'
       fullPath: '/case-studies'
       preLoaderRoute: typeof CaseStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -445,6 +465,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutUsRoute: AboutUsRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   CertificationRoute: CertificationRoute,
   ContactRoute: ContactRoute,
@@ -473,3 +494,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
