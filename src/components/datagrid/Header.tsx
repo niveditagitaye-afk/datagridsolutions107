@@ -74,15 +74,15 @@ const nav: NavItem[] = [
   { label: "Products", to: "/products" },
   { label: "Case Studies", href: "/#case-studies" },
   {
-    label: "Company",
+    label: "About Us",
     children: [
+      { label: "About Us", to: "/about-us", description: "Our story, journey and global presence" },
       { label: "Leadership Team", to: "/leadership", description: "Meet the people behind Datagrid" },
       { label: "Certification", to: "/certification", description: "ISO & CMMI accredited standards" },
       { label: "Why Datagrid?", to: "/why-datagrid", description: "What makes us different" },
-      { label: "Industries", href: "/#industries", description: "Sectors we serve worldwide" },
-      { label: "Technology", href: "/#tech", description: "Our engineering stack" },
     ],
   },
+
   { label: "Careers", href: "/#careers" },
   {
     label: "Insights",
