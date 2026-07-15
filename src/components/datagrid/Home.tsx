@@ -1,28 +1,20 @@
 import { useState, useEffect, useRef } from "react";
-import {
-  ArrowRight, ArrowUpRight, Sparkles, Code2, Brain, Bot, Users, Workflow,
-  Smartphone, Cloud, Megaphone, Play, Globe, Briefcase, Users2, Clock,
-  CheckCircle2, Cpu, GitBranch, Layers, Boxes, ShieldCheck,
-  Activity, Calendar, GraduationCap, Stethoscope, Hotel, ShoppingBag,
-  Factory, Leaf, FileSpreadsheet, Building2, Gem, ClipboardList, Hammer,
-  TestTube2, Rocket, LifeBuoy, ExternalLink, Server, Palette, Database,
-  Cog, ChevronLeft, ChevronRight,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, Sparkles, Code as Code2, Brain, Bot, Users, Workflow, Smartphone, Cloud, Megaphone, Play, Globe, Briefcase, Users as Users2, Clock, CircleCheck as CheckCircle2, Cpu, GitBranch, Layers, Boxes, ShieldCheck, Activity, Calendar, GraduationCap, Stethoscope, Hotel, ShoppingBag, Factory, Leaf, FileSpreadsheet, Building2, Gem, ClipboardList, Hammer, TestTube as TestTube2, Rocket, LifeBuoy, ExternalLink, Server, Palette, Database, Cog, ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "@/components/datagrid/Header";
 import { Footer } from "@/components/datagrid/Footer";
 import { PixelGrid } from "@/components/datagrid/PixelGrid";
-import heroImg from "@/assets/hero-grid.jpg";
-import optifyLogo from "@/assets/products/optify.png";
-import sellingoLogo from "@/assets/products/sellingo.jpg";
-import glammifyLogo from "@/assets/products/glammify.png";
-import unifyamsLogo from "@/assets/products/unifyams.png";
-import caseScmt from "@/assets/cases/scmt.jpg";
-import caseHiya from "@/assets/cases/hiya.jpg";
-import caseIndie from "@/assets/cases/indie.jpg";
-import caseMysphere from "@/assets/cases/mysphere.jpg";
-import testi1 from "@/assets/testimonials/t1.jpg";
-import testi2 from "@/assets/testimonials/t2.jpg";
-import testi3 from "@/assets/testimonials/t3.jpg";
+const heroImg = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop";
+const optifyLogo = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+const sellingoLogo = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+const glammifyLogo = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+const unifyamsLogo = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+const caseScmt = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop";
+const caseHiya = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop";
+const caseIndie = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop";
+const caseMysphere = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop";
+const testi1 = "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop";
+const testi2 = "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop";
+const testi3 = "https://images.pexels.com/photos/3760264/pexels-photo-3760264.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop";
 
 const activityPalette = ["bg-orange-pale", "bg-orange-light", "bg-orange-yellow", "bg-orange-bright"] as const;
 

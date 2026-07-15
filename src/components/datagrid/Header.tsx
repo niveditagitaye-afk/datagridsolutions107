@@ -21,7 +21,7 @@ import {
   Cloud,
   type LucideIcon,
 } from "lucide-react";
-import logoWhite from "@/assets/datagrid-logo-white.png";
+const logoWhite = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=200&h=60&fit=crop";
 
 type ChildLink = { label: string; to?: string; href?: string; description?: string; icon?: LucideIcon };
 type MegaGroup = { title: string; items: ChildLink[] };

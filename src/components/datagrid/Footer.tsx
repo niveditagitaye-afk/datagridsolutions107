@@ -1,5 +1,5 @@
 import { Linkedin, Mail, Phone, Twitter, Github } from "lucide-react";
-import logo from "@/assets/datagrid-logo.png";
+const logo = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=200&h=60&fit=crop";
 
 const footerYear = 2026;
 

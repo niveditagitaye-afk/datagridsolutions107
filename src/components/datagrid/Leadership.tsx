@@ -3,15 +3,15 @@ import { Link } from "@tanstack/react-router";
 import { Header } from "@/components/datagrid/Header";
 import { Footer } from "@/components/datagrid/Footer";
 import { PixelGrid } from "@/components/datagrid/PixelGrid";
-import deepak from "@/assets/team/deepak-jain.jpg";
-import karishma from "@/assets/team/karishma.png";
-import akeeb from "@/assets/team/akeeb-khan.png";
-import rushiraj from "@/assets/team/rushiraj-parulekar.png";
-import tushar from "@/assets/team/tushar-kumar.png";
-import akshada from "@/assets/team/akshda-dabhekar.png";
-import dhiraj from "@/assets/team/dhiraj-neve.png";
-import sagar from "@/assets/team/sagar-hazare.png";
-import karan from "@/assets/team/karan-kotak.png";
+const deepak = "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
+const karishma = "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
+const akeeb = "https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
+const rushiraj = "https://images.pexels.com/photos/3777942/pexels-photo-3777942.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
+const tushar = "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
+const akshada = "https://images.pexels.com/photos/3760264/pexels-photo-3760264.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
+const dhiraj = "https://images.pexels.com/photos/3777945/pexels-photo-3777945.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
+const sagar = "https://images.pexels.com/photos/3777944/pexels-photo-3777944.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
+const karan = "https://images.pexels.com/photos/3777941/pexels-photo-3777941.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
 
 const founders = [
   {

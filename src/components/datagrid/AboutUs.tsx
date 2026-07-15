@@ -1,33 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  ChevronRight,
-  Sparkles,
-  Globe,
-  Users,
-  Clock,
-  ShieldCheck,
-  Heart,
-  Handshake,
-  BookOpen,
-  Cpu,
-  Award,
-  MapPin,
-  Linkedin,
-  Building2,
-  Rocket,
-  Brain,
-  Cloud,
-  Database,
-  Code2,
-  CheckCircle2,
-  Lock,
-  BadgeCheck,
-} from "lucide-react";
+import { ArrowRight, ChevronRight, Sparkles, Globe, Users, Clock, ShieldCheck, Heart, Handshake, BookOpen, Cpu, Award, MapPin, Linkedin, Building2, Rocket, Brain, Cloud, Database, Code as Code2, CircleCheck as CheckCircle2, Lock, BadgeCheck } from "lucide-react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import deepakImg from "@/assets/leadership/deepak-jain.jpg";
-import karishmaImg from "@/assets/leadership/karishma-aggarwal.png";
+const deepakImg = "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
+const karishmaImg = "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop";
 
 const trustMatrix = [
   { icon: Globe, value: "15+", label: "Countries Served" },

@@ -1,52 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  ChevronRight,
-  Sparkles,
-  Users,
-  Calendar,
-  Ticket,
-  Smartphone,
-  QrCode,
-  HeartHandshake,
-  Handshake,
-  MessageSquare,
-  BarChart3,
-  Wand2,
-  Camera,
-  ScanFace,
-  Eraser,
-  Film,
-  Megaphone,
-  Share2,
-  Wallet,
-  Boxes,
-  Users2,
-  Building2,
-  ShoppingCart,
-  Factory,
-  Gauge,
-  Workflow,
-  Brain,
-  BookOpen,
-  Tag,
-  Package,
-  ClipboardList,
-  Search,
-  Store,
-  LineChart,
-  Layers,
-  Cpu,
-  ShieldCheck,
-  Rocket,
-  Home,
-  ExternalLink,
-} from "lucide-react";
+import { ArrowRight, ChevronRight, Sparkles, Users, Calendar, Ticket, Smartphone, QrCode, HeartHandshake, Handshake, MessageSquare, ChartBar as BarChart3, Wand as Wand2, Camera, ScanFace, Eraser, Film, Megaphone, Share2, Wallet, Boxes, Users as Users2, Building2, ShoppingCart, Factory, Gauge, Workflow, Brain, BookOpen, Tag, Package, ClipboardList, Search, Store, ChartLine as LineChart, Layers, Cpu, ShieldCheck, Rocket, Hop as Home, ExternalLink } from "lucide-react";
 
-import unifyLogo from "@/assets/products/unifyams.png";
-import glammifyLogo from "@/assets/products/glammify.png";
-import optifyLogo from "@/assets/products/optify.png";
-import sellingoLogo from "@/assets/products/sellingo.jpg";
+const unifyLogo = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+const glammifyLogo = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+const optifyLogo = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+const sellingoLogo = "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
 
 const products = [
   {

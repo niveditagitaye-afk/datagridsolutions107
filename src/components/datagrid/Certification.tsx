@@ -2,9 +2,9 @@ import { ArrowRight, ChevronRight, ShieldCheck, Award, Layers, Sparkles, Lock, S
 import { Link } from "@tanstack/react-router";
 import { Header } from "@/components/datagrid/Header";
 import { Footer } from "@/components/datagrid/Footer";
-import iso9001 from "@/assets/certifications/iso-9001.jpg";
-import iso27001 from "@/assets/certifications/iso-27001.jpg";
-import cmmi from "@/assets/certifications/cmmi-level-5.png";
+const iso9001 = "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+const iso27001 = "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+const cmmi = "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
 
 const certs = [
   {
