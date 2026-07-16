@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Datagrid Products — building technology products that solve real business problems. Explore our product ecosystem: Unify, Glammify, OptifyERP, and Sellingo.">
+  <title>Products — Datagrid</title>
+
+  <!-- Google Fonts: Jost (300-900), Open Sans (300-700), JetBrains Mono (400-500) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/products.css">
+</head>
+<body data-page="products.html">
+
+  <!-- JS-injected header -->
+  <div id="header-slot"></div>
+
+  <main class="pt-24 lg:pt-28">
+
+    <!-- ════════════════════════════════════════════
+         1. HERO — Product hub mockup with stats
+         ════════════════════════════════════════════ -->
+    <section class="products-hero" id="hero" aria-label="Datagrid Products">
+      <div class="hero-grid-overlay bg-grid-light" aria-hidden="true"></div>
+      <div class="hero-blur-1" aria-hidden="true"></div>
+      <div class="hero-blur-2" aria-hidden="true"></div>
+
+      <div class="products-hero-grid">
+        <div class="products-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <svg class="icon separator" width="14" height="14" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            <span class="current">Products</span>
+          </nav>
+
+          <span class="badge badge-light" style="margin-top:1.25rem;">
+            <span style="height:6px;width:6px;border-radius:2px;background:var(--orange-yellow);"></span>
+            Datagrid Products
+          </span>
+
+          <h1 class="products-hero-h1">
+            Building Products That Solve
+            <span class="text-gradient-warm">Real Business Problems</span>
+          </h1>
+
+          <p class="products-hero-desc">
+            At Datagrid, we don't just build software — we build products that solve real, measurable
+            business problems. Every product in our ecosystem is born from direct experience working
+            with clients across industries, identifying gaps, and engineering solutions that create
+            lasting value.
+          </p>
+          <p class="products-hero-desc">
+            Our products are built on a foundation of deep domain knowledge, scalable architecture,
+            and a relentless focus on user experience. They aren't generic tools — they're purpose-built
+            platforms designed to grow with the businesses that rely on them.
+          </p>
+          <p class="products-hero-desc">
+            As an AI-native company, we embed intelligence into everything we build. From automated
+            workflows to AI-assisted insights, our products help businesses work smarter, move faster,
+            and make better decisions — today and into the future.
+          </p>
+
+          <p class="products-hero-tagline">
+            Innovation driven by experience. Products built for growth.
+          </p>
+
+          <div class="products-hero-cta-row">
+            <a href="#ecosystem" class="btn-primary-gradient">
+              <span class="shine"></span>
+              <span style="position:relative;">Explore Products</span>
+              <span style="position:relative;"><svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </a>
+            <a href="contact.html" class="btn-outline-light">
+              <span>Discuss Your Requirements</span>
+              <svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="products-hero-visual">
+          <div class="hub-mockup">
+            <div class="hub-mockup-glow" aria-hidden="true"></div>
+            <div class="hub-mockup-ring" aria-hidden="true"></div>
+
+            <!-- Orbiting product nodes -->
+            <div class="hub-node" style="top:8%;left:50%;--node-color:#3b82c4;">
+              <div class="hub-node-box">
+                <span class="hub-node-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                <div style="min-width:0;">
+                  <div class="hub-node-label">Unify</div>
+                  <div class="hub-node-sub">AMS Platform</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hub-node" style="top:50%;left:92%;animation-delay:0.75s;--node-color:#f59e0b;">
+              <div class="hub-node-box">
+                <span class="hub-node-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063L6 13a4 4 0 0 0 2.5-2.937L11 8.5a2 2 0 0 0 1.437 1.437L15 11a4 4 0 0 0-2.5 2.937L11 15.5a2 2 0 0 0-1.063-1.437z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></span>
+                <div style="min-width:0;">
+                  <div class="hub-node-label">Glammify</div>
+                  <div class="hub-node-sub">AI Visual</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hub-node" style="top:92%;left:50%;animation-delay:1.5s;--node-color:#d73b1a;">
+              <div class="hub-node-box">
+                <span class="hub-node-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>
+                <div style="min-width:0;">
+                  <div class="hub-node-label">OptifyERP</div>
+                  <div class="hub-node-sub">ERP & Workflow</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hub-node" style="top:50%;left:8%;animation-delay:2.25s;--node-color:#1f496b;">
+              <div class="hub-node-box">
+                <span class="hub-node-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M12 7v5"/><path d="M7 7v10"/><path d="M17 7v10"/><path d="M3 3v18h18"/></svg></span>
+                <div style="min-width:0;">
+                  <div class="hub-node-label">Sellingo</div>
+                  <div class="hub-node-sub">Retail & Catalog</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Central hub -->
+            <div class="hub-center">
+              <div class="hub-center-box">
+                <svg class="icon" width="28" height="28" viewBox="0 0 24 24" style="color:var(--orange-yellow);"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063L6 13a4 4 0 0 0 2.5-2.937L11 8.5a2 2 0 0 0 1.437 1.437L15 11a4 4 0 0 0-2.5 2.937L11 15.5a2 2 0 0 0-1.063-1.437z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                <div class="hub-center-title">Datagrid</div>
+                <div class="hub-center-sub">Product Hub</div>
+              </div>
+            </div>
+
+            <!-- Stats strip -->
+            <div class="hub-stats">
+              <div class="hub-stat">
+                <div class="hub-stat-num">04</div>
+                <div class="hub-stat-label">Products</div>
+              </div>
+              <div class="hub-stat-divider" aria-hidden="true"></div>
+              <div class="hub-stat">
+                <div class="hub-stat-num">10+</div>
+                <div class="hub-stat-label">Industries</div>
+              </div>
+              <div class="hub-stat-divider" aria-hidden="true"></div>
+              <div class="hub-stat">
+                <div class="hub-stat-num">150+</div>
+                <div class="hub-stat-label">Deployments</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         2. PHILOSOPHY — Product design principles
+         ════════════════════════════════════════════ -->
+    <section class="products-philosophy bg-white" id="philosophy" aria-label="Product Philosophy">
+      <div class="container">
+        <div class="philosophy-grid">
+          <div class="philosophy-text">
+            <span class="badge badge-dark">
+              <span style="height:6px;width:6px;border-radius:2px;background:var(--orange-bright);"></span>
+              Product Philosophy
+            </span>
+            <h2 class="philosophy-h2">Technology Products Designed for Modern Businesses</h2>
+            <p class="philosophy-intro">
+              We believe great products aren't built in a vacuum. They're built by listening to the
+              people who use them, understanding the industries they serve, and engineering solutions
+              that are as flexible as they are powerful. Our philosophy guides every product decision
+              we make.
+            </p>
+          </div>
+
+          <div class="philosophy-visual scroll-reveal">
+            <div class="philosophy-principles">
+              <div class="philosophy-principle">
+                <span class="philosophy-principle-num">01</span>
+                <div class="philosophy-principle-body">
+                  <div class="philosophy-principle-title">Business-first thinking</div>
+                  <div class="philosophy-principle-desc">Every feature starts with a real business problem to solve.</div>
+                </div>
+              </div>
+              <div class="philosophy-principle">
+                <span class="philosophy-principle-num">02</span>
+                <div class="philosophy-principle-body">
+                  <div class="philosophy-principle-title">Scalable architecture</div>
+                  <div class="philosophy-principle-desc">Built to grow from first deployment to enterprise scale.</div>
+                </div>
+              </div>
+              <div class="philosophy-principle">
+                <span class="philosophy-principle-num">03</span>
+                <div class="philosophy-principle-body">
+                  <div class="philosophy-principle-title">Open and flexible technology ecosystems</div>
+                  <div class="philosophy-principle-desc">No expensive vendor lock-in — integrate what works.</div>
+                </div>
+              </div>
+              <div class="philosophy-principle">
+                <span class="philosophy-principle-num">04</span>
+                <div class="philosophy-principle-body">
+                  <div class="philosophy-principle-title">AI-enabled capabilities</div>
+                  <div class="philosophy-principle-desc">Intelligence embedded where it creates measurable value.</div>
+                </div>
+              </div>
+              <div class="philosophy-principle">
+                <span class="philosophy-principle-num">05</span>
+                <div class="philosophy-principle-body">
+                  <div class="philosophy-principle-title">Exceptional user experiences</div>
+                  <div class="philosophy-principle-desc">Designed for the people who use them every day.</div>
+                </div>
+              </div>
+              <div class="philosophy-principle">
+                <span class="philosophy-principle-num">06</span>
+                <div class="philosophy-principle-body">
+                  <div class="philosophy-principle-title">Continuous innovation</div>
+                  <div class="philosophy-principle-desc">Products that evolve with markets and customer expectations.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="philosophy-chips">
+              <span class="philosophy-chip"><svg class="icon" width="14" height="14" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>Cloud</span>
+              <span class="philosophy-chip"><svg class="icon" width="14" height="14" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>APIs</span>
+              <span class="philosophy-chip"><svg class="icon" width="14" height="14" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>Data</span>
+              <span class="philosophy-chip"><svg class="icon" width="14" height="14" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.142 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/></svg>AI</span>
+              <span class="philosophy-chip"><svg class="icon" width="14" height="14" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>Edge</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="philosophy-closing">
+          This philosophy isn't aspirational — it's operational. It shapes how we prioritize, what we
+          build, and how we measure success. The result is a product ecosystem that businesses can
+          trust today and build on tomorrow.
+        </p>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         3. PRODUCT ECOSYSTEM — 4 product cards
+         ════════════════════════════════════════════ -->
+    <section class="products-ecosystem" id="ecosystem" aria-label="Product Ecosystem">
+      <div class="container">
+        <div class="section-heading center">
+          <div class="heading-content">
+            <span class="badge badge-dark">
+              <span style="height:6px;width:6px;border-radius:2px;background:var(--orange-bright);"></span>
+              Product Ecosystem
+            </span>
+            <h2 class="heading-title">Our Product Ecosystem</h2>
+            <p class="heading-desc">
+              Four purpose-built platforms, each born from real industry experience. Together they form
+              an ecosystem that scales with your business — from member management to AI-powered
+              visualization, enterprise operations, and modern retail.
+            </p>
+          </div>
+        </div>
+
+        <!-- ── Product 1: Unify ── -->
+        <article class="product-card scroll-reveal" style="--accent-from:#1f496b;--accent-to:#3b82c4;">
+          <div class="product-card-inner">
+            <div class="product-card-content">
+              <div class="product-card-head">
+                <div class="product-logo" style="--logo-from:#1f496b;--logo-to:#3b82c4;">
+                  <svg class="icon" width="28" height="28" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div style="min-width:0;">
+                  <div class="product-name-row">
+                    <h3 class="product-name">Unify</h3>
+                    <span class="product-ai-badge">AI Native</span>
+                  </div>
+                  <p class="product-subtitle">Association &amp; Event Management Platform</p>
+                </div>
+              </div>
+
+              <h4 class="product-headline">One Platform. Every Member. Every Event.</h4>
+              <p class="product-desc">
+                Unify is an enterprise-grade Association Management System (AMS) that brings membership,
+                events, fundraising, and communications into a single, unified platform. Designed for
+                large associations and membership organizations, it replaces fragmented tools with one
+                scalable system of record.
+              </p>
+
+              <div class="product-caps-label">Key Capabilities</div>
+              <div class="product-caps-grid">
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Membership Management</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></span>Event Registration &amp; Ticketing</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></span>Mobile Event Applications</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><rect width="5" height="5" x="16" y="16" rx="1"/><path d="M8 8h3v8h-3"/><path d="M16 8h-3v8h3"/></svg></span>Lead Retrieval Systems</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 1.5-1.5-1-2.74-1.5-4.5-1.5A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span>Fundraising &amp; Donations</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M18 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M16 11h6"/><path d="M19 8v6"/></svg></span>Committee &amp; Volunteer Management</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.29a2 2 0 0 0 1.93 0l2.54-1.43"/><path d="m3 11 8 8"/></svg></span>Vendor &amp; Sponsor Management</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Communication Automation</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span>Executive Dashboards &amp; Analytics</div>
+              </div>
+
+              <p class="product-closing">Trusted by large associations to manage tens of thousands of members and hundreds of events — all from one platform.</p>
+
+              <a href="contact.html" class="btn-product-cta">
+                <span>Visit Unify</span>
+                <svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <div class="product-card-visual">
+              <div class="product-visual-glow" aria-hidden="true"></div>
+              <div class="product-mini-grid">
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><div class="product-mini-label">Members</div><div class="product-mini-val">50K+</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></span><div class="product-mini-label">Events</div><div class="product-mini-val">500+</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></span><div class="product-mini-label">Mobile</div><div class="product-mini-val">Native</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><div class="product-mini-label">Analytics</div><div class="product-mini-val">Real-time</div></div>
+              </div>
+              <div class="product-metrics">
+                <div class="product-metric"><span class="product-metric-dot"></span>99.9% Uptime</div>
+                <div class="product-metric"><span class="product-metric-dot"></span>SOC2 Secure</div>
+                <div class="product-metric"><span class="product-metric-dot"></span>API First</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Product 2: Glammify ── -->
+        <article class="product-card reversed scroll-reveal" style="--accent-from:#d73b1a;--accent-to:#f59e0b;">
+          <div class="product-card-inner">
+            <div class="product-card-content">
+              <div class="product-card-head">
+                <div class="product-logo" style="--logo-from:#d73b1a;--logo-to:#f59e0b;">
+                  <svg class="icon" width="28" height="28" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063L6 13a4 4 0 0 0 2.5-2.937L11 8.5a2 2 0 0 0 1.437 1.437L15 11a4 4 0 0 0-2.5 2.937L11 15.5a2 2 0 0 0-1.063-1.437z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                </div>
+                <div style="min-width:0;">
+                  <div class="product-name-row">
+                    <h3 class="product-name">Glammify</h3>
+                    <span class="product-ai-badge">AI Native</span>
+                  </div>
+                  <p class="product-subtitle">AI-Powered Jewellery Visualization Platform</p>
+                </div>
+              </div>
+
+              <h4 class="product-headline">Transform Jewellery Photography with Artificial Intelligence.</h4>
+              <p class="product-desc">
+                Glammify uses AI to revolutionize how jewellery brands create marketing visuals. From
+                AI-generated model photography to virtual try-on experiences, Glammify replaces expensive
+                photoshoots with intelligent, scalable content production — built specifically for the
+                jewellery industry.
+              </p>
+
+              <div class="product-caps-label">Key Capabilities</div>
+              <div class="product-caps-grid">
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063L6 13a4 4 0 0 0 2.5-2.937L11 8.5a2 2 0 0 0 1.437 1.437L15 11a4 4 0 0 0-2.5 2.937L11 15.5a2 2 0 0 0-1.063-1.437z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></span>AI Model Generation</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg></span>Jewellery-on-Model Visualization</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/></svg></span>Virtual Try-On Experiences</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg></span>Background Removal &amp; Enhancement</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v4"/><path d="M17 3v4"/><path d="M7 21v-4"/><path d="M17 21v-4"/><path d="M3 7h4"/><path d="M3 17h4"/><path d="M21 7h-4"/><path d="M21 17h-4"/><path d="m9 9 6 6"/><path d="m15 9-6 6"/></svg></span>Reel &amp; Social Media Content</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>Automated Marketing Assets</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51 15.42 17.49"/><path d="M15.41 6.51 8.59 10.49"/></svg></span>Multi-Channel Publishing</div>
+              </div>
+
+              <p class="product-closing">Helping jewellery brands cut content production costs while dramatically increasing visual output across every sales channel.</p>
+
+              <a href="contact.html" class="btn-product-cta">
+                <span>Explore Glammify</span>
+                <svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <div class="product-card-visual">
+              <div class="product-visual-glow" aria-hidden="true"></div>
+              <div class="product-mini-grid">
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063L6 13a4 4 0 0 0 2.5-2.937L11 8.5a2 2 0 0 0 1.437 1.437L15 11a4 4 0 0 0-2.5 2.937L11 15.5a2 2 0 0 0-1.063-1.437z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></span><div class="product-mini-label">AI Models</div><div class="product-mini-val">Unlimited</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg></span><div class="product-mini-label">Try-On</div><div class="product-mini-val">Real-time</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 9 6 6"/><path d="m15 9-6 6"/></svg></span><div class="product-mini-label">Reels</div><div class="product-mini-val">Auto</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51 15.42 17.49"/><path d="M15.41 6.51 8.59 10.49"/></svg></span><div class="product-mini-label">Publish</div><div class="product-mini-val">Multi-channel</div></div>
+              </div>
+              <div class="product-metrics">
+                <div class="product-metric"><span class="product-metric-dot"></span>99.9% Uptime</div>
+                <div class="product-metric"><span class="product-metric-dot"></span>SOC2 Secure</div>
+                <div class="product-metric"><span class="product-metric-dot"></span>API First</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Product 3: OptifyERP ── -->
+        <article class="product-card scroll-reveal" style="--accent-from:#1f496b;--accent-to:#d73b1a;">
+          <div class="product-card-inner">
+            <div class="product-card-content">
+              <div class="product-card-head">
+                <div class="product-logo" style="--logo-from:#1f496b;--logo-to:#d73b1a;">
+                  <svg class="icon" width="28" height="28" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <div style="min-width:0;">
+                  <div class="product-name-row">
+                    <h3 class="product-name">OptifyERP</h3>
+                    <span class="product-ai-badge">AI Native</span>
+                  </div>
+                  <p class="product-subtitle">AI-Enabled ERP &amp; Workflow Automation Platform</p>
+                </div>
+              </div>
+
+              <h4 class="product-headline">Simplify Operations. Automate Workflows. Accelerate Growth.</h4>
+              <p class="product-desc">
+                OptifyERP is a flexible enterprise platform that unifies finance, inventory, HR, CRM, and
+                manufacturing into one intelligent system. With AI-assisted insights and workflow
+                automation at its core, OptifyERP helps businesses streamline operations and make
+                faster, data-driven decisions.
+              </p>
+
+              <div class="product-caps-label">Key Capabilities</div>
+              <div class="product-caps-grid">
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 2 3 2h2"/><circle cx="13.5" cy="8.5" r=".5" fill="currentColor"/><path d="M17 16h.01"/><path d="M19 9v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M17 16h.01"/><path d="M17 20a2 2 0 0 0 2-2v-3"/></svg></span>Finance &amp; Accounting</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19.97l4.97 2.71a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0L12 13.03l-4.97-2.71a2 2 0 0 0-2.06 0Z"/><path d="M7 7.52 12 10.5l5-2.98L12 4.5Z"/></svg></span>Inventory &amp; Supply Chain</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M18 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M16 11h6"/><path d="M19 8v6"/></svg></span>Human Resources &amp; Payroll</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>CRM &amp; Sales Management</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>Procurement Automation</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M2 20a3 3 0 0 0 3-3V9a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v0a3 3 0 0 0 3 3h0a3 3 0 0 0 3-3V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v13a3 3 0 0 0 3 3Z"/></svg></span>Manufacturing Operations</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0-9-9"/><path d="M12 12 7 7"/><path d="M12 3v9h9"/></svg></span>Executive Dashboards</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg></span>Workflow Automation</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.142 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/></svg></span>AI-Assisted Business Insights</div>
+              </div>
+
+              <p class="product-closing">Designed to adapt to businesses of any size — from growing mid-market firms to complex multi-entity enterprises.</p>
+
+              <a href="contact.html" class="btn-product-cta">
+                <span>Discover OptifyERP</span>
+                <svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <div class="product-card-visual">
+              <div class="product-visual-glow" aria-hidden="true"></div>
+              <div class="product-mini-grid">
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 2 3 2h2"/><path d="M17 16h.01"/><path d="M19 9v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></span><div class="product-mini-label">Finance</div><div class="product-mini-val">Unified</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19.97l4.97 2.71a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0L12 13.03l-4.97-2.71a2 2 0 0 0-2.06 0Z"/></svg></span><div class="product-mini-label">Inventory</div><div class="product-mini-val">Real-time</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg></span><div class="product-mini-label">Workflow</div><div class="product-mini-val">Automated</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.142 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/></svg></span><div class="product-mini-label">AI Insights</div><div class="product-mini-val">Built-in</div></div>
+              </div>
+              <div class="product-metrics">
+                <div class="product-metric"><span class="product-metric-dot"></span>99.9% Uptime</div>
+                <div class="product-metric"><span class="product-metric-dot"></span>SOC2 Secure</div>
+                <div class="product-metric"><span class="product-metric-dot"></span>API First</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Product 4: Sellingo ── -->
+        <article class="product-card reversed scroll-reveal" style="--accent-from:#d73b1a;--accent-to:#1f496b;">
+          <div class="product-card-inner">
+            <div class="product-card-content">
+              <div class="product-card-head">
+                <div class="product-logo" style="--logo-from:#d73b1a;--logo-to:#1f496b;">
+                  <svg class="icon" width="28" height="28" viewBox="0 0 24 24"><path d="M12 7v5"/><path d="M7 7v10"/><path d="M17 7v10"/><path d="M3 3v18h18"/></svg>
+                </div>
+                <div style="min-width:0;">
+                  <div class="product-name-row">
+                    <h3 class="product-name">Sellingo</h3>
+                    <span class="product-ai-badge">AI Native</span>
+                  </div>
+                  <p class="product-subtitle">Digital Catalog &amp; Retail Management Platform for Jewellery</p>
+                </div>
+              </div>
+
+              <h4 class="product-headline">Modern Retail Experiences for the Jewellery Industry.</h4>
+              <p class="product-desc">
+                Sellingo digitizes jewellery retail — from product catalogs and barcode printing to
+                inventory, orders, and multi-store operations. Built specifically for jewellers, it
+                replaces manual, paper-based processes with a modern, connected retail platform.
+              </p>
+
+              <div class="product-caps-label">Key Capabilities</div>
+              <div class="product-caps-grid">
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M12 7v5"/><path d="M7 7v10"/><path d="M17 7v10"/><path d="M3 3v18h18"/></svg></span>Digital Product Catalogs</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M3 11h2l2 9 4-9h4l2 9 4-9h2"/></svg></span>Barcode &amp; Label Printing</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-5.5a2 2 0 0 0 .7-2.18l-2.5-8.5a2 2 0 0 0-1.9-1.4h-3.3a2 2 0 0 0-2 1.4l-2.5 8.5a2 2 0 0 0 .7 2.18Z"/><path d="M12 22V12"/></svg></span>Inventory Management</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span>Order Processing</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>Customer Management</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>Sales Tracking</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>Product Search &amp; Discovery</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M2 7 12 3l10 4-10 4-10-4Z"/><path d="M2 7v6l10 4 10-4V7"/><path d="M12 11v8"/></svg></span>Multi-Store Operations</div>
+                <div class="product-cap"><span class="product-cap-icon"><svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span>Business Analytics</div>
+              </div>
+
+              <p class="product-closing">Empowering jewellers to run modern, data-driven retail operations across every store and channel.</p>
+
+              <a href="contact.html" class="btn-product-cta">
+                <span>Learn More About Sellingo</span>
+                <svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <div class="product-card-visual">
+              <div class="product-visual-glow" aria-hidden="true"></div>
+              <div class="product-mini-grid">
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M12 7v5"/><path d="M7 7v10"/><path d="M17 7v10"/><path d="M3 3v18h18"/></svg></span><div class="product-mini-label">Catalogs</div><div class="product-mini-val">Digital</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M3 11h2l2 9 4-9h4l2 9 4-9h2"/></svg></span><div class="product-mini-label">Barcode</div><div class="product-mini-val">Print</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span><div class="product-mini-label">Sales</div><div class="product-mini-val">Tracked</div></div>
+                <div class="product-mini-card"><span class="product-mini-icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M2 7 12 3l10 4-10 4-10-4Z"/><path d="M2 7v6l10 4 10-4V7"/></svg></span><div class="product-mini-label">Stores</div><div class="product-mini-val">Multi</div></div>
+              </div>
+              <div class="product-metrics">
+                <div class="product-metric"><span class="product-metric-dot"></span>99.9% Uptime</div>
+                <div class="product-metric"><span class="product-metric-dot"></span>SOC2 Secure</div>
+                <div class="product-metric"><span class="product-metric-dot"></span>API First</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         4. BUILT FROM REAL EXPERIENCE
+         ════════════════════════════════════════════ -->
+    <section class="products-experience bg-white" id="experience" aria-label="Built from Real Experience">
+      <div class="container">
+        <div class="section-heading center">
+          <div class="heading-content">
+            <span class="badge badge-dark">
+              <span style="height:6px;width:6px;border-radius:2px;background:var(--orange-bright);"></span>
+              Real Experience
+            </span>
+            <h2 class="heading-title">Products Built from Real Business Experience</h2>
+            <p class="heading-desc">
+              Every product in our ecosystem is shaped by years of hands-on work with clients across
+              industries. We don't build in theory — we build from practice.
+            </p>
+          </div>
+        </div>
+
+        <div class="experience-grid">
+          <div class="experience-card scroll-reveal">
+            <span class="experience-card-icon"><svg class="icon" width="24" height="24" viewBox="0 0 24 24"><path d="M12 7v5"/><path d="M7 7v10"/><path d="M17 7v10"/><path d="M3 3v18h18"/></svg></span>
+            <h3 class="experience-card-title">Deep Domain Knowledge</h3>
+            <p class="experience-card-desc">Understanding industry-specific challenges and workflows.</p>
+          </div>
+          <div class="experience-card scroll-reveal">
+            <span class="experience-card-icon"><svg class="icon" width="24" height="24" viewBox="0 0 24 24"><path d="m12.83 2.18 8.93 4.6a2 2 0 0 1 0 3.6l-8.93 4.6a2 2 0 0 1-1.66 0L2.24 10.4a2 2 0 0 1 0-3.6l8.93-4.6a2 2 0 0 1 1.66 0Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></span>
+            <h3 class="experience-card-title">Scalable Engineering</h3>
+            <p class="experience-card-desc">Architectures designed for long-term growth and enterprise adoption.</p>
+          </div>
+          <div class="experience-card scroll-reveal">
+            <span class="experience-card-icon"><svg class="icon" width="24" height="24" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.142 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/></svg></span>
+            <h3 class="experience-card-title">AI-Enabled Innovation</h3>
+            <p class="experience-card-desc">Embedding intelligence where it creates measurable business value.</p>
+          </div>
+          <div class="experience-card scroll-reveal">
+            <span class="experience-card-icon"><svg class="icon" width="24" height="24" viewBox="0 0 24 24"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg></span>
+            <h3 class="experience-card-title">Open Technology Foundations</h3>
+            <p class="experience-card-desc">Flexible ecosystems without expensive vendor lock-in.</p>
+          </div>
+          <div class="experience-card scroll-reveal">
+            <span class="experience-card-icon"><svg class="icon" width="24" height="24" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
+            <h3 class="experience-card-title">Continuous Improvement</h3>
+            <p class="experience-card-desc">Products that evolve with changing markets and customer expectations.</p>
+          </div>
+          <div class="experience-card scroll-reveal">
+            <span class="experience-card-icon"><svg class="icon" width="24" height="24" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h3 class="experience-card-title">Enterprise-Ready</h3>
+            <p class="experience-card-desc">Security, compliance, and reliability baked into every product.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         5. INNOVATION BEYOND SERVICES
+         ════════════════════════════════════════════ -->
+    <section class="products-innovation" id="innovation" aria-label="Innovation Beyond Services">
+      <div class="container">
+        <div class="section-heading center">
+          <div class="heading-content">
+            <span class="badge badge-dark">
+              <span style="height:6px;width:6px;border-radius:2px;background:var(--orange-bright);"></span>
+              Innovation
+            </span>
+            <h2 class="heading-title">Innovation Beyond Services</h2>
+            <p class="heading-desc">
+              We don't stop at delivering services. Every engagement informs the products we build —
+              turning real-world challenges into platforms that benefit entire industries. This is how
+              we turn experience into innovation.
+            </p>
+          </div>
+        </div>
+
+        <div class="innovation-flow">
+          <div class="innovation-step scroll-reveal">
+            <div class="innovation-step-icon"><svg class="icon" width="32" height="32" viewBox="0 0 24 24"><path d="M2 20a3 3 0 0 0 3-3V9a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v0a3 3 0 0 0 3 3h0a3 3 0 0 0 3-3V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v13a3 3 0 0 0 3 3Z"/></svg></div>
+            <div class="innovation-step-num">01</div>
+            <h3 class="innovation-step-title">Industry Challenge</h3>
+            <p class="innovation-step-desc">We encounter a recurring, industry-wide problem while working with clients.</p>
+          </div>
+
+          <div class="innovation-arrow" aria-hidden="true">
+            <svg class="icon" width="32" height="32" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </div>
+
+          <div class="innovation-step scroll-reveal">
+            <div class="innovation-step-icon"><svg class="icon" width="32" height="32" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063L6 13a4 4 0 0 0 2.5-2.937L11 8.5a2 2 0 0 0 1.437 1.437L15 11a4 4 0 0 0-2.5 2.937L11 15.5a2 2 0 0 0-1.063-1.437z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></div>
+            <div class="innovation-step-num">02</div>
+            <h3 class="innovation-step-title">Product Innovation</h3>
+            <p class="innovation-step-desc">We engineer a scalable product solution — not just a one-off fix.</p>
+          </div>
+
+          <div class="innovation-arrow" aria-hidden="true">
+            <svg class="icon" width="32" height="32" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </div>
+
+          <div class="innovation-step scroll-reveal">
+            <div class="innovation-step-icon"><svg class="icon" width="32" height="32" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
+            <div class="innovation-step-num">03</div>
+            <h3 class="innovation-step-title">Business Impact</h3>
+            <p class="innovation-step-desc">The product creates measurable value across the entire industry.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         6. FINAL CTA
+         ════════════════════════════════════════════ -->
+    <section class="products-cta" id="cta" aria-label="Let's Build Together">
+      <div class="hero-grid-overlay bg-grid-light" aria-hidden="true"></div>
+      <div class="hero-blur-1" aria-hidden="true"></div>
+      <div class="hero-blur-2" aria-hidden="true"></div>
+
+      <div class="products-cta-inner">
+        <span class="badge badge-light">
+          <span style="height:6px;width:6px;border-radius:2px;background:var(--orange-yellow);"></span>
+          Let's Build Together
+        </span>
+        <h2 class="products-cta-h2">
+          Looking for a Product That
+          <span class="text-gradient-warm">Fits Your Business Needs?</span>
+        </h2>
+        <p class="products-cta-desc">
+          Whether you're looking to adopt one of our existing products or build something entirely new,
+          our team is ready to help. Let's talk about your requirements and find the right fit.
+        </p>
+        <div class="products-cta-btns">
+          <a href="contact.html" class="btn-primary-gradient">
+            <span class="shine"></span>
+            <span style="position:relative;">Discuss Your Requirements</span>
+            <span style="position:relative;"><svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+          <a href="contact.html" class="btn-outline-light">
+            <span>Contact Us</span>
+            <svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+        </div>
+        <p class="products-cta-tagline">Purpose-built products. Real-world impact. Future-ready innovation.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JS-injected footer -->
+  <div id="footer-slot"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/global.js"></script>
+  <!-- products.js not needed — page is fully static with scroll-reveal handled by global.js -->
+</body>
+</html>
