@@ -1,0 +1,244 @@
+/* ============================================================
+   Custom Software Development — page-specific styles
+   Reuses: global.css + services.css (svc-hero, svc-section,
+   svc-feature-grid, svc-feature-card, svc-cta, badge, buttons)
+   ============================================================ */
+
+/* Hero tagline under the intro paragraph */
+.csd-hero-tagline {
+  margin-top: 1.25rem;
+  font-family: var(--font-display, 'Jost', sans-serif);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, var(--orange-bright), var(--orange-yellow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Simple prose block used in intro and split section */
+.csd-prose {
+  max-width: 900px;
+  margin: 2rem auto 0;
+  display: grid;
+  gap: 1.15rem;
+  color: var(--muted-foreground, #4b5563);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+.csd-prose-p {
+  color: var(--muted-foreground, #4b5563);
+  line-height: 1.75;
+  margin-top: 1rem;
+}
+
+/* -------- What We Build : category cards -------- */
+.csd-cat-grid {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.csd-cat-card {
+  background: #fff;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 1px 2px rgba(15, 30, 60, 0.04);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.csd-cat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(215, 59, 26, 0.35);
+  box-shadow: 0 18px 40px -18px rgba(31, 73, 107, 0.25);
+}
+.csd-cat-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+.csd-cat-title {
+  font-family: var(--font-display, 'Jost', sans-serif);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #1f496b;
+  margin: 0;
+  line-height: 1.25;
+}
+.csd-cat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+.csd-cat-list li {
+  position: relative;
+  padding-left: 1.2rem;
+  color: var(--muted-foreground, #4b5563);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.csd-cat-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, var(--redorange, #d73b1a), var(--orange-bright, #ff6b35));
+}
+
+/* -------- Industry cards -------- */
+.csd-ind-grid {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.15rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.csd-ind-card {
+  background: #fff;
+  border: 1px solid var(--border, #e5e7eb);
+  border-left: 3px solid var(--orange-bright, #ff6b35);
+  border-radius: 14px;
+  padding: 1.5rem 1.4rem;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.csd-ind-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -18px rgba(31, 73, 107, 0.25);
+}
+.csd-ind-title {
+  font-family: var(--font-display, 'Jost', sans-serif);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #1f496b;
+  margin: 0 0 0.55rem;
+}
+.csd-ind-card p {
+  color: var(--muted-foreground, #4b5563);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* -------- Split (Idea to Enterprise Scale) -------- */
+.csd-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .csd-split { grid-template-columns: 1fr 1fr; gap: 4rem; }
+}
+.csd-services-title {
+  font-family: var(--font-display, 'Jost', sans-serif);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #1f496b;
+  margin: 0 0 1.25rem;
+}
+.csd-check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+  background: #fff;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 18px;
+  padding: 1.75rem;
+  box-shadow: 0 12px 30px -22px rgba(31, 73, 107, 0.3);
+}
+.csd-check-list li {
+  position: relative;
+  padding-left: 1.85rem;
+  color: #1f496b;
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+.csd-check-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--redorange, #d73b1a), var(--orange-bright, #ff6b35));
+}
+.csd-check-list li::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
+
+/* -------- Scale grid -------- */
+.csd-scale-grid {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.csd-scale-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 14px;
+  padding: 1.4rem 1.25rem;
+  overflow: hidden;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.csd-scale-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(215, 59, 26, 0.4);
+  box-shadow: 0 14px 30px -18px rgba(31, 73, 107, 0.25);
+}
+.csd-scale-num {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--orange-bright, #ff6b35);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.65rem;
+}
+.csd-scale-card h4 {
+  font-family: var(--font-display, 'Jost', sans-serif);
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1f496b;
+  margin: 0;
+  line-height: 1.35;
+}
+.csd-scale-note {
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+  text-align: center;
+  color: var(--muted-foreground, #4b5563);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.csd-scale-note strong { color: #1f496b; }
+
+/* -------- Responsive -------- */
+@media (max-width: 640px) {
+  .csd-cat-card,
+  .csd-ind-card,
+  .csd-check-list { padding: 1.25rem; }
+  .csd-hero-tagline { font-size: 1rem; }
+  .svc-section-cta { flex-direction: column; align-items: stretch; }
+  .svc-section-cta .btn-primary-gradient,
+  .svc-section-cta .btn-outline-light,
+  .svc-section-cta .btn-outline-navy { width: 100%; justify-content: center; }
+}
